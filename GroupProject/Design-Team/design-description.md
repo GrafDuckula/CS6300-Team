@@ -1,4 +1,4 @@
-# Assignment 5 Software Design
+# Team 177 D1 Software Design
 
 ## Task
 Design a job comparision app to compare different job offers
