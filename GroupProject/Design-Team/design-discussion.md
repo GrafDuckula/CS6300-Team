@@ -10,25 +10,29 @@ Pros: Has an entry point, has the necessary attributes and methods
 Cons: Basic level class diagram, needs additional classes  
 
 ## Design 2
+
+<img src="./images/design2.PNG" width="573" height="400">
+
 Pros: Has an entry point, level of detail
 
 Cons: Can consolidate some classes, class naming conventions, did not set correct attribute visibility
-
-<img src="./images/design2.PNG" width="573" height="400"> 
+ 
 
 ## Design 3 
+
+<img src="./images/design3.PNG" width="826" height="400"> 
+
 Pros: Beautiful design, concise
 
 Cons: Lacks a connection between classes *JobManager* and *JobComparison*  
 
-<img src="./images/design3.PNG" width="826" height="400"> 
-
 ## Design 4
+
+<img src="./images/design4.PNG" width="519" height="400">
+
 Pros: Has an entry point, clear design
 
-Cons: Lack of detail, lack of attribute visibility indicators, organization of classes between Jobs and addedDetails
-
-<img src="./images/design4.PNG" width="519" height="400"> 
+Cons: Lack of detail, lack of attribute visibility indicators, organization of classes between Jobs and addedDetails 
 
 ## Team Design
 <img src="./images/design5.PNG" width="770" height="400"> 
