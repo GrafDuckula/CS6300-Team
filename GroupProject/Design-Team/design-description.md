@@ -24,8 +24,8 @@ week allowed for remote work, inclusively between 0 and 5)
 viii. Leave time (vacation days and holiday and/or sick leave, as a single overall number of days)  
 ix. Gym membership allowance ($0 to $500 annually)  
 
-    >the class "JobManager" is created to manage all the jobs including current jobs. It contains the list of all jobs and a parameter of the current job. It also offers one function "editCurrentJob()" to edit the details of current job.    
-    All the jobs including current job are saved through the class "Job". The Job class contains all the details as its attributes, and it offers get(),set() function for showing details and editing.
+    >The class "JobManager" is created to manage all the job offers and the current jobs. It contains the list of all job offers and a parameter of the current job. It also offers one function "editCurrentJob()" to edit the details of current job.    
+    All the job offers and current job are saved through the class "Job". The Job class contains all the details as its attributes, and it offers get(),set() function for showing details and editing.
 
     b. Be able to either save the job details or cancel and exit without saving, returning in both cases to the main menu.
     >"JobManager" offer the function "saveJob()" to save the editing details, it replaces the details of the job selected. "cancelEdit" can be implemented through GUI, it discards editing and also bring back to main menu.
@@ -35,7 +35,7 @@ a. Be shown a user interface to enter all of the details of the offer, which are
 b. Be able to either save the job offer details or cancel.  
 c. Be able to (1) enter another offer, (2) return to the main menu, or (3) compare the offer (if they saved it) with the current job details (if present).
 
-    > when entering job offers, the new interface will use "JobManager" call "addJobOffer()" to edit the details of offer. "saveJob()". Save or cancel will return to the main menu. Calling "addJob()" again can help implement enter another offer. If saved, the job can compare with current job through the class "JobComparision", the saved job will be the attribute "compareJob" and implement the function "compareJobs(currentJob, compareJob)", and the comparision will use setting and weights attributes in class JobComparison for comparing.
+    > When entering job offers, the new interface will use "JobManager" and call "addJobOffer()" to edit the details of offer. "saveJob()". Save or cancel will return to the main menu. Calling "addJobOffer()" again can help implement enter another offer. If saved, the job can compare with current job through the class "JobComparision", the saved job will be the attribute "compareJob" and implement the function "compareJobs(currentJob, compareJob)", and the comparision will use setting and weights attributes in class JobComparison for comparing.
 
 4. When adjusting the comparison settings, the user can assign integer weights to:  
 a. Yearly salary  
@@ -59,8 +59,8 @@ vi. Allowed weekly telework days
 vii. Leave time  
 viii. Gym Membership Allowance  
 d. Be offered to perform another comparison or go back to the main menu.
-    >When choosing compare job offers. JobManager will provide the full list of job offers, based on its score which is calculated through JobComparision.
-    compareJobs() can compare the details of the two jobs and show the details. After comparison, GUI button can link to previous job offers page, or main menu.
+    >When choosing to compare job offers, JobManager will provide the full list of job offers, based on its score which is calculated through JobComparision.
+    The function compareJobs() can compare the details of the two jobs and show the details. After comparison, GUI button can link to previous job offers page, or main menu.
 
 6. When ranking jobs, a job’s score is computed as the weighted sum of:
 AYS + AYB + GYM + (LT * AYS / 260) - ((260 - 52 * RWT) * (AYS / 260) / 8)
