@@ -2,11 +2,12 @@
 
 
 ## Design 1 
-Pros: Has an entry point, has the necessary attributes and methods
-
-Cons: Basic level class diagram, needs additional classes 
 
 <img src="./images/design1.PNG" width="323" height="400"> 
+
+Pros: Has an entry point, has the necessary attributes and methods
+
+Cons: Basic level class diagram, needs additional classes  
 
 ## Design 2
 Pros: Has an entry point, level of detail
@@ -39,4 +40,4 @@ Some of the main commonalities were having the main menu as the entry point, est
 
 
 ## Summary
-Some of the lessons learned were attribute visibility, necessary connections between certain classes, and class dependencies.
+When it came to discussing the design of each UML diagram, we learned what each person saw valuable.  Some members approached the diagram with a simple approach that highlighted the key components to the system which made it easy to understand.  Other memebers went into indepth detail on classes that others hadn't considered.  The team was very open to feedback on their design and were the first ones to admit areas of opportunities.  This led to our team design where we agreed on the top 2 designs where we combined what we were valuable in each.  We learned from this project attribute visibility, necessary connections between certain classes, and class dependencies.
