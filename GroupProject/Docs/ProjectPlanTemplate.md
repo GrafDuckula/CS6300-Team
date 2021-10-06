@@ -24,6 +24,7 @@ Job Offer Comparison is an android application created to make the job hunt easi
 *Describe the team and their roles (include at least 4 roles, there may be more roles than there are team members)*
 
 - *Team members' names*
+- Aiping Zheng, Carlo Fervil, Cuirong Pan, Nicolas Pizarro
 - *Roles, with a short description of each role*
 - *Table showing which team member(s) has which role(s)*
 
