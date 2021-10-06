@@ -1,8 +1,7 @@
 # Design Document
 
-*This is the template for your design document. The parts in italics are concise explanations of what should go in the corresponding sections and should not appear in the final document.*
 
-**Author**: \<person or team name\>
+**Author**: Team 177
 
 ## 1 Design Considerations
 
@@ -12,13 +11,19 @@
 
 *Describe any assumption, background, or dependencies of the software, its use, the operational environment, or significant project issues.*
 
+An important dependency of our software is the way in which the information of the job information and offer is stored.  This means our application must retain the information when the application is forced quit.  we are assuming that the version of android will run on the supported hardware without issue.  In other words, we are not having to worry about supporting multiple versions of the application for different versions of android.  
+
 ### 1.2 Constraints
 
 *Describe any constraints on the system that have a significant impact on the design of the system.*
 
+One of the constraints on the system from a design perspective will be the manner in which we display the information to the user.  What if the user has added in 300 job offers, how would we go about handling the selection of the offers to the user.
+
 ### 1.3 System Environment
 
 *Describe the hardware and software that the system must operate in and interact with.*
+
+Our application will be running on API 29: Android 10.0(Q).  The hardware that our application will run on will be any hardware that supports at least Android 10.0 and above.
 
 ## 2 Architectural Design
 
