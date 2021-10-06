@@ -2,11 +2,13 @@
 
 *This is the template for your project plan. The parts in italics are concise explanations of what should go in the corresponding sections and should not appear in the final document.*
 
-**Author**: \<person or team name\>
+**Author**: Team 177
 
 ## 1 Introduction
 
 *Here you introduce the product. Keep this  clean and simple, one or two sentences at most.*
+
+Job Offer Comparison is an android application created to make the job hunt easier by providing easy comparision of job offers.
 
 ## 2 Process Description
 
@@ -24,3 +26,11 @@
 - *Team members' names*
 - *Roles, with a short description of each role*
 - *Table showing which team member(s) has which role(s)*
+
+
+| 	Name 	  | Role |
+| --------------- |:----:|
+| Aiping Zheng 	  | ---- | 
+| Carlo Fervil	  | ---- |  
+| Cuirong Pan	  | ---- |   
+| Nicolas Pizarro | ---- | 
