@@ -2,7 +2,7 @@
 
 *This is the template for your test plan. The parts in italics are concise explanations of what should go in the corresponding sections and should not appear in the final document.*
 
-**Author**: \<person or team name\>
+**Author**: Team177
 
 ## 1 Testing Strategy
 
@@ -22,6 +22,8 @@
 
 *Describe how bugs and enhancement requests will be tracked.*
 
+Bugs and enhancement requests will be tracked on github through the issue option of the application.
+
 ### 1.5 Technology
 
 *Describe any testing technology you intend to use or build (e.g., JUnit, Selenium).*
@@ -29,3 +31,7 @@
 ## 2 Test Cases
 
 *This section should be the core of this document. You should provide a table of test cases, one per row. For each test case, the table should provide its purpose, the steps necessary to perform the test, the expected result, the actual result (to be filled later), pass/fail information (to be filled later), and any additional information you think is relevant.*
+
+
+| 	Test Case	 | Purpose |	Steps	| Expected | Actual | Pass/Fail | Optional |
+| --------------- |:----:| :----:  |:----:      | :----:   |:----:  | :----:    |:----:    |
