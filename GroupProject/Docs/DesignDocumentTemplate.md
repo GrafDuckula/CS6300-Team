@@ -27,15 +27,25 @@ Our application will be running on API 29: Android 10.0(Q).  The hardware that o
 
 ## 2 Architectural Design
 
-*The architecture provides the high-level design view of a system and provides a basis for more detailed design work. These subsections describe the top-level components of the system you are building and their relationships.*
+The architecture provides the high-level design view of a system and provides a basis for more detailed design work. These subsections describe the top-level components of the system you are building and their relationships.
 
 ### 2.1 Component Diagram
 
-*This section should provide and describe a diagram that shows the various components and how they are connected. This diagram shows the logical/functional components of the system, where each component represents a cluster of related functionality. In the case of simple systems, where there is a single component, this diagram may be unnecessary; in these cases, simply state so and concisely state why.*
+Component Diagram simplify the high-level view of the system. It shows the various components and how they are connected.   
+In this application, it contains six large components including GUI, MainMenu Client Session, Job Manager, Comparison Setting, Job and Database.  
+GUI is the component of the system entry interface. Users operate through the interface. GUI requires the information through Main Menu client session about main functions.  
+Main Menu contains the functions on the main page, it requires interface from Job Manager for Job offers and Comparison Setting for weights.  
+Job Manager, Comparison Setting and Job are interacted to calculate the score and rank the job offers.  
+All data are stored in local database.
+
+![component diagram](./images/componentDiagram.png)
+
 
 ### 2.2 Deployment Diagram
 
-*This section should describe how the different components will be deployed on actual hardware devices. Similar to the previous subsection, this diagram may be unnecessary for simple systems; in these cases, simply state so and concisely state why.*
+The deployment diagram for this app is really simple because the deployments are  handled within an andrioid device.
+
+![deployment diagram](./images/deploymentDiagram.png)
 
 ## 3 Low-Level Design
 
