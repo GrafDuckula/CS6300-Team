@@ -18,10 +18,13 @@ Regression-Testing - Our strategy to make sure unrelated changes are not impacti
 ### 1.2 Test Selection
 
 *Here you should discuss how you are going to select your test cases, that is, which black-box and/or white-box techniques you will use. If you plan to use different techniques at different testing levels (e.g., unit and system), you should clarify that.*
+Black-box Testing - One approach we are planning to utilize is Partition testing for the job offer selection as there are multiple ways a job offer could be presented (no stocks, multiple stocks, equity, bonuses, no bonuses, etc), so we would pick a partition and select options from within it.  For this we would use boundary values such as 0 for no stocks, or maybe 100,000 as an average amount of stocks, etc.
+White-box Testing - We would use CFG (Control Flow Graph) and branch coverage to try and get test cases that get 100% branch coverage.
 
 ### 1.3 Adequacy Criterion
 
 *Define how you are going to assess the quality of your test cases. Typically, this involves some form of functional or structural coverage. If you plan to use different techniques at different testing levels (e.g., unit and system), you should clarify that.*
+We will apply the black-box testing concept of Finite State Machines as we are utlizing UML diagram for this.
 
 ### 1.4 Bug Tracking
 
@@ -32,6 +35,7 @@ Bugs and enhancement requests will be tracked on github through the issue option
 ### 1.5 Technology
 
 *Describe any testing technology you intend to use or build (e.g., JUnit, Selenium).*
+JUnit testing will be used to test modules of the system to make sure inputs are correct.  We will utilize manual testing for more UI related for interfact interaction for navigating between menus to see if the flow works as expected.  Selenium will be used to make sure a typical user process is completed successfully (adding a job offer, and retrieving it).
 
 ## 2 Test Cases
 
