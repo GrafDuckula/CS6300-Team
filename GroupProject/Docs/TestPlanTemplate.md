@@ -52,14 +52,14 @@ JUnit testing will be used to test modules of the system to make sure inputs are
 
 | 	Test Case	 | Purpose |	Steps	| Expected | Actual | Pass/Fail | Optional |
 | 	----	 | ----   |	----   | ----  | ----  | ----   | ---- |
-| 	Edit Job Selection	 | 1. Open Menu <br /> 2. Make sure editCurrentJob selection is present <br /> 3. Select editCurrentJob <br /> 4. Wait for job manager to show up |	Steps	| Expected | Actual | Pass/Fail | Optional |
-| 	Enter a Job Offer	 | Purpose |	Steps	| Expected | Actual | Pass/Fail | Optional |
-| 	Adjust a Job	 | Purpose |	Steps	| Expected | Actual | Pass/Fail | Optional |
-| 	Comparing a Job	 | Purpose |	Steps	| Expected | Actual | Pass/Fail | Optional |
-| 	Getting a Job	 | Purpose |	Steps	| Expected | Actual | Pass/Fail | Optional |
-| 	Editing Job Information	 | Purpose |	Steps	| Expected | Actual | Pass/Fail | Optional |
-| 	Add Job Offer	 | Purpose |	Steps	| Expected | Actual | Pass/Fail | Optional |
-| 	Compare Jobs	 | Purpose |	Steps	| Expected | Actual | Pass/Fail | Optional |
-| 	Adjust Job Weights	 | Purpose |	Steps	| Expected | Actual | Pass/Fail | Optional |
-| 	Ranking Job Offers	 | Purpose |	Steps	| Expected | Actual | Pass/Fail | Optional |
+| 	Edit Job Selection	 | Purpose  |	1. Open Menu <br /> 2. Make sure editCurrentJob selection is present <br /> 3. Select editCurrentJob <br /> 4. Wait for job manager to show up | Expected | Actual | Pass/Fail | Optional |
+| 	Enter a Job Offer	 | Purpose |	1. Open Menu 2. Make sure Entering a Job Offer is displayed 3. Select enter job offer 4. Make sure Job manager menu opens	| Expected | Actual | Pass/Fail | Optional |
+| 	Adjust a Job	 | Purpose |	1. Open Menu 2. Make sure Adjust a Job is displayed on menu 3. Select Adjust a Job	| Expected | Actual | Pass/Fail | Optional |
+| 	Comparing a Job	 | Purpose |	1. Open Menu 2. Comparing a Job should show up in selection screen 3. Select Compare a job	| Expected | Actual | Pass/Fail | Optional |
+| 	Getting a Job	 | Purpose |	1. Navigate to Job Manaer 2. Menu should display an option to get a job or a list of jobs	| Expected | Actual | Pass/Fail | Optional |
+| 	Editing Job Information	 | 1. Navigate to Job Manager 2. Select option to edit current job 3. Update the information with new values 4. Save 5. Select option to Get Job Information |	Steps	| Expected | Actual | Pass/Fail | Optional |
+| 	Add Job Offer	 | Purpose |	1. Navigate to Job Manager 2. Select Add Job Offer 3. Enter information and save 4. Select option to Get Job Information	| Expected | Actual | Pass/Fail | Optional |
+| 	Compare Jobs	 | Purpose |	1. Navigate to Job Comparison Menu 2. Select option to compare jobs 3. Select 2 jobs and compare	| Expected | Actual | Pass/Fail | Optional |
+| 	Adjust Job Weights	 | 1. Navigate to Job Comparison Menu 2. Select option to adjust job weighting 3. Select values for job weights for corresponding location 4. Save 5. Select option to compare jobs 6. Select 2 jobs to compare |	Steps	| Expected | Actual | Pass/Fail | Optional |
+| 	Ranking Job Offers	 | 1. Navigate to Job Comparison Menu 2. Select option to Rank Job Offers |	Steps	| Expected | Actual | Pass/Fail | Optional |
                
