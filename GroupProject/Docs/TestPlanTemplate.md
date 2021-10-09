@@ -57,9 +57,9 @@ JUnit testing will be used to test modules of the system to make sure inputs are
 | 	Adjust a Job	 | Purpose |	1. Open Menu <br /> 2. Make sure Adjust a Job is displayed on menu <br /> 3. Select Adjust a Job	| Expected | Actual | Pass/Fail | Optional |
 | 	Comparing a Job	 | Purpose |	1. Open Menu <br /> 2. Comparing a Job should show up in selection screen <br /> 3. Select Compare a job	| Expected | Actual | Pass/Fail | Optional |
 | 	Getting a Job	 | Purpose |	1. Navigate to Job Manaer <br /> 2. Menu should display an option to get a job or a list of jobs	| Expected | Actual | Pass/Fail | Optional |
-| 	Editing Job Information	 | 1. Navigate to Job Manager <br /> 2. Select option to edit current job <br /> 3. Update the information with new values <br /> 4. Save <br /> 5. Select option to Get Job Information |	Steps	| Expected | Actual | Pass/Fail | Optional |
+| 	Editing Job Information	 | Purpose  |	1. Navigate to Job Manager <br /> 2. Select option to edit current job <br /> 3. Update the information with new values <br /> 4. Save <br /> 5. Select option to Get Job Information	| Expected | Actual | Pass/Fail | Optional |
 | 	Add Job Offer	 | Purpose |	1. Navigate to Job Manager <br /> 2. Select Add Job Offer <br /> 3. Enter information and save <br /> 4. Select option to Get Job Information	| Expected | Actual | Pass/Fail | Optional |
 | 	Compare Jobs	 | Purpose |	1. Navigate to Job Comparison Menu 2. Select option to compare jobs 3. Select 2 jobs and compare	| Expected | Actual | Pass/Fail | Optional |
-| 	Adjust Job Weights	 | 1. Navigate to Job Comparison Menu <br /> 2. Select option to adjust job weighting <br /> 3. Select values for job weights for corresponding location <br /> 4. Save <br /> 5. Select option to compare jobs <br /> 6. Select 2 jobs to compare |	Steps	| Expected | Actual | Pass/Fail | Optional |
-| 	Ranking Job Offers	 | 1. Navigate to Job Comparison Menu <br /> 2. Select option to Rank Job Offers |	Steps	| Expected | Actual | Pass/Fail | Optional |
+| 	Adjust Job Weights	 | Purpose |	1. Navigate to Job Comparison Menu <br /> 2. Select option to adjust job weighting <br /> 3. Select values for job weights for corresponding location <br /> 4. Save <br /> 5. Select option to compare jobs <br /> 6. Select 2 jobs to compare	| Expected | Actual | Pass/Fail | Optional |
+| 	Ranking Job Offers	 | Purpose |	1. Navigate to Job Comparison Menu <br /> 2. Select option to Rank Job Offers	| Expected | Actual | Pass/Fail | Optional |
                
