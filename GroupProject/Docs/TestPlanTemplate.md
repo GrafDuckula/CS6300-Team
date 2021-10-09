@@ -52,14 +52,14 @@ JUnit testing will be used to test modules of the system to make sure inputs are
 
 | 	Test Case	 | Purpose |	Steps	| Expected | Actual | Pass/Fail | Optional |
 | 	----	 | ----   |	----   | ----  | ----  | ----   | ---- |
-| 	Test Case	 | Testing <br /> new line breaks  |	Steps	| Expected | Actual | Pass/Fail | Optional |
-| 	Test Case	 | Purpose |	Steps	| Expected | Actual | Pass/Fail | Optional |
-| 	Test Case	 | Purpose |	Steps	| Expected | Actual | Pass/Fail | Optional |
-| 	Test Case	 | Purpose |	Steps	| Expected | Actual | Pass/Fail | Optional |
-| 	Test Case	 | Purpose |	Steps	| Expected | Actual | Pass/Fail | Optional |
-| 	Test Case	 | Purpose |	Steps	| Expected | Actual | Pass/Fail | Optional |
-| 	Test Case	 | Purpose |	Steps	| Expected | Actual | Pass/Fail | Optional |
-| 	Test Case	 | Purpose |	Steps	| Expected | Actual | Pass/Fail | Optional |
-| 	Test Case	 | Purpose |	Steps	| Expected | Actual | Pass/Fail | Optional |
-| 	Test Case	 | Purpose |	Steps	| Expected | Actual | Pass/Fail | Optional |
+| 	Edit Job Selection	 | 1. Open Menu <br /> 2. Make sure editCurrentJob selection is present <br /> 3. Select editCurrentJob <br /> 4. Wait for job manager to show up |	Steps	| Expected | Actual | Pass/Fail | Optional |
+| 	Enter a Job Offer	 | Purpose |	Steps	| Expected | Actual | Pass/Fail | Optional |
+| 	Adjust a Job	 | Purpose |	Steps	| Expected | Actual | Pass/Fail | Optional |
+| 	Comparing a Job	 | Purpose |	Steps	| Expected | Actual | Pass/Fail | Optional |
+| 	Getting a Job	 | Purpose |	Steps	| Expected | Actual | Pass/Fail | Optional |
+| 	Editing Job Information	 | Purpose |	Steps	| Expected | Actual | Pass/Fail | Optional |
+| 	Add Job Offer	 | Purpose |	Steps	| Expected | Actual | Pass/Fail | Optional |
+| 	Compare Jobs	 | Purpose |	Steps	| Expected | Actual | Pass/Fail | Optional |
+| 	Adjust Job Weights	 | Purpose |	Steps	| Expected | Actual | Pass/Fail | Optional |
+| 	Ranking Job Offers	 | Purpose |	Steps	| Expected | Actual | Pass/Fail | Optional |
                
