@@ -1,3 +1,6 @@
+
+**Author**: Team177
+
 1. Performance
 
 	It should take less than 3 seconds to load the initial screen when the App is made to start up. 
@@ -23,11 +26,3 @@
 	The App should be able to return to previous state after been disrupted by a call.
 
 6. The App state, including weights and job details, should persist between runs. 
-  
-	
-
-7. Other possible ones?? 
-
-	Accessibility, Availability, Network Coverage, adaptability, reliability
-	
-	Accuracy, cost, interoperability, resuablity
