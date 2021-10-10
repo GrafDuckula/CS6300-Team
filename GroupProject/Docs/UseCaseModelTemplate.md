@@ -4,7 +4,7 @@
 
 ## 1 Use Case Diagram
 
-<img src="./images/UseCaseDiagram.PNG" width="617" height="400"> 
+<img src="./images/UseCaseDiagram.png" width="617" height="400"> 
 
 ## 2 Use Case Descriptions
 
