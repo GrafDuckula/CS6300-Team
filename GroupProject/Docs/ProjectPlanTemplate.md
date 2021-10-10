@@ -30,13 +30,13 @@ Job Offer Comparison is an android application created to make the job hunt easi
 
 - *Roles, with a short description of each role*
 
-  Frontend developer: design the visual part of the App that the user interacts with.
+  **Frontend developer**: design the visual part of the App that the user interacts with.
   
-  Backend developer:  design and implement functionality of the App
+  **Backend developer**:  design and implement functionality of the App
   
-  QA Tester: run various tests on the App to ensure it meets all requirements, and has no defects or issues.
+  **QA Tester**: run various tests on the App to ensure it meets all requirements, and has no defects or issues.
   
-  Project Manager:
+  **Project Manager**:  plan, execute, monitor, control, and close out a App development project
 
 - *Table showing which team member(s) has which role(s)*
 
