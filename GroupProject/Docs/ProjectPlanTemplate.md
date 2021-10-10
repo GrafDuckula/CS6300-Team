@@ -12,12 +12,40 @@ Job Offer Comparison is an android application created to make the job hunt easi
 
 ## 2 Process Description
 
-*Project development process description as a set of activities; for each development process activity, provide the following:*
+### Requirement Engineering
 
-- *Activity name (verb or verb phrase)*
-- *Activity description (concise paragraph)*
-- *Entrance criteria (inputs needed for the activity)*
-- *Exit criteria (outputs produced by the activity and how you know it has been completed satisfactorily)*
+- *Activity name* Gather Requirements
+- *Activity description* We determining what the app need to achieve and what need to be created to make that happen
+- *Entrance criteria* Business requirements and the understanding of such 
+- *Exit criteria* We identified relevant use cases
+
+### Design Phase
+
+- *Activity name* Design Diagrams
+- *Activity description* We tried to transform the requirements into visual diagrams that specify the workflow of the app, as well design the architecture in which the app will be implemented on
+- *Entrance criteria* The use cases and requirements
+- *Exit criteria* We designed the use case diagram, the class diagram, and the architectural design
+
+### Implementation Phase
+
+- *Activity name* Implement the app
+- *Activity description* Build an app that meet the requirements
+- *Entrance criteria* The requirements
+- *Exit criteria* A designed app meets the requirements
+
+### Testing Phase
+
+- *Activity name* Test the app
+- *Activity description* We developed test cases based on black-box testing to check if the app passed various functionalities 
+- *Entrance criteria* The requirements
+- *Exit criteria* Passing the list of test cases, fixing any bugs
+
+### Deployment Phase
+
+- *Activity name* Install correctly in user's device
+- *Activity description* Post-installation on user's end and test the integration between the app and the device
+- *Entrance criteria* The app has already passed the previous testing 
+- *Exit criteria* Successful integration of the app and the user's device
 
 ## 3 Team
 
