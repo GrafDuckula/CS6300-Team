@@ -24,14 +24,26 @@ Job Offer Comparison is an android application created to make the job hunt easi
 *Describe the team and their roles (include at least 4 roles, there may be more roles than there are team members)*
 
 - *Team members' names*
-- Aiping Zheng, Carlo Fervil, Cuirong Pan, Nicolas Pizarro
+
+  Aiping Zheng, Carlo Fervil, Cuirong Pan, Nicolas Pizarro
+
+
 - *Roles, with a short description of each role*
+
+  Frontend developer: design the visual part of the App that the user interacts with.
+  
+  Backend developer:  design and implement functionality of the App
+  
+  QA Tester: run various tests on the App to ensure it meets all requirements, and has no defects or issues.
+  
+  Project Manager:
+
 - *Table showing which team member(s) has which role(s)*
 
 
 | 	Name 	  | Role |
 | --------------- |:----:|
-| Aiping Zheng 	  | ---- | 
-| Carlo Fervil	  | ---- |  
-| Cuirong Pan	  | ---- |   
-| Nicolas Pizarro | ---- | 
+| Aiping Zheng 	  | Frontend developer, Backend developer, QA Tester | 
+| Carlo Fervil	  | Frontend developer, Backend developer, QA Tester, Project Manager |  
+| Cuirong Pan	  | Frontend developer, Backend developer, QA Tester |   
+| Nicolas Pizarro | Frontend developer, Backend developer, QA Tester | 
