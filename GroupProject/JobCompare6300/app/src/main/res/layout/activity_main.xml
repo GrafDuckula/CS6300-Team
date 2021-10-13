@@ -40,6 +40,7 @@
             android:backgroundTint="#BF3F8A42"
             android:insetLeft="15dp"
             android:insetRight="15dp"
+            android:onClick="handleClick"
             android:text="Enter/Edit Current Job" />
 
         <Button
@@ -49,6 +50,7 @@
             android:backgroundTint="#BF3F8A42"
             android:insetLeft="15dp"
             android:insetRight="15dp"
+            android:onClick="handleClick"
             android:text="Enter NEW Job Offers" />
 
         <Button
@@ -58,6 +60,7 @@
             android:backgroundTint="#BF3F8A42"
             android:insetLeft="15dp"
             android:insetRight="15dp"
+            android:onClick="handleClick"
             android:text="Compare Job offers" />
 
         <Button
@@ -67,6 +70,7 @@
             android:backgroundTint="#BF3F8A42"
             android:insetLeft="15dp"
             android:insetRight="15dp"
+            android:onClick="handleClick"
             android:text="comparison setting" />
 
     </LinearLayout>

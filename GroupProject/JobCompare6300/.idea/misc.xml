@@ -5,12 +5,15 @@
       <map>
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22447916666666667" />
         <entry key="app/src/main/res/layout/add_new_offer.xml" value="0.22447916666666667" />
+        <entry key="app/src/main/res/layout/adjust_weights.xml" value="0.1" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.22447916666666667" />
+        <entry key="app/src/main/res/layout/current_job.xml" value="0.1417763157894737" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.22447916666666667" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.22447916666666667" />
         <entry key="app/src/main/res/layout/in_list_layout.xml" value="0.22447916666666667" />
         <entry key="app/src/main/res/layout/job_comparison.xml" value="0.22447916666666667" />
         <entry key="app/src/main/res/layout/job_list.xml" value="0.12401315789473684" />
+        <entry key="app/src/main/res/layout/job_ranking.xml" value="0.1417763157894737" />
         <entry key="app/src/main/res/layout/recycler_view_item.xml" value="0.12401315789473684" />
       </map>
     </option>

@@ -24,7 +24,7 @@ public class JobComparisonActivity extends AppCompatActivity {
                 intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
             case R.id.buttonAnotherComparison:
-                intent = new Intent(this, JobRankingActivty.class);
+                intent = new Intent(this, JobRankingActivity.class);
                 startActivity(intent);
         }
 
@@ -39,7 +39,8 @@ public class JobComparisonActivity extends AppCompatActivity {
     private void receiveAndShowData() {
         //RECEIVE DATA FROM ITEMS ACTIVITY VIA INTENT
         Intent i = this.getIntent();
-        AddNewOfferActivity.job g = (AddNewOfferActivity.job) i.getSerializableExtra("Offer_KEY");
+        String jobA = i.getStringExtra("JobA");
+        String jobB = i.getStringExtra("JobB");
 
         //SET DATA TO TEXTVIEWS
 

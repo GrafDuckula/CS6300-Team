@@ -10,9 +10,7 @@ import android.view.View;
 public class AddNewOfferActivity extends AppCompatActivity{
     private EditText titleTxt, companyTxt, cityTxt, stateTxt, livingCostTxt, salaryTxt, bonusTxt,
             leaveDaysTxt, teleTxt, gymAllowanceTxt;
-    private Button backToMainButton, saveOfferButton, cancelOfferButton, addAnotherOfferButton, compareWithCurrentJobButton;
 
-    //We start by initializing our widgets.
     private void initializeWidgets() {
         titleTxt = findViewById(R.id.jobTitle);
         companyTxt = findViewById(R.id.companyName);
@@ -24,13 +22,6 @@ public class AddNewOfferActivity extends AppCompatActivity{
         leaveDaysTxt = findViewById(R.id.leaveTime);
         teleTxt = findViewById(R.id.teleDays);
         gymAllowanceTxt = findViewById(R.id.gymAllowance);
-
-        backToMainButton = findViewById(R.id.buttonBackToMain);
-        saveOfferButton = findViewById(R.id.buttonSaveOffer);
-        cancelOfferButton = findViewById(R.id.buttonCancelOffer);
-        addAnotherOfferButton = findViewById(R.id.buttonAddAnotherOffer);
-        compareWithCurrentJobButton = findViewById(R.id.buttonCompareWithCurrent);
-
 
     }
 
@@ -52,7 +43,9 @@ public class AddNewOfferActivity extends AppCompatActivity{
 
             case R.id.buttonCompareWithCurrent:
                 intent = new Intent(this, JobComparisonActivity.class);
-                //
+                // need to send two Job keys to comparison
+                intent.putExtra("JobA",  "current_key");
+                intent.putExtra("JobB", "new_key");
                 startActivity(intent);
         }
 
@@ -61,8 +54,22 @@ public class AddNewOfferActivity extends AppCompatActivity{
 
     private void saveData() {
 
-        // save data
-        //...///
+        Job newOffer = new Job(
+                titleTxt.getText().toString(),
+                companyTxt.getText().toString(),
+                cityTxt.getText().toString(),
+                Integer.parseInt(livingCostTxt.getText().toString()),
+                Integer.parseInt(salaryTxt.getText().toString()),
+                Integer.parseInt(bonusTxt.getText().toString()),
+                Integer.parseInt(leaveDaysTxt.getText().toString()),
+                Integer.parseInt(teleTxt.getText().toString()),
+                Integer.parseInt(gymAllowanceTxt.getText().toString())
+        );
+
+        // need to store to job manager
+
+        //
+
     }
 
     private void reset(){
@@ -89,9 +96,5 @@ public class AddNewOfferActivity extends AppCompatActivity{
 
     }
 
-    public class job{
-
-
-    }
 
 }
