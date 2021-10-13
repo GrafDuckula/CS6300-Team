@@ -1,4 +1,4 @@
-package edu.gatech.seclass.ui;
+package edu.gatech.seclass.jobcompare6300;
 
 import android.content.Intent;
 import android.os.Bundle;
