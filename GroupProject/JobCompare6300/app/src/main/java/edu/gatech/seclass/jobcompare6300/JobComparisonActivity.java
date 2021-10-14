@@ -17,6 +17,8 @@ public class JobComparisonActivity extends AppCompatActivity {
 
     }
 
+    private JobManager jobManager;
+
     public void handleClick(View view){
         Intent intent;
         switch (view.getId()){
@@ -25,6 +27,7 @@ public class JobComparisonActivity extends AppCompatActivity {
                 startActivity(intent);
             case R.id.buttonAnotherComparison:
                 intent = new Intent(this, JobRankingActivity.class);
+                intent.putExtra("jobManager",jobManager);
                 startActivity(intent);
         }
 
@@ -39,8 +42,6 @@ public class JobComparisonActivity extends AppCompatActivity {
     private void receiveAndShowData() {
         //RECEIVE DATA FROM ITEMS ACTIVITY VIA INTENT
         Intent i = this.getIntent();
-        String jobA = i.getStringExtra("JobA");
-        String jobB = i.getStringExtra("JobB");
 
         //SET DATA TO TEXTVIEWS
 

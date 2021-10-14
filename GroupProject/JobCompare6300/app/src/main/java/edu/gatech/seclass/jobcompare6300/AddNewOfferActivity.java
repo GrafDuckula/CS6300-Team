@@ -7,9 +7,24 @@ import android.widget.Button;
 import android.view.View;
 
 
+
+
 public class AddNewOfferActivity extends AppCompatActivity{
     private EditText titleTxt, companyTxt, cityTxt, stateTxt, livingCostTxt, salaryTxt, bonusTxt,
             leaveDaysTxt, teleTxt, gymAllowanceTxt;
+
+    private JobManager jobManager;
+    private Job newOffer;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.add_new_offer);
+
+        initializeWidgets();
+
+    }
+
 
     private void initializeWidgets() {
         titleTxt = findViewById(R.id.jobTitle);
@@ -31,6 +46,7 @@ public class AddNewOfferActivity extends AppCompatActivity{
             case R.id.buttonAddAnotherOffer:
                 saveData();
                 intent = new Intent(this, AddNewOfferActivity.class);
+                intent.putExtra("jobManager",jobManager);
                 startActivity(intent);
             case R.id.buttonBackToMain:
                 intent = new Intent(this, MainActivity.class);
@@ -42,10 +58,12 @@ public class AddNewOfferActivity extends AppCompatActivity{
                 reset();
 
             case R.id.buttonCompareWithCurrent:
+
+                // need to check if saved first? or just save automatically??
+
                 intent = new Intent(this, JobComparisonActivity.class);
-                // need to send two Job keys to comparison
-                intent.putExtra("JobA",  "current_key");
-                intent.putExtra("JobB", "new_key");
+                intent.putExtra("JobB", newOffer);
+                intent.putExtra("JobManager", jobManager);
                 startActivity(intent);
         }
 
@@ -54,8 +72,11 @@ public class AddNewOfferActivity extends AppCompatActivity{
 
     private void saveData() {
 
-        Job newOffer = new Job(
-                titleTxt.getText().toString(),
+        Intent i = this.getIntent();
+        jobManager = (JobManager) i.getSerializableExtra("jobManager");
+
+        // is this the original instance of Job manager?????
+        newOffer = new Job(titleTxt.getText().toString(),
                 companyTxt.getText().toString(),
                 cityTxt.getText().toString(),
                 Integer.parseInt(livingCostTxt.getText().toString()),
@@ -63,12 +84,18 @@ public class AddNewOfferActivity extends AppCompatActivity{
                 Integer.parseInt(bonusTxt.getText().toString()),
                 Integer.parseInt(leaveDaysTxt.getText().toString()),
                 Integer.parseInt(teleTxt.getText().toString()),
-                Integer.parseInt(gymAllowanceTxt.getText().toString())
-        );
+                Integer.parseInt(gymAllowanceTxt.getText().toString()));
 
-        // need to store to job manager
 
-        //
+        jobManager.addNewJobOffer(titleTxt.getText().toString(),
+                companyTxt.getText().toString(),
+                cityTxt.getText().toString(),
+                Integer.parseInt(livingCostTxt.getText().toString()),
+                Integer.parseInt(salaryTxt.getText().toString()),
+                Integer.parseInt(bonusTxt.getText().toString()),
+                Integer.parseInt(leaveDaysTxt.getText().toString()),
+                Integer.parseInt(teleTxt.getText().toString()),
+                Integer.parseInt(gymAllowanceTxt.getText().toString()));
 
     }
 
@@ -86,15 +113,7 @@ public class AddNewOfferActivity extends AppCompatActivity{
 
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.add_new_offer);
 
-        initializeWidgets();
-
-
-    }
 
 
 }

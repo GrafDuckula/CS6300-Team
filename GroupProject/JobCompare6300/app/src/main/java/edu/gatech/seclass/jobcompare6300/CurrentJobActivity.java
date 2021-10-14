@@ -14,10 +14,14 @@ public class CurrentJobActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.current_job);
+        initializeWidgets();
+        receiveAndShowData();
     }
 
     private EditText titleTxt, companyTxt, cityTxt, stateTxt, livingCostTxt, salaryTxt, bonusTxt,
             leaveDaysTxt, teleTxt, gymAllowanceTxt;
+    private Job job;
+    private JobManager jobManager;
 
     private void initializeWidgets() {
         titleTxt = findViewById(R.id.jobTitle);
@@ -40,20 +44,39 @@ public class CurrentJobActivity extends AppCompatActivity {
                 saveData();
 
             case R.id.buttonCancelCurrentJob:
-                reset();
                 intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
-
-            // need to navigate back to main menu
-
         }
+    }
+
+
+    private void receiveAndShowData() {
+        //RECEIVE DATA FROM ITEMS ACTIVITY VIA INTENT
+        Intent i = this.getIntent();
+        jobManager = (JobManager) i.getSerializableExtra("jobManager");
+        job = jobManager.getCurrentJob();
+
+        //SET RECEIVED DATA TO TEXTVIEWS
+        titleTxt.setText(job.getTitle());
+        companyTxt.setText(job.getCompany());
+        cityTxt.setText(job.getLocation());
+
+        // State is not saved yet!!!
+
+        livingCostTxt.setText(job.getLivingCostIndex());
+        salaryTxt.setText(job.getYearlySalary());
+        bonusTxt.setText(job.getYearlyBonus());
+        leaveDaysTxt.setText(job.getLeaveTime());
+        teleTxt.setText(job.getAllowedRemoteDays());
+        gymAllowanceTxt.setText(job.getGymAllowance());
 
     }
 
+
+
     private void saveData() {
 
-
-        Job current = new Job(
+        job.editJob(
                 titleTxt.getText().toString(),
                 companyTxt.getText().toString(),
                 cityTxt.getText().toString(),
@@ -65,13 +88,6 @@ public class CurrentJobActivity extends AppCompatActivity {
                 Integer.parseInt(gymAllowanceTxt.getText().toString())
         );
 
-        // need to store to job manager
-
-        //
-
     }
 
-    private void reset(){
-
-    }
 }

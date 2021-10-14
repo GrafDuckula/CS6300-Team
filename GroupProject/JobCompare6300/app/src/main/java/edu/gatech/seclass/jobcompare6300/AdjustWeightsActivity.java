@@ -15,12 +15,14 @@ public class AdjustWeightsActivity extends AppCompatActivity {
 
 
     private EditText salaryWeightsTxt, bonusWeightsTxt, leaveDaysWeightsTxt, teleWeightsTxt, gymAllowanceWeightsTxt;
+    private Weights weights;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.adjust_weights);
         initializeWidgets();
+        receiveAndShowData();
 
     }
 
@@ -30,11 +32,24 @@ public class AdjustWeightsActivity extends AppCompatActivity {
             case R.id.buttonSaveWeights:
                 saveWeights();
             case R.id.buttonCancelWeights:
-                resetWeights();
+                // resetWeights();
                 intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
         }
 
+    }
+
+    private void receiveAndShowData() {
+        //RECEIVE DATA FROM ITEMS ACTIVITY VIA INTENT
+        Intent i = this.getIntent();
+        weights = (Weights) i.getSerializableExtra("Weights");
+
+        //SET RECEIVED DATA TO TEXTVIEWS
+        salaryWeightsTxt.setText(weights.getSalaryWeight());
+        bonusWeightsTxt.setText(weights.getBonusWeight());
+        leaveDaysWeightsTxt.setText(weights.getLeaveWeight());
+        teleWeightsTxt.setText(weights.getRemoteDayWeight());
+        gymAllowanceWeightsTxt.setText(weights.getGymWeight());
     }
 
     private void initializeWidgets() {
@@ -49,12 +64,13 @@ public class AdjustWeightsActivity extends AppCompatActivity {
 
     private void saveWeights() {
 
-        // need weights class
-
+        weights.setSalaryWeight(Integer.parseInt(salaryWeightsTxt.getText().toString()));
+        weights.setBonusWeight(Integer.parseInt(bonusWeightsTxt.getText().toString()));
+        weights.setLeaveWeight(Integer.parseInt(leaveDaysWeightsTxt.getText().toString()));
+        weights.setRemoteDayWeight(Integer.parseInt(teleWeightsTxt.getText().toString()));
+        weights.setGymWeight(Integer.parseInt(gymAllowanceWeightsTxt.getText().toString()));
 
     }
-
-
 
     private void resetWeights(){
         salaryWeightsTxt.setText("");

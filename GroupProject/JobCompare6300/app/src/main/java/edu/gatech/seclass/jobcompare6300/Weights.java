@@ -1,9 +1,10 @@
 package edu.gatech.seclass.jobcompare6300;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Weights {
+public class Weights implements Serializable {
     private int yearlySalaryWeight;
     private int yearlyBonusWeight;
     private int allowedRemoteDaysWeight;
@@ -29,6 +30,65 @@ public class Weights {
         this.gymAllowanceWeight = gymAllowanceWeight;
 
     }
+
+    // Get
+
+    public int getSalaryWeight() {
+
+        return yearlySalaryWeight;
+    }
+
+    public int getBonusWeight() {
+
+        return yearlyBonusWeight;
+    }
+
+    public int getRemoteDayWeight() {
+
+        return allowedRemoteDaysWeight;
+    }
+
+    public int getLeaveWeight() {
+
+        return leaveTimeWeight;
+    }
+
+    public int getGymWeight() {
+
+        return gymAllowanceWeight;
+    }
+
+
+
+    //Set
+
+    public void setSalaryWeight(int yearlySalaryWeight) {
+
+        this.yearlySalaryWeight = yearlySalaryWeight;
+    }
+
+    public void setBonusWeight(int yearlyBonusWeight) {
+
+        this.yearlyBonusWeight = yearlyBonusWeight;
+    }
+
+    public void setRemoteDayWeight(int allowedRemoteDaysWeight) {
+
+        this.allowedRemoteDaysWeight = allowedRemoteDaysWeight;
+    }
+
+    public void setLeaveWeight(int leaveTimeWeight) {
+
+        this.leaveTimeWeight = leaveTimeWeight;
+    }
+
+    public void setGymWeight(int gymAllowanceWeight) {
+
+        this.gymAllowanceWeight = gymAllowanceWeight;
+    }
+
+
+
 
     public ArrayList<Integer> getWeights() {
 

@@ -1,7 +1,8 @@
 package edu.gatech.seclass.jobcompare6300;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class JobManager {
+public class JobManager implements Serializable {
 
     public ArrayList<Job> jobList;
     private Job currentJob;

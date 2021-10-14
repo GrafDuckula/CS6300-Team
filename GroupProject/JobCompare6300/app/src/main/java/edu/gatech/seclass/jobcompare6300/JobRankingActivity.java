@@ -13,8 +13,12 @@ public class JobRankingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.job_ranking);
         initializeWidgets();
+        receiveAndShowData();
 
     }
+
+    private Job jobA;
+    private Job jobB;
 
     private void initializeWidgets() {
 
@@ -31,19 +35,22 @@ public class JobRankingActivity extends AppCompatActivity {
             case R.id.buttonCompareJobs:
                 intent = new Intent(this, JobComparisonActivity.class);
                 // need to send two Job keys to comparison
-                intent.putExtra("JobA",  "A_key");
-                intent.putExtra("JobB", "B_key");
+                intent.putExtra("JobA",  jobA);
+                intent.putExtra("JobB", jobB);
                 startActivity(intent);
 
             case R.id.buttonCancelComparison:
-                reset();
-
-                // need to be able to navigate back to main menu
-
+                intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
         }
 
     }
-    private void reset(){
+
+    private void receiveAndShowData() {
+        //RECEIVE DATA FROM ITEMS ACTIVITY VIA INTENT
+        Intent i = this.getIntent();
+
+        //SET DATA TO TEXTVIEWS
 
     }
 
