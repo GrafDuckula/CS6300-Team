@@ -8,6 +8,9 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class AdjustWeightsActivity extends AppCompatActivity {
 
 
@@ -50,6 +53,9 @@ public class AdjustWeightsActivity extends AppCompatActivity {
 
 
     }
+
+
+
     private void resetWeights(){
         salaryWeightsTxt.setText("");
         bonusWeightsTxt.setText("");
@@ -58,4 +64,5 @@ public class AdjustWeightsActivity extends AppCompatActivity {
         gymAllowanceWeightsTxt.setText("");
 
     }
+
 }

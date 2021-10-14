@@ -280,35 +280,30 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/textView20"
-            android:layout_width="match_parent"
-            android:layout_height="226dp" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/buttonSaveCurrentJob"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="#BF3F8A42"
-                android:insetLeft="15dp"
-                android:insetRight="15dp"
-                android:text="save" />
-
-            <Button
                 android:id="@+id/buttonCancelCurrentJob"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="#BF3F8A42"
                 android:insetLeft="15dp"
                 android:insetRight="15dp"
                 android:text="cancel" />
+
+            <Button
+                android:id="@+id/buttonSaveCurrentJob"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#BF3F8A42"
+                android:insetLeft="15dp"
+                android:insetRight="15dp"
+                android:text="save" />
         </LinearLayout>
 
     </LinearLayout>

@@ -171,11 +171,6 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/textView20"
-            android:layout_width="match_parent"
-            android:layout_height="416dp" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -184,7 +179,7 @@
             <Button
                 android:id="@+id/buttonSaveWeights"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="#BF3F8A42"
                 android:insetLeft="15dp"
@@ -195,7 +190,7 @@
             <Button
                 android:id="@+id/buttonCancelWeights"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="#BF3F8A42"
                 android:insetLeft="15dp"

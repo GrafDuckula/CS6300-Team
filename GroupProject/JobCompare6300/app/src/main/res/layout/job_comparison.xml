@@ -318,7 +318,7 @@
         <TextView
             android:id="@+id/textView31"
             android:layout_width="match_parent"
-            android:layout_height="176dp"
+            android:layout_height="77dp"
             android:paddingLeft="10dp"
             android:paddingTop="20dp"
             android:paddingEnd="20dp"
@@ -333,7 +333,7 @@
             <Button
                 android:id="@+id/buttonBackToMain"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="#BF3F8A42"
                 android:insetLeft="15dp"
@@ -343,7 +343,7 @@
             <Button
                 android:id="@+id/buttonAnotherComparison"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="#BF3F8A42"
                 android:insetLeft="15dp"

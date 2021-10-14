@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".AddNewOfferActivity">
 
     <LinearLayout
@@ -281,11 +281,6 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="match_parent"
-            android:layout_height="101dp" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="66dp"
@@ -340,7 +335,7 @@
         <Button
             android:id="@+id/buttonCompareWithCurrent"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="57dp"
             android:layout_weight="1"
             android:backgroundTint="#BF3F8A42"
             android:insetLeft="15dp"
