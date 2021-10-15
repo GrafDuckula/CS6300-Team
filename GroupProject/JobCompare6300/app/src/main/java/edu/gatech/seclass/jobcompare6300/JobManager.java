@@ -24,7 +24,7 @@ public class JobManager implements Serializable {
     //When click save in current Job.
     //Enter Current Job if Current Job is null.
     //Edit Current Job if it's not null.
-    public void EditCurrentJob(String title, String company, String location, int livingCostIndex,
+    public void editCurrentJob(String title, String company, String location, int livingCostIndex,
                                   int yearlySalary, int yearlyBonus, int weeklyAllowedRemoteDays, int leaveTime, int gymAllowance){
         if (this.currentJob == null){
             this.currentJob = new Job(title, company, location, livingCostIndex, yearlySalary, yearlyBonus,
