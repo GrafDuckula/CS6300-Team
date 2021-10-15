@@ -52,6 +52,11 @@ public class AddNewOfferActivity extends AppCompatActivity{
             case R.id.buttonAddAnotherOffer:
                 saveData();
                 intent = new Intent(this, AddNewOfferActivity.class);
+
+                Intent i = this.getIntent();
+                jobManager = (JobManager) i.getSerializableExtra("jobManager");
+
+
                 intent.putExtra("jobManager",jobManager);
                 startActivity(intent);
                 break;
@@ -70,6 +75,8 @@ public class AddNewOfferActivity extends AppCompatActivity{
                 // need to check if saved first? or just save automatically??
 
                 intent = new Intent(this, JobComparisonActivity.class);
+
+                intent.putExtra("JobA", jobManager.getCurrentJob());
                 intent.putExtra("JobB", newOffer);
                 intent.putExtra("JobManager", jobManager);
                 startActivity(intent);
@@ -83,7 +90,6 @@ public class AddNewOfferActivity extends AppCompatActivity{
         Intent i = this.getIntent();
         jobManager = (JobManager) i.getSerializableExtra("jobManager");
 
-        // is this the original instance of Job manager?????
         newOffer = new Job(titleTxt.getText().toString(),
                 companyTxt.getText().toString(),
                 cityTxt.getText().toString(),

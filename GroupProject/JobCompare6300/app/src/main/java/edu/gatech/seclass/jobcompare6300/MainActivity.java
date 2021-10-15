@@ -25,7 +25,9 @@ public class MainActivity extends AppCompatActivity {
         currentJob = new Job("senior developer", "Netflix", "CA",
                 144, 120000,20000,
                 2,17,225);
-        jobManager.editCurrentJob(currentJob);
+        jobManager.EditCurrentJob("senior developer", "Netflix", "CA",
+                144, 120000,20000,
+                2,17,225);
         jobManager.addNewJobOffer("senior developer", "tesla", "Texas",
                 137, 135000,15000,
                 3,14,500);

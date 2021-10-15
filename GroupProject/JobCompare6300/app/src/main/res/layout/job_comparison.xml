@@ -339,6 +339,7 @@
                 android:backgroundTint="#BF3F8A42"
                 android:insetLeft="15dp"
                 android:insetRight="15dp"
+                android:onClick="handleClick"
                 android:text="Back to Main menu" />
 
             <Button
