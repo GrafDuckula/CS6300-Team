@@ -22,9 +22,10 @@ public class JobComparisonActivity extends AppCompatActivity {
     public void handleClick(View view){
         Intent intent;
         switch (view.getId()){
-            case R.id.buttonBackToMain:
+            case R.id.buttonBackToMainFromComparison:
                 intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
+                break;
             case R.id.buttonAnotherComparison:
                 intent = new Intent(this, JobRankingActivity.class);
                 intent.putExtra("jobManager",jobManager);

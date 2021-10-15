@@ -319,6 +319,7 @@
             android:id="@+id/textView31"
             android:layout_width="match_parent"
             android:layout_height="77dp"
+            android:onClick="handleClick"
             android:paddingLeft="10dp"
             android:paddingTop="20dp"
             android:paddingEnd="20dp"
@@ -331,7 +332,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/buttonBackToMain"
+                android:id="@+id/buttonBackToMainFromComparison"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -348,6 +349,7 @@
                 android:backgroundTint="#BF3F8A42"
                 android:insetLeft="15dp"
                 android:insetRight="15dp"
+                android:onClick="handleClick"
                 android:text="Another Comparison" />
         </LinearLayout>
 

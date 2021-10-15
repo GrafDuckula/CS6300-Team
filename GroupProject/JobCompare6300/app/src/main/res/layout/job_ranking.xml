@@ -42,30 +42,17 @@
             android:layout_height="match_parent">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView2"
+                android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                app:layout_constraintBottom_toTopOf="@+id/textView20"
+                app:layout_constraintBottom_toTopOf="@id/textView"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:itemCount="9"
                 tools:listitem="@layout/item_in_recycler_in_job_ranking" />
-
-            <TextView
-                android:id="@+id/textView20"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="10dp"
-                android:padding="15dp"
-                android:text="* Current job"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerView2" />
 
             <Button
                 android:id="@+id/buttonCompareJobs"
@@ -77,6 +64,7 @@
                 android:backgroundTint="#BF3F8A42"
                 android:insetLeft="15dp"
                 android:insetRight="15dp"
+                android:onClick="handleClick"
                 android:text="compare"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/buttonCancelComparison"
@@ -93,11 +81,26 @@
                 android:backgroundTint="#BF3F8A42"
                 android:insetLeft="15dp"
                 android:insetRight="15dp"
+                android:onClick="handleClick"
                 android:text="cancel"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/buttonCompareJobs" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="367dp"
+                android:layout_height="46dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:padding="15dp"
+                android:text="* Current job"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>

@@ -31,8 +31,8 @@ public class AdjustWeightsActivity extends AppCompatActivity {
         switch (view.getId()){
             case R.id.buttonSaveWeights:
                 saveWeights();
+                break;
             case R.id.buttonCancelWeights:
-                // resetWeights();
                 intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
         }
@@ -45,11 +45,11 @@ public class AdjustWeightsActivity extends AppCompatActivity {
         weights = (Weights) i.getSerializableExtra("Weights");
 
         //SET RECEIVED DATA TO TEXTVIEWS
-        salaryWeightsTxt.setText(weights.getSalaryWeight());
-        bonusWeightsTxt.setText(weights.getBonusWeight());
-        leaveDaysWeightsTxt.setText(weights.getLeaveWeight());
-        teleWeightsTxt.setText(weights.getRemoteDayWeight());
-        gymAllowanceWeightsTxt.setText(weights.getGymWeight());
+        salaryWeightsTxt.setText(Integer.toString(weights.getSalaryWeight()));
+        bonusWeightsTxt.setText(Integer.toString(weights.getBonusWeight()));
+        leaveDaysWeightsTxt.setText(Integer.toString(weights.getLeaveWeight()));
+        teleWeightsTxt.setText(Integer.toString(weights.getRemoteDayWeight()));
+        gymAllowanceWeightsTxt.setText(Integer.toString(weights.getGymWeight()));
     }
 
     private void initializeWidgets() {
@@ -69,15 +69,6 @@ public class AdjustWeightsActivity extends AppCompatActivity {
         weights.setLeaveWeight(Integer.parseInt(leaveDaysWeightsTxt.getText().toString()));
         weights.setRemoteDayWeight(Integer.parseInt(teleWeightsTxt.getText().toString()));
         weights.setGymWeight(Integer.parseInt(gymAllowanceWeightsTxt.getText().toString()));
-
-    }
-
-    private void resetWeights(){
-        salaryWeightsTxt.setText("");
-        bonusWeightsTxt.setText("");
-        leaveDaysWeightsTxt.setText("");
-        teleWeightsTxt.setText("");
-        gymAllowanceWeightsTxt.setText("");
 
     }
 

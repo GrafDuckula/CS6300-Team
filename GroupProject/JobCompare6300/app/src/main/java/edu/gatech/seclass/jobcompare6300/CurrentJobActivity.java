@@ -39,13 +39,21 @@ public class CurrentJobActivity extends AppCompatActivity {
 
     public void handleClick(View view){
         Intent intent;
+        System.out.println(view.getId());
+        System.out.println(R.id.buttonSaveCurrentJob);
+        System.out.println(R.id.buttonCancelCurrentJob);
         switch (view.getId()){
+
             case R.id.buttonSaveCurrentJob:
                 saveData();
+                System.out.println("To save");
+                break;
 
             case R.id.buttonCancelCurrentJob:
                 intent = new Intent(this, MainActivity.class);
+                System.out.println("To MainActivity");
                 startActivity(intent);
+
         }
     }
 
@@ -57,18 +65,20 @@ public class CurrentJobActivity extends AppCompatActivity {
         job = jobManager.getCurrentJob();
 
         //SET RECEIVED DATA TO TEXTVIEWS
+        System.out.println(job.getTitle());
+
         titleTxt.setText(job.getTitle());
         companyTxt.setText(job.getCompany());
         cityTxt.setText(job.getLocation());
 
         // State is not saved yet!!!
 
-        livingCostTxt.setText(job.getLivingCostIndex());
-        salaryTxt.setText(job.getYearlySalary());
-        bonusTxt.setText(job.getYearlyBonus());
-        leaveDaysTxt.setText(job.getLeaveTime());
-        teleTxt.setText(job.getAllowedRemoteDays());
-        gymAllowanceTxt.setText(job.getGymAllowance());
+        livingCostTxt.setText(Integer.toString(job.getLivingCostIndex()));
+        salaryTxt.setText(Integer.toString(job.getYearlySalary()));
+        bonusTxt.setText(Integer.toString(job.getYearlyBonus()));
+        leaveDaysTxt.setText(Integer.toString(job.getLeaveTime()));
+        teleTxt.setText(Integer.toString(job.getAllowedRemoteDays()));
+        gymAllowanceTxt.setText(Integer.toString(job.getGymAllowance()));
 
     }
 
@@ -87,6 +97,9 @@ public class CurrentJobActivity extends AppCompatActivity {
                 Integer.parseInt(teleTxt.getText().toString()),
                 Integer.parseInt(gymAllowanceTxt.getText().toString())
         );
+
+        System.out.println(job.getLivingCostIndex());
+        System.out.println(job.getYearlyBonus());
 
     }
 

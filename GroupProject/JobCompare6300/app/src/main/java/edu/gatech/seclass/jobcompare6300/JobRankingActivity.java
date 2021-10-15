@@ -38,6 +38,7 @@ public class JobRankingActivity extends AppCompatActivity {
                 intent.putExtra("JobA",  jobA);
                 intent.putExtra("JobB", jobB);
                 startActivity(intent);
+                break;
 
             case R.id.buttonCancelComparison:
                 intent = new Intent(this, MainActivity.class);

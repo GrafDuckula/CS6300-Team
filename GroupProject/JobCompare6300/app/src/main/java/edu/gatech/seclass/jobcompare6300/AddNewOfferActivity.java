@@ -42,21 +42,29 @@ public class AddNewOfferActivity extends AppCompatActivity{
 
     public void handleClick(View view){
         Intent intent;
+        System.out.println(view.getId());
+        System.out.println(R.id.buttonAddAnotherOffer);
+        System.out.println(R.id.buttonMainMenu);
+        System.out.println(R.id.buttonSaveOffer);
+        System.out.println(R.id.buttonCancelOffer);
+        System.out.println(R.id.buttonCompareWithCurrent);
         switch (view.getId()){
             case R.id.buttonAddAnotherOffer:
                 saveData();
                 intent = new Intent(this, AddNewOfferActivity.class);
                 intent.putExtra("jobManager",jobManager);
                 startActivity(intent);
-            case R.id.buttonBackToMain:
+                break;
+            case R.id.buttonMainMenu:
                 intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
+                break;
             case R.id.buttonSaveOffer:
                 saveData();
-
+                break;
             case R.id.buttonCancelOffer:
                 reset();
-
+                break;
             case R.id.buttonCompareWithCurrent:
 
                 // need to check if saved first? or just save automatically??
