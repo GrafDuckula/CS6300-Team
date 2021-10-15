@@ -9,13 +9,13 @@ public class Job implements Serializable {
     private int livingCostIndex;
     private int yearlySalary;
     private int yearlyBonus;
-    private int allowedRemoteDays; //0-5
+    private int weeklyAllowedRemoteDays; //0-5
     private int leaveTime;
     private int gymAllowance; //0-500
 
 
     public Job(String title, String company, String location, int livingCostIndex,
-               int yearlySalary, int yearlyBonus, int allowedRemoteDays, int leaveTime, int gymAllowance)
+               int yearlySalary, int yearlyBonus, int weeklyAllowedRemoteDays, int leaveTime, int gymAllowance)
     {
         this.title = title;
         this.company = company;
@@ -23,7 +23,7 @@ public class Job implements Serializable {
         this.livingCostIndex = livingCostIndex;
         this.yearlySalary = yearlySalary;
         this.yearlyBonus = yearlyBonus;
-        this.allowedRemoteDays = allowedRemoteDays;
+        this.weeklyAllowedRemoteDays = weeklyAllowedRemoteDays;
         this.leaveTime = leaveTime;
         this.gymAllowance = gymAllowance;
 
@@ -32,7 +32,7 @@ public class Job implements Serializable {
     // return bool ??
 
     public void editJob(String title, String company, String location, int livingCostIndex,
-                        int yearlySalary, int yearlyBonus, int allowedRemoteDays, int leaveTime, int gymAllowance)
+                        int yearlySalary, int yearlyBonus, int weeklyAllowedRemoteDays, int leaveTime, int gymAllowance)
     {
         // check parameters are valid through frontend main activity before use.
         // allowedRemoteDays and gymAllowance can be 0
@@ -49,10 +49,18 @@ public class Job implements Serializable {
         this.livingCostIndex = livingCostIndex;
         this.yearlySalary = yearlySalary;
         this.yearlyBonus = yearlyBonus;
-        this.allowedRemoteDays = allowedRemoteDays;
+        this.weeklyAllowedRemoteDays = weeklyAllowedRemoteDays;
         this.leaveTime = leaveTime;
         this.gymAllowance = gymAllowance;
 
+    }
+
+    public int calculateScore(JobComparison setting){
+        return setting.getAYS()/setting.getSum() * this.yearlySalary
+                + setting.getAYB()/setting.getSum() * this.yearlyBonus
+                + setting.getGYM()/setting.getSum() * this.gymAllowance
+                + setting.getLT()/setting.getSum() * (this.leaveTime * this.yearlySalary/260)
+                + setting.getRWT()/setting.getSum() * ((260 -52 * this.weeklyAllowedRemoteDays) * (this.yearlySalary/260)/8);
     }
 
     public String getTitle() {
@@ -79,16 +87,16 @@ public class Job implements Serializable {
         return this.yearlyBonus;
     }
 
-    public int getAllowedRemoteDays() {
-        return allowedRemoteDays;
+    public int getWeeklyAllowedRemoteDays() {
+        return this.weeklyAllowedRemoteDays;
     }
 
     public int getLeaveTime() {
-        return leaveTime;
+        return this.leaveTime;
     }
 
     public int getGymAllowance() {
-        return gymAllowance;
+        return this.gymAllowance;
     }
 
 
