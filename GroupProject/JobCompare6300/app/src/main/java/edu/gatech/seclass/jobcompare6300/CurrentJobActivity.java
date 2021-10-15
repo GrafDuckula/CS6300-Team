@@ -77,7 +77,7 @@ public class CurrentJobActivity extends AppCompatActivity {
         salaryTxt.setText(Integer.toString(job.getYearlySalary()));
         bonusTxt.setText(Integer.toString(job.getYearlyBonus()));
         leaveDaysTxt.setText(Integer.toString(job.getLeaveTime()));
-        teleTxt.setText(Integer.toString(job.getAllowedRemoteDays()));
+        teleTxt.setText(Integer.toString(job.getWeeklyAllowedRemoteDays()));
         gymAllowanceTxt.setText(Integer.toString(job.getGymAllowance()));
 
     }

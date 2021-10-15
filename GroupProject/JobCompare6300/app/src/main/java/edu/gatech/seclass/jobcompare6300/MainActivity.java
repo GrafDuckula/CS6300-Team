@@ -22,10 +22,12 @@ public class MainActivity extends AppCompatActivity {
         // need to create new job manager, and load all save job data
 
         // fake current job for test
-        currentJob = new Job("senior developer", "Netflix", "CA",
+//        currentJob = new Job("senior developer", "Netflix", "CA",
+//                144, 120000,20000,
+//                2,17,225);
+        jobManager.editCurrentJob("senior developer", "Netflix", "CA",
                 144, 120000,20000,
                 2,17,225);
-        jobManager.editCurrentJob(currentJob);
         jobManager.addNewJobOffer("senior developer", "tesla", "Texas",
                 137, 135000,15000,
                 3,14,500);
