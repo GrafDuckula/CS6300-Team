@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2740740740740741" />
+        <entry key="app/src/main/res/layout/add_new_offer.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/adjust_weights.xml" value="0.17407407407407408" />
+        <entry key="app/src/main/res/layout/current_job.xml" value="0.29270833333333335" />
+        <entry key="app/src/main/res/layout/item_in_recycler_in_job_ranking.xml" value="0.17407407407407408" />
+        <entry key="app/src/main/res/layout/job_comparison.xml" value="0.24427083333333333" />
+        <entry key="app/src/main/res/layout/job_ranking.xml" value="0.17407407407407408" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

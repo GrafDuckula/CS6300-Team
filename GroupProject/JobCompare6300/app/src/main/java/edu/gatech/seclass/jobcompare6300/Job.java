@@ -1,6 +1,8 @@
 package edu.gatech.seclass.jobcompare6300;
 
-public class Job {
+import java.io.Serializable;
+
+public class Job implements Serializable {
     private String title;
     private String company;
     private String location;

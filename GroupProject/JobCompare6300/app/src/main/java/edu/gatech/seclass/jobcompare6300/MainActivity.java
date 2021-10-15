@@ -1,76 +1,72 @@
 package edu.gatech.seclass.jobcompare6300;
 
+import android.content.Intent;
 import android.os.Bundle;
-
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
 
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-
-import edu.gatech.seclass.jobcompare6300.databinding.ActivityMainBinding;
-
-import android.view.Menu;
-import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
 
-    private AppBarConfiguration appBarConfiguration;
-    private ActivityMainBinding binding;
+    private JobManager jobManager = new JobManager();
+    private Weights weights = new Weights();
+    private Job currentJob;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        // need to create new job manager, and load all save job data
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
-        setSupportActionBar(binding.toolbar);
-
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-
-        binding.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        // fake current job for test
+        currentJob = new Job("senior developer", "Netflix", "CA",
+                144, 120000,20000,
+                2,17,225);
+        jobManager.editCurrentJob(currentJob);
+        jobManager.addNewJobOffer("senior developer", "tesla", "Texas",
+                137, 135000,15000,
+                3,14,500);
+        jobManager.addNewJobOffer("senior developer", "PNC", "PA",
+                125, 95000,5000,
+                5,14,400);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    public void handleClick(View view){
+        Intent intent;
+        switch (view.getId()){
+            case R.id.buttonCurrent:
+                intent = new Intent(this, CurrentJobActivity.class);
+                intent.putExtra("jobManager",jobManager);
+                System.out.println("To CurrentJobActivity");
+                startActivity(intent);
+                break;
+
+            case R.id.buttonNewOffer:
+                intent = new Intent(this, AddNewOfferActivity.class);
+                intent.putExtra("jobManager",jobManager);
+                System.out.println("To AddNewOfferActivity");
+                startActivity(intent);
+                break;
+
+            case R.id.buttonCompare:
+                intent = new Intent(this, JobRankingActivity.class);
+                intent.putExtra("jobManager",jobManager);
+                System.out.println("To JobRankingActivity");
+                startActivity(intent);
+                break;
+
+            case R.id.buttonSetting:
+                intent = new Intent(this, AdjustWeightsActivity.class);
+                intent.putExtra("Weights",weights);
+                System.out.println("To AdjustWeightsActivity");
+                startActivity(intent);
         }
 
-        return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        return NavigationUI.navigateUp(navController, appBarConfiguration)
-                || super.onSupportNavigateUp();
-    }
 }
