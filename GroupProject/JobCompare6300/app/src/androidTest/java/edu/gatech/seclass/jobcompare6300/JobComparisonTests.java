@@ -17,12 +17,13 @@ import java.util.Map;
 import edu.gatech.seclass.jobcompare6300.Job;
 
 public class JobComparisonTests {
-    JobComparison jobcompare = JobComparison.getInstance();
+    JobComparison jobcompare;
     Job offerOneTest;
     Job offerTwoTest;
 
     @Before
     public void setUp(){
+        jobcompare = JobComparison.getInstance();
         offerOneTest = new Job("Chef", "Microsoft", "Mountain View, CA", 5, 250000, 5000, 5, 20, 400);
         offerTwoTest = new Job("SWE", "Apple", "Mountain NoView, CA", 8, 250001, 7000, 0, 5, 250);
     }
@@ -65,6 +66,11 @@ public class JobComparisonTests {
 
         Assert.assertTrue(originalSum != jobcompare.getSum());
 
+    }
+
+    @After
+    public void setDefaultJobComparison(){
+        jobcompare.setWeight(0, 0, 0, 0, 0);
     }
 
 
