@@ -23,17 +23,17 @@ public class JobComparison {
 
     private JobComparison(){
         this.settingMap = new HashMap<String, Integer>();
-        settingMap.put("yearlySalary", 0);
-        settingMap.put("yearlyBonus", 0);
-        settingMap.put("gymAllowance", 0);
-        settingMap.put("leaveTime", 0);
-        settingMap.put("weeklyAllowedRemoteDays", 0);
+        settingMap.put("yearlySalary", 1);
+        settingMap.put("yearlyBonus", 1);
+        settingMap.put("gymAllowance", 1);
+        settingMap.put("leaveTime", 1);
+        settingMap.put("weeklyAllowedRemoteDays", 1);
 
         this.JobOffer_1 = null;
         this.JobOffer_2 = null;
     }
 
-    public void addJobOffer_1(Job jobOffer_1, Job jobOffer_2){
+    public void addJobOfferToCompare(Job jobOffer_1, Job jobOffer_2){
         this.JobOffer_1 = jobOffer_1;
         this.JobOffer_2 = jobOffer_2;
     }
@@ -54,10 +54,9 @@ public class JobComparison {
                 + settingMap.get("weeklyAllowedRemoteDays");
     }
 
-   public int getAYS(){
+    public int getAYS(){
         return settingMap.get("yearlySalary");
    }
-
     public int getAYB(){
         return settingMap.get("yearlyBonus");
     }
