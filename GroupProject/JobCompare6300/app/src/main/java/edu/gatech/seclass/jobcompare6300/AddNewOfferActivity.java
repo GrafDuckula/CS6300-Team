@@ -61,17 +61,9 @@ public class AddNewOfferActivity extends AppCompatActivity{
 
             case R.id.buttonMainMenu:
                 if (tempSaved){
-                    saveToJobMgr();
-                    intent = new Intent(this, MainActivity.class);
-                    startActivity(intent);
-                }else{
-                    Context context = getApplicationContext();
-                    CharSequence text = "Error: Please SAVE the offer first";
-                    int duration = Toast.LENGTH_LONG;
-                    Toast toast = Toast.makeText(context, text, duration);
-                    toast.show();
-                }
-
+                    saveToJobMgr();}
+                intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
                 break;
 
             case R.id.buttonSaveOffer:
