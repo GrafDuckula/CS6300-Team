@@ -73,9 +73,9 @@ public class JobRankingActivity extends AppCompatActivity {
 
                     jobA = checkedJob.get(0);
                     jobB = checkedJob.get(1);
-
-                    intent.putExtra("JobA", jobA);
-                    intent.putExtra("JobB", jobB);
+                    jobComparison.addJobOfferToCompare(jobA,jobB);
+//                    intent.putExtra("JobA", jobA);
+//                    intent.putExtra("JobB", jobB);
                     startActivity(intent);
                 }
                 break;

@@ -33,7 +33,7 @@ public class JobComparison {
         this.JobOffer_2 = null;
     }
 
-    public void addJobOffer_1(Job jobOffer_1, Job jobOffer_2){
+    public void addJobOfferToCompare(Job jobOffer_1, Job jobOffer_2){
         this.JobOffer_1 = jobOffer_1;
         this.JobOffer_2 = jobOffer_2;
     }

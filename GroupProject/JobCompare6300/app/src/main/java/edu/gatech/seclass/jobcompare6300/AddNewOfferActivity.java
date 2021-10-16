@@ -14,6 +14,7 @@ public class AddNewOfferActivity extends AppCompatActivity{
             leaveDaysTxt, teleTxt, gymAllowanceTxt;
 
     JobManager jobMgr = JobManager.getInstance();
+    JobComparison jobComparison = JobComparison.getInstance();
     private Job newOffer;
 
     private boolean err = false;
@@ -85,8 +86,11 @@ public class AddNewOfferActivity extends AppCompatActivity{
                 if (tempSaved){
                     saveToJobMgr();
                     intent = new Intent(this, JobComparisonActivity.class);
-                    intent.putExtra("JobA", jobMgr.getCurrentJob());
-                    intent.putExtra("JobB", newOffer);
+
+                    jobComparison.addJobOfferToCompare(jobMgr.getCurrentJob(),newOffer);
+//
+//                    intent.putExtra("JobA", jobMgr.getCurrentJob());
+//                    intent.putExtra("JobB", newOffer);
                     startActivity(intent);
                 }else{
                     Context context = getApplicationContext();

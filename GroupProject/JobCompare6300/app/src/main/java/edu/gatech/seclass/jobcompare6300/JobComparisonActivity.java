@@ -21,7 +21,7 @@ public class JobComparisonActivity extends AppCompatActivity {
     }
 
     private JobManager jobMgr = JobManager.getInstance();
-    private JobComparison weights = JobComparison.getInstance();
+    private JobComparison jobComparison = JobComparison.getInstance();
 
     public void handleClick(View view){
         Intent intent;
@@ -69,8 +69,8 @@ public class JobComparisonActivity extends AppCompatActivity {
         //RECEIVE DATA FROM ITEMS ACTIVITY VIA INTENT
 
         Intent i = this.getIntent();
-        Job jobA = (Job) i.getSerializableExtra("JobA");
-        Job jobB = (Job) i.getSerializableExtra("JobB");
+        Job jobA = jobComparison.JobOffer_1;
+        Job jobB = jobComparison.JobOffer_2;
 
         titleATxt.setText(jobA.getTitle());
         companyATxt.setText(jobA.getCompany());
