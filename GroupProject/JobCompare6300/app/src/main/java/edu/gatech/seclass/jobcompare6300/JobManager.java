@@ -5,21 +5,36 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 public class JobManager implements Serializable {
 
-    private ArrayList<Job> jobOfferList;
+    private static JobManager instance;
+
+    // Singleton class JobManager can be used in all other class once a new instance is created
+    // JobManager jobMgr = JobManager.getInstance(); to get access to this class.
+    public static JobManager getInstance() {
+        if(instance == null) {
+            instance = new JobManager();
+        }
+        return instance;
+    }
+
+    private List<Job> jobOfferList;
     private Job currentJob;
     private Map<Job, Integer> jobScoreMap;
 
-    public JobManager(){
-        this.jobOfferList = new ArrayList<Job>();
+    private JobManager(){
+        this.jobOfferList = new ArrayList<>();
+        // delete create new and read data from database everytime create instance.
+        // this.jobOfferList = JobDataAccessObject.read();
         this.currentJob = null; // or null??
         this.jobScoreMap =  new HashMap<>();
     }
+
 
     //When click save in current Job.
     //Enter Current Job if Current Job is null.
@@ -46,7 +61,7 @@ public class JobManager implements Serializable {
         return currentJob;
     }
 
-    public ArrayList<Job> getJobList() {
+    public List<Job> getJobList() {
         return jobOfferList;
     }
 
