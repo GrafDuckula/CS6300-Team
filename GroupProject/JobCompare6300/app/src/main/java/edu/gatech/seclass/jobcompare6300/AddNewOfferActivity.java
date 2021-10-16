@@ -1,10 +1,13 @@
 package edu.gatech.seclass.jobcompare6300;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
 import android.os.Bundle;
 import android.content.Intent;
 import android.widget.EditText;
 import android.widget.Button;
 import android.view.View;
+import android.widget.Toast;
 
 public class AddNewOfferActivity extends AppCompatActivity{
     private EditText titleTxt, companyTxt, cityTxt, stateTxt, livingCostTxt, salaryTxt, bonusTxt,
@@ -12,6 +15,9 @@ public class AddNewOfferActivity extends AppCompatActivity{
 
     JobManager jobMgr = JobManager.getInstance();
     private Job newOffer;
+
+    private boolean err = false;
+    private boolean tempSaved = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,25 +42,35 @@ public class AddNewOfferActivity extends AppCompatActivity{
 
     public void handleClick(View view){
         Intent intent;
-        System.out.println(view.getId());
-        System.out.println(R.id.buttonAddAnotherOffer);
-        System.out.println(R.id.buttonMainMenu);
-        System.out.println(R.id.buttonSaveOffer);
-        System.out.println(R.id.buttonCancelOffer);
-        System.out.println(R.id.buttonCompareWithCurrent);
+
         switch (view.getId()){
             case R.id.buttonAddAnotherOffer:
-                saveData();
-                intent = new Intent(this, AddNewOfferActivity.class);
-                Intent i = this.getIntent();
-
-                intent.putExtra("jobManager",jobMgr);
-                startActivity(intent);
+                if (tempSaved){
+                    saveToJobMgr();
+                    intent = new Intent(this, AddNewOfferActivity.class);
+                    startActivity(intent);
+                } else{
+                    Context context = getApplicationContext();
+                    CharSequence text = "Error: Please SAVE the offer first";
+                    int duration = Toast.LENGTH_LONG;
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                }
                 break;
 
             case R.id.buttonMainMenu:
-                intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
+                if (tempSaved){
+                    saveToJobMgr();
+                    intent = new Intent(this, MainActivity.class);
+                    startActivity(intent);
+                }else{
+                    Context context = getApplicationContext();
+                    CharSequence text = "Error: Please SAVE the offer first";
+                    int duration = Toast.LENGTH_LONG;
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                }
+
                 break;
 
             case R.id.buttonSaveOffer:
@@ -66,24 +82,126 @@ public class AddNewOfferActivity extends AppCompatActivity{
                 break;
 
             case R.id.buttonCompareWithCurrent:
-
-                // need to check if saved first? or just save automatically??
-
-                intent = new Intent(this, JobComparisonActivity.class);
-
-                intent.putExtra("JobA", jobMgr.getCurrentJob());
-                intent.putExtra("JobB", newOffer);
-                intent.putExtra("JobManager", jobMgr);
-                startActivity(intent);
+                if (tempSaved){
+                    saveToJobMgr();
+                    intent = new Intent(this, JobComparisonActivity.class);
+                    intent.putExtra("JobA", jobMgr.getCurrentJob());
+                    intent.putExtra("JobB", newOffer);
+                    startActivity(intent);
+                }else{
+                    Context context = getApplicationContext();
+                    CharSequence text = "Error: Please SAVE the offer first";
+                    int duration = Toast.LENGTH_LONG;
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                }
         }
-
     }
 
 
     private void saveData() {
 
-        Intent i = this.getIntent();
+        err = false; // reset error
 
+        String title = titleTxt.getText().toString();
+        String company = companyTxt.getText().toString();
+        String city = cityTxt.getText().toString();
+        String livingCost = livingCostTxt.getText().toString();
+        String salary = salaryTxt.getText().toString();
+        String bonus = bonusTxt.getText().toString();
+        String tele = teleTxt.getText().toString();
+        String leaveDays = leaveDaysTxt.getText().toString();
+        String gymAllowance = gymAllowanceTxt.getText().toString();
+
+
+        if (title.equals("")) {
+            CharSequence text = "Error: please fill in Job title";
+            titleTxt.setError(text);
+            err = true;
+        }
+
+        if (company.equals("")) {
+            CharSequence text = "Error: please fill in Company name";
+            companyTxt.setError(text);
+            err = true;
+        }
+
+        if (city.equals("")) {
+            CharSequence text = "Error: please fill in city";
+            cityTxt.setError(text);
+            err = true;
+        }
+
+        if (livingCost.equals("") || Integer.parseInt(livingCost) <= 0) {
+            CharSequence text = "Error: please fill in the living cost INDEX";
+            livingCostTxt.setError(text);
+            err = true;
+        }
+
+        if (salary.equals("")) {
+            CharSequence text = "Error: please fill in the salary";
+            salaryTxt.setError(text);
+            err = true;
+        }
+
+        if (bonus.equals("")) {
+            CharSequence text = "Error: please fill in the bonus";
+            bonusTxt.setError(text);
+            err = true;
+        }
+
+        if (tele.equals("")) {
+            CharSequence text = "Error: please fill in the weekly allowed telework days";
+            teleTxt.setError(text);
+            err = true;
+        }
+
+        if (leaveDays.equals("")) {
+            CharSequence text = "Error: please fill in the leave days";
+            leaveDaysTxt.setError(text);
+            err = true;
+        }
+
+        if (gymAllowance.equals("")) {
+            CharSequence text = "Error: please fill in the gym Allowance per year";
+            gymAllowanceTxt.setError(text);
+            err = true;
+        }
+
+
+        if (Integer.parseInt(leaveDays) > 365) {
+            CharSequence text = "Error: Leave days per year should be less than 365";
+            leaveDaysTxt.setError(text);
+            err = true;
+        }
+
+        if (Integer.parseInt(tele) > 5) {
+            CharSequence text = "Error: weekly allowed telework days should be at most 5";
+            teleTxt.setError(text);
+            err = true;
+        }
+
+        if (Integer.parseInt(gymAllowance) > 500) {
+            CharSequence text = "Error: Gym allowance per year should be less than 500";
+            gymAllowanceTxt.setError(text);
+            err = true;
+        }
+
+        if (!err) {
+            newOffer = new Job(titleTxt.getText().toString(),
+                    companyTxt.getText().toString(),
+                    cityTxt.getText().toString(),
+                    Integer.parseInt(livingCostTxt.getText().toString()),
+                    Integer.parseInt(salaryTxt.getText().toString()),
+                    Integer.parseInt(bonusTxt.getText().toString()),
+                    Integer.parseInt(leaveDaysTxt.getText().toString()),
+                    Integer.parseInt(teleTxt.getText().toString()),
+                    Integer.parseInt(gymAllowanceTxt.getText().toString()));
+            tempSaved = true;
+        }
+    }
+
+    private void saveToJobMgr(){
         jobMgr.addNewJobOffer(titleTxt.getText().toString(),
                 companyTxt.getText().toString(),
                 cityTxt.getText().toString(),
@@ -95,6 +213,7 @@ public class AddNewOfferActivity extends AppCompatActivity{
                 Integer.parseInt(gymAllowanceTxt.getText().toString()));
 
     }
+
 
     private void reset(){
         titleTxt.setText("");
@@ -108,9 +227,7 @@ public class AddNewOfferActivity extends AppCompatActivity{
         teleTxt.setText("");
         gymAllowanceTxt.setText("");
 
+        tempSaved = false;
     }
-
-
-
 
 }

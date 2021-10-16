@@ -4,9 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2740740740740741" />
-        <entry key="app/src/main/res/layout/add_new_offer.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/add_new_offer.xml" value="0.10921052631578948" />
         <entry key="app/src/main/res/layout/adjust_weights.xml" value="0.17407407407407408" />
-        <entry key="app/src/main/res/layout/current_job.xml" value="0.29270833333333335" />
+        <entry key="app/src/main/res/layout/current_job.xml" value="0.10921052631578948" />
         <entry key="app/src/main/res/layout/item_in_recycler_in_job_ranking.xml" value="0.17407407407407408" />
         <entry key="app/src/main/res/layout/job_comparison.xml" value="0.24427083333333333" />
         <entry key="app/src/main/res/layout/job_ranking.xml" value="0.17407407407407408" />

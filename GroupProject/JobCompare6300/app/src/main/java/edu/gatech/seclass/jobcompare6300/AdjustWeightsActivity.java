@@ -31,6 +31,8 @@ public class AdjustWeightsActivity extends AppCompatActivity {
         switch (view.getId()){
             case R.id.buttonSaveWeights:
                 saveWeights();
+                intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
                 break;
             case R.id.buttonCancelWeights:
                 intent = new Intent(this, MainActivity.class);

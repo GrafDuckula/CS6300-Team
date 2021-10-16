@@ -2,10 +2,12 @@ package edu.gatech.seclass.jobcompare6300;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class CurrentJobActivity extends AppCompatActivity {
 
@@ -13,9 +15,9 @@ public class CurrentJobActivity extends AppCompatActivity {
 
     private EditText titleTxt, companyTxt, cityTxt, stateTxt, livingCostTxt, salaryTxt, bonusTxt,
             leaveDaysTxt, teleTxt, gymAllowanceTxt;
-    // private Job job;
-    // delete test job to save in jobManager.currentJob
-    // private JobManager jobManager;
+
+    private boolean err = false;
+
     JobManager jobMgr = JobManager.getInstance();
 
     @Override
@@ -43,17 +45,20 @@ public class CurrentJobActivity extends AppCompatActivity {
 
     public void handleClick(View view){
         Intent intent;
-        System.out.println(view.getId());
-        System.out.println(R.id.buttonSaveCurrentJob);
-        System.out.println(R.id.buttonCancelCurrentJob);
+
         switch (view.getId()){
 
             case R.id.buttonSaveCurrentJob:
                 saveData();
                 System.out.println("To save");
-                intent = new Intent(this, MainActivity.class);
-                System.out.println(jobMgr.getCurrentJob());
-                startActivity(intent);
+
+                if (err){
+                    break;
+                }else{
+                    intent = new Intent(this, MainActivity.class);
+                    startActivity(intent);
+                }
+
                 break;
 
             case R.id.buttonCancelCurrentJob:
@@ -65,22 +70,20 @@ public class CurrentJobActivity extends AppCompatActivity {
 
 
     private void receiveAndShowData() {
-        //RECEIVE DATA FROM ITEMS ACTIVITY VIA INTENT
-        Intent i = this.getIntent();
+
         Job job = jobMgr.getCurrentJob();
 
-        //SET RECEIVED DATA TO TEXTVIEWS
-
-        if ( job == null) {
-            titleTxt.setText("Title");
-            companyTxt.setText("Company");
-            cityTxt.setText("City");
-            livingCostTxt.setText("0");
-            salaryTxt.setText("0");
-            bonusTxt.setText("0");
-            leaveDaysTxt.setText("0");
-            teleTxt.setText("0");
-            gymAllowanceTxt.setText("0");
+        if (job == null) {
+            titleTxt.setText("");
+            companyTxt.setText("");
+            cityTxt.setText("");
+            stateTxt.setText("");
+            livingCostTxt.setText("");
+            salaryTxt.setText("");
+            bonusTxt.setText("");
+            leaveDaysTxt.setText("");
+            teleTxt.setText("");
+            gymAllowanceTxt.setText("");
         }else {
             titleTxt.setText(job.getTitle());
             companyTxt.setText(job.getCompany());
@@ -97,17 +100,108 @@ public class CurrentJobActivity extends AppCompatActivity {
 
     private void saveData() {
 
-        jobMgr.editCurrentJob(
-                titleTxt.getText().toString(),
-                companyTxt.getText().toString(),
-                cityTxt.getText().toString(),
-                Integer.parseInt(livingCostTxt.getText().toString()),
-                Integer.parseInt(salaryTxt.getText().toString()),
-                Integer.parseInt(bonusTxt.getText().toString()),
-                Integer.parseInt(teleTxt.getText().toString()),
-                Integer.parseInt(leaveDaysTxt.getText().toString()),
-                Integer.parseInt(gymAllowanceTxt.getText().toString())
-        );
+        String title = titleTxt.getText().toString();
+        String company = companyTxt.getText().toString();
+        String city = cityTxt.getText().toString();
+        String livingCost = livingCostTxt.getText().toString();
+        String salary = salaryTxt.getText().toString();
+        String bonus = bonusTxt.getText().toString();
+        String tele = teleTxt.getText().toString();
+        String leaveDays = leaveDaysTxt.getText().toString();
+        String gymAllowance = gymAllowanceTxt.getText().toString();
+
+        err = false; // reset
+
+
+        if (title.equals("")){
+            CharSequence text = "Error: please fill in Job title";
+            titleTxt.setError(text);
+            err = true;
+        }
+
+        if (company.equals("")){
+            CharSequence text = "Error: please fill in Company name";
+            companyTxt.setError(text);
+            err = true;
+        }
+
+        if (city.equals("")) {
+            CharSequence text = "Error: please fill in city";
+            cityTxt.setError(text);
+            err = true;
+        }
+
+        if (livingCost.equals("") || Integer.parseInt(livingCost) == 0 ) {
+            CharSequence text = "Error: please fill in the living cost INDEX";
+            livingCostTxt.setError(text);
+            err = true;
+        }
+
+        if (salary.equals("")) {
+            CharSequence text = "Error: please fill in the salary";
+            salaryTxt.setError(text);
+            err = true;
+        }
+
+        if (bonus.equals("")) {
+            CharSequence text = "Error: please fill in the bonus";
+            bonusTxt.setError(text);
+            err = true;
+        }
+
+        if (tele.equals("")) {
+            CharSequence text = "Error: please fill in the weekly allowed telework days";
+            teleTxt.setError(text);
+            err = true;
+        }
+
+        if (leaveDays.equals("")) {
+            CharSequence text = "Error: please fill in the leave days";
+            leaveDaysTxt.setError(text);
+            err = true;
+        }
+
+        if (gymAllowance.equals("")) {
+            CharSequence text = "Error: please fill in the gym Allowance per year";
+            gymAllowanceTxt.setError(text);
+            err = true;
+        }
+
+
+        if (Integer.parseInt(leaveDays) > 365) {
+            CharSequence text = "Error: Leave days per year should be less than 365";
+            leaveDaysTxt.setError(text);
+            err = true;
+        }
+
+
+        if (Integer.parseInt(tele) > 5) {
+            CharSequence text = "Error: weekly allowed telework days should be at most 5";
+            teleTxt.setError(text);
+            err = true;
+        }
+
+        if (Integer.parseInt(gymAllowance) > 500) {
+            CharSequence text = "Error: Gym allowance per year should be less than 500";
+            gymAllowanceTxt.setError(text);
+            err = true;
+        }
+
+
+        if (!err){
+            jobMgr.editCurrentJob(
+                    title,
+                    company,
+                    city,
+                    Integer.parseInt(livingCost),
+                    Integer.parseInt(salary),
+                    Integer.parseInt(bonus),
+                    Integer.parseInt(tele),
+                    Integer.parseInt(leaveDays),
+                    Integer.parseInt(gymAllowance)
+            );
+        }
+
 
     }
 
