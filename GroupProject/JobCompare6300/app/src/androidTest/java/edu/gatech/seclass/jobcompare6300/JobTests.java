@@ -17,8 +17,6 @@ public class JobTests {
 //    public void setUp(){
 //        Job testJob = new Job("Chef", "Microsoft", "Mountain View, CA", 5, 250000, 5000, 5, 20, 400);
 //    }
-
-
     @Test
     public void editJobTest(){
         Job testJob = new Job("Chef", "Microsoft", "Mountain View, CA", 5, 250000, 5000, 5, 20, 400);
@@ -107,9 +105,6 @@ public class JobTests {
         Assert.assertEquals(400, testJob.getGymAllowance());
     }
 
-
-
-
-
-
 }
+
+
