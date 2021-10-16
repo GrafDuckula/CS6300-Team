@@ -104,14 +104,10 @@ public class CurrentJobActivity extends AppCompatActivity {
                 Integer.parseInt(livingCostTxt.getText().toString()),
                 Integer.parseInt(salaryTxt.getText().toString()),
                 Integer.parseInt(bonusTxt.getText().toString()),
-                Integer.parseInt(leaveDaysTxt.getText().toString()),
                 Integer.parseInt(teleTxt.getText().toString()),
+                Integer.parseInt(leaveDaysTxt.getText().toString()),
                 Integer.parseInt(gymAllowanceTxt.getText().toString())
         );
-
-
-        System.out.println(jobMgr.getCurrentJob().getLivingCostIndex());
-        System.out.println(jobMgr.getCurrentJob().getYearlyBonus());
 
     }
 

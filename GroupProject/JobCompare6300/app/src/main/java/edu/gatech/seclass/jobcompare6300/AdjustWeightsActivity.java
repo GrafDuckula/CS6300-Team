@@ -15,7 +15,7 @@ public class AdjustWeightsActivity extends AppCompatActivity {
 
 
     private EditText salaryWeightsTxt, bonusWeightsTxt, leaveDaysWeightsTxt, teleWeightsTxt, gymAllowanceWeightsTxt;
-    private Weights weights;
+    private JobComparison weights = JobComparison.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,14 +42,14 @@ public class AdjustWeightsActivity extends AppCompatActivity {
     private void receiveAndShowData() {
         //RECEIVE DATA FROM ITEMS ACTIVITY VIA INTENT
         Intent i = this.getIntent();
-        weights = (Weights) i.getSerializableExtra("Weights");
+
 
         //SET RECEIVED DATA TO TEXTVIEWS
-        salaryWeightsTxt.setText(Integer.toString(weights.getSalaryWeight()));
-        bonusWeightsTxt.setText(Integer.toString(weights.getBonusWeight()));
-        leaveDaysWeightsTxt.setText(Integer.toString(weights.getLeaveWeight()));
-        teleWeightsTxt.setText(Integer.toString(weights.getRemoteDayWeight()));
-        gymAllowanceWeightsTxt.setText(Integer.toString(weights.getGymWeight()));
+        salaryWeightsTxt.setText(Integer.toString(weights.getAYS()));
+        bonusWeightsTxt.setText(Integer.toString(weights.getAYB()));
+        leaveDaysWeightsTxt.setText(Integer.toString(weights.getLT()));
+        teleWeightsTxt.setText(Integer.toString(weights.getRWT()));
+        gymAllowanceWeightsTxt.setText(Integer.toString(weights.getGYM()));
     }
 
     private void initializeWidgets() {
@@ -64,11 +64,11 @@ public class AdjustWeightsActivity extends AppCompatActivity {
 
     private void saveWeights() {
 
-        weights.setSalaryWeight(Integer.parseInt(salaryWeightsTxt.getText().toString()));
-        weights.setBonusWeight(Integer.parseInt(bonusWeightsTxt.getText().toString()));
-        weights.setLeaveWeight(Integer.parseInt(leaveDaysWeightsTxt.getText().toString()));
-        weights.setRemoteDayWeight(Integer.parseInt(teleWeightsTxt.getText().toString()));
-        weights.setGymWeight(Integer.parseInt(gymAllowanceWeightsTxt.getText().toString()));
+        weights.setWeight(Integer.parseInt(salaryWeightsTxt.getText().toString()),
+                Integer.parseInt(bonusWeightsTxt.getText().toString()),
+                Integer.parseInt(gymAllowanceWeightsTxt.getText().toString()),
+                Integer.parseInt(leaveDaysWeightsTxt.getText().toString()),
+                Integer.parseInt(teleWeightsTxt.getText().toString()));
 
     }
 

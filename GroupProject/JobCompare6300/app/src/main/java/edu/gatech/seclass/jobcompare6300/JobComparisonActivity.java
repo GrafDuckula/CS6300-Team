@@ -20,7 +20,8 @@ public class JobComparisonActivity extends AppCompatActivity {
 
     }
 
-    private JobManager jobManager;
+    private JobManager jobMgr = JobManager.getInstance();
+    private JobComparison weights = JobComparison.getInstance();
 
     public void handleClick(View view){
         Intent intent;
@@ -31,7 +32,7 @@ public class JobComparisonActivity extends AppCompatActivity {
                 break;
             case R.id.buttonAnotherComparison:
                 intent = new Intent(this, JobRankingActivity.class);
-                intent.putExtra("jobManager",jobManager);
+//                intent.putExtra("jobManager",jobManager);
                 startActivity(intent);
         }
 
@@ -70,33 +71,26 @@ public class JobComparisonActivity extends AppCompatActivity {
 
         Intent i = this.getIntent();
 
-        //SET DATA TO TEXTVIEWS
-        Job jobA = (Job) i.getSerializableExtra("JobA");
-        Job jobB = (Job) i.getSerializableExtra("JobB");
+        // if there is no job offers. show current job
+        // if there is any job offers, rank and show the list(stored in JobMgr.ScoreMap.
 
-        System.out.println("in comparison");
-        System.out.println(jobA.getTitle());
-        System.out.println(jobB.getTitle());
-
-        jobManager = (JobManager) i.getSerializableExtra("jobManager");
-
-        titleATxt.setText(jobA.getTitle());
-        companyATxt.setText(jobA.getCompany());
-        locationATxt.setText(jobA.getLocation());
-        salaryATxt.setText(Integer.toString(jobA.getYearlySalary()));
-        bonusATxt.setText(Integer.toString(jobA.getYearlyBonus()));
-        leaveDaysATxt.setText(Integer.toString(jobA.getLeaveTime()));
-        teleATxt.setText(Integer.toString(jobA.getWeeklyAllowedRemoteDays()));
-        gymAllowanceATxt.setText(Integer.toString(jobA.getGymAllowance()));
-
-        titleBTxt.setText(jobB.getTitle());
-        companyBTxt.setText(jobB.getCompany());
-        locationBTxt.setText(jobB.getLocation());
-        salaryBTxt.setText(Integer.toString(jobB.getYearlySalary()));
-        bonusBTxt.setText(Integer.toString(jobB.getYearlyBonus()));
-        leaveDaysBTxt.setText(Integer.toString(jobB.getLeaveTime()));
-        teleBTxt.setText(Integer.toString(jobB.getWeeklyAllowedRemoteDays()));
-        gymAllowanceBTxt.setText(Integer.toString(jobB.getGymAllowance()));
+//        titleATxt.setText(jobA.getTitle());
+//        companyATxt.setText(jobA.getCompany());
+//        locationATxt.setText(jobA.getLocation());
+//        salaryATxt.setText(Integer.toString(jobA.getYearlySalary()));
+//        bonusATxt.setText(Integer.toString(jobA.getYearlyBonus()));
+//        leaveDaysATxt.setText(Integer.toString(jobA.getLeaveTime()));
+//        teleATxt.setText(Integer.toString(jobA.getWeeklyAllowedRemoteDays()));
+//        gymAllowanceATxt.setText(Integer.toString(jobA.getGymAllowance()));
+//
+//        titleBTxt.setText(jobB.getTitle());
+//        companyBTxt.setText(jobB.getCompany());
+//        locationBTxt.setText(jobB.getLocation());
+//        salaryBTxt.setText(Integer.toString(jobB.getYearlySalary()));
+//        bonusBTxt.setText(Integer.toString(jobB.getYearlyBonus()));
+//        leaveDaysBTxt.setText(Integer.toString(jobB.getLeaveTime()));
+//        teleBTxt.setText(Integer.toString(jobB.getWeeklyAllowedRemoteDays()));
+//        gymAllowanceBTxt.setText(Integer.toString(jobB.getGymAllowance()));
 
     }
 

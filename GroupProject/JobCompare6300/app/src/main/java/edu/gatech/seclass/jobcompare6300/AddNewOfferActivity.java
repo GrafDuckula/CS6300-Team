@@ -6,25 +6,19 @@ import android.widget.EditText;
 import android.widget.Button;
 import android.view.View;
 
-
-
-
 public class AddNewOfferActivity extends AppCompatActivity{
     private EditText titleTxt, companyTxt, cityTxt, stateTxt, livingCostTxt, salaryTxt, bonusTxt,
             leaveDaysTxt, teleTxt, gymAllowanceTxt;
 
-    private JobManager jobManager;
+    JobManager jobMgr = JobManager.getInstance();
     private Job newOffer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_new_offer);
-
         initializeWidgets();
-
     }
-
 
     private void initializeWidgets() {
         titleTxt = findViewById(R.id.jobTitle);
@@ -52,33 +46,34 @@ public class AddNewOfferActivity extends AppCompatActivity{
             case R.id.buttonAddAnotherOffer:
                 saveData();
                 intent = new Intent(this, AddNewOfferActivity.class);
-
                 Intent i = this.getIntent();
-                jobManager = (JobManager) i.getSerializableExtra("jobManager");
 
-
-                intent.putExtra("jobManager",jobManager);
+                intent.putExtra("jobManager",jobMgr);
                 startActivity(intent);
                 break;
+
             case R.id.buttonMainMenu:
                 intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 break;
+
             case R.id.buttonSaveOffer:
                 saveData();
                 break;
+
             case R.id.buttonCancelOffer:
                 reset();
                 break;
+
             case R.id.buttonCompareWithCurrent:
 
                 // need to check if saved first? or just save automatically??
 
                 intent = new Intent(this, JobComparisonActivity.class);
 
-                intent.putExtra("JobA", jobManager.getCurrentJob());
+                intent.putExtra("JobA", jobMgr.getCurrentJob());
                 intent.putExtra("JobB", newOffer);
-                intent.putExtra("JobManager", jobManager);
+                intent.putExtra("JobManager", jobMgr);
                 startActivity(intent);
         }
 
@@ -88,20 +83,8 @@ public class AddNewOfferActivity extends AppCompatActivity{
     private void saveData() {
 
         Intent i = this.getIntent();
-        jobManager = (JobManager) i.getSerializableExtra("jobManager");
 
-        newOffer = new Job(titleTxt.getText().toString(),
-                companyTxt.getText().toString(),
-                cityTxt.getText().toString(),
-                Integer.parseInt(livingCostTxt.getText().toString()),
-                Integer.parseInt(salaryTxt.getText().toString()),
-                Integer.parseInt(bonusTxt.getText().toString()),
-                Integer.parseInt(leaveDaysTxt.getText().toString()),
-                Integer.parseInt(teleTxt.getText().toString()),
-                Integer.parseInt(gymAllowanceTxt.getText().toString()));
-
-
-        jobManager.addNewJobOffer(titleTxt.getText().toString(),
+        jobMgr.addNewJobOffer(titleTxt.getText().toString(),
                 companyTxt.getText().toString(),
                 cityTxt.getText().toString(),
                 Integer.parseInt(livingCostTxt.getText().toString()),

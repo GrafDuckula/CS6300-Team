@@ -1,15 +1,27 @@
 package edu.gatech.seclass.jobcompare6300;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
 
 public class JobComparison {
 
+    private static JobComparison instance;
+
+    // Singleton class JobManager can be used in all other class once a new instance is created
+    // JobManager jobMgr = JobManager.getInstance(); to get access to this class.
+    public static JobComparison getInstance() {
+        if(instance == null) {
+            instance = new JobComparison();
+        }
+        return instance;
+    }
+
     Map<String, Integer> settingMap;
     Job JobOffer_1;
     Job JobOffer_2;
 
-    public JobComparison(){
+    private JobComparison(){
         this.settingMap = new HashMap<String, Integer>();
         settingMap.put("yearlySalary", 0);
         settingMap.put("yearlyBonus", 0);

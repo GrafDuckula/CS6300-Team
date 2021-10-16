@@ -40,9 +40,10 @@ public class Job implements Serializable {
         if (title == null || company == null || location == null) {
             throw new NullPointerException();
         }
-        if (livingCostIndex == 0 || yearlySalary == 0 || yearlyBonus == 0 || leaveTime == 0) {
-            throw new IllegalArgumentException();
-        }
+//        if (livingCostIndex == 0 || yearlySalary == 0 || yearlyBonus == 0 || leaveTime == 0) {
+//            throw new IllegalArgumentException();
+//        }
+        // should check numbers and refuse input from GUI.
         this.title = title;
         this.company = company;
         this.location = location;
