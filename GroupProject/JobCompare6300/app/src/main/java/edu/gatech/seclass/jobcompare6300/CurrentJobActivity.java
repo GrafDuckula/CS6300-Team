@@ -9,6 +9,15 @@ import android.widget.EditText;
 
 public class CurrentJobActivity extends AppCompatActivity {
 
+
+
+    private EditText titleTxt, companyTxt, cityTxt, stateTxt, livingCostTxt, salaryTxt, bonusTxt,
+            leaveDaysTxt, teleTxt, gymAllowanceTxt;
+    // private Job job;
+    // delete test job to save in jobManager.currentJob
+    // private JobManager jobManager;
+    JobManager jobMgr = JobManager.getInstance();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -17,11 +26,6 @@ public class CurrentJobActivity extends AppCompatActivity {
         initializeWidgets();
         receiveAndShowData();
     }
-
-    private EditText titleTxt, companyTxt, cityTxt, stateTxt, livingCostTxt, salaryTxt, bonusTxt,
-            leaveDaysTxt, teleTxt, gymAllowanceTxt;
-    private Job job;
-    private JobManager jobManager;
 
     private void initializeWidgets() {
         titleTxt = findViewById(R.id.jobTitle);
@@ -47,13 +51,15 @@ public class CurrentJobActivity extends AppCompatActivity {
             case R.id.buttonSaveCurrentJob:
                 saveData();
                 System.out.println("To save");
+                intent = new Intent(this, MainActivity.class);
+                System.out.println(jobMgr.getCurrentJob());
+                startActivity(intent);
                 break;
 
             case R.id.buttonCancelCurrentJob:
                 intent = new Intent(this, MainActivity.class);
                 System.out.println("To MainActivity");
                 startActivity(intent);
-
         }
     }
 
@@ -61,32 +67,37 @@ public class CurrentJobActivity extends AppCompatActivity {
     private void receiveAndShowData() {
         //RECEIVE DATA FROM ITEMS ACTIVITY VIA INTENT
         Intent i = this.getIntent();
-        jobManager = (JobManager) i.getSerializableExtra("jobManager");
-        job = jobManager.getCurrentJob();
+        Job job = jobMgr.getCurrentJob();
 
         //SET RECEIVED DATA TO TEXTVIEWS
-        System.out.println(job.getTitle());
 
-        titleTxt.setText(job.getTitle());
-        companyTxt.setText(job.getCompany());
-        cityTxt.setText(job.getLocation());
-
-        // State is not saved yet!!!
-
-        livingCostTxt.setText(Integer.toString(job.getLivingCostIndex()));
-        salaryTxt.setText(Integer.toString(job.getYearlySalary()));
-        bonusTxt.setText(Integer.toString(job.getYearlyBonus()));
-        leaveDaysTxt.setText(Integer.toString(job.getLeaveTime()));
-        teleTxt.setText(Integer.toString(job.getWeeklyAllowedRemoteDays()));
-        gymAllowanceTxt.setText(Integer.toString(job.getGymAllowance()));
-
+        if ( job == null) {
+            titleTxt.setText("Title");
+            companyTxt.setText("Company");
+            cityTxt.setText("City");
+            livingCostTxt.setText("0");
+            salaryTxt.setText("0");
+            bonusTxt.setText("0");
+            leaveDaysTxt.setText("0");
+            teleTxt.setText("0");
+            gymAllowanceTxt.setText("0");
+        }else {
+            titleTxt.setText(job.getTitle());
+            companyTxt.setText(job.getCompany());
+            cityTxt.setText(job.getLocation());
+            livingCostTxt.setText(Integer.toString(job.getLivingCostIndex()));
+            salaryTxt.setText(Integer.toString(job.getYearlySalary()));
+            bonusTxt.setText(Integer.toString(job.getYearlyBonus()));
+            leaveDaysTxt.setText(Integer.toString(job.getLeaveTime()));
+            teleTxt.setText(Integer.toString(job.getWeeklyAllowedRemoteDays()));
+            gymAllowanceTxt.setText(Integer.toString(job.getGymAllowance()));
+        }
     }
-
 
 
     private void saveData() {
 
-        job.editJob(
+        jobMgr.editCurrentJob(
                 titleTxt.getText().toString(),
                 companyTxt.getText().toString(),
                 cityTxt.getText().toString(),
@@ -98,8 +109,9 @@ public class CurrentJobActivity extends AppCompatActivity {
                 Integer.parseInt(gymAllowanceTxt.getText().toString())
         );
 
-        System.out.println(job.getLivingCostIndex());
-        System.out.println(job.getYearlyBonus());
+
+        System.out.println(jobMgr.getCurrentJob().getLivingCostIndex());
+        System.out.println(jobMgr.getCurrentJob().getYearlyBonus());
 
     }
 
