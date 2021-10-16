@@ -86,11 +86,7 @@ public class AddNewOfferActivity extends AppCompatActivity{
                 if (tempSaved){
                     saveToJobMgr();
                     intent = new Intent(this, JobComparisonActivity.class);
-
                     jobComparison.addJobOfferToCompare(jobMgr.getCurrentJob(),newOffer);
-//
-//                    intent.putExtra("JobA", jobMgr.getCurrentJob());
-//                    intent.putExtra("JobB", newOffer);
                     startActivity(intent);
                 }else{
                     Context context = getApplicationContext();
