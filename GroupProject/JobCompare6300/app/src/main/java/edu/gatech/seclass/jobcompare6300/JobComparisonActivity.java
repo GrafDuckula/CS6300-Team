@@ -78,8 +78,8 @@ public class JobComparisonActivity extends AppCompatActivity {
         companyATxt.setText(jobA.getCompany());
         locationATxt.setText(jobA.getCity() + ", " + jobA.getState());
 
-        salaryATxt.setText(Integer.toString(jobA.getYearlySalary()));
-        bonusATxt.setText(Integer.toString(jobA.getYearlyBonus()));
+        salaryATxt.setText(Integer.toString(jobA.getAdjustedYearlySalary()));
+        bonusATxt.setText(Integer.toString(jobA.getAdjustedYearlyBonus()));
         leaveDaysATxt.setText(Integer.toString(jobA.getLeaveTime()));
         teleATxt.setText(Integer.toString(jobA.getWeeklyAllowedRemoteDays()));
         gymAllowanceATxt.setText(Integer.toString(jobA.getGymAllowance()));
@@ -89,8 +89,8 @@ public class JobComparisonActivity extends AppCompatActivity {
         locationBTxt.setText(jobB.getCity() + ", " + jobB.getState());
 
 
-        salaryBTxt.setText(Integer.toString(jobB.getYearlySalary()));
-        bonusBTxt.setText(Integer.toString(jobB.getYearlyBonus()));
+        salaryBTxt.setText(Integer.toString(jobB.getAdjustedYearlySalary()));
+        bonusBTxt.setText(Integer.toString(jobB.getAdjustedYearlyBonus()));
         leaveDaysBTxt.setText(Integer.toString(jobB.getLeaveTime()));
         teleBTxt.setText(Integer.toString(jobB.getWeeklyAllowedRemoteDays()));
         gymAllowanceBTxt.setText(Integer.toString(jobB.getGymAllowance()));

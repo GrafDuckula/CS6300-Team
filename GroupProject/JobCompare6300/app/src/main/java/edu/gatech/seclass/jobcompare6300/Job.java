@@ -15,6 +15,9 @@ public class Job{
     private int weeklyAllowedRemoteDays; //0-5
     private int leaveTime;
     private int gymAllowance; //0-500
+    private int livingCost;
+    private int adjustedYearlySalary;
+    private int adjustedYearlyBonus;
 
 
     public Job( String status, String title, String company, String city, String state, int livingCostIndex,
@@ -66,15 +69,18 @@ public class Job{
         this.gymAllowance = gymAllowance;
 
 
+        this.adjustedYearlySalary = yearlySalary*100/livingCostIndex;
+        this.adjustedYearlyBonus = yearlyBonus*100/livingCostIndex;
+
 
     }
 
     public int calculateScore(JobComparison setting){
-        return setting.getAYS()/setting.getSum() * this.yearlySalary
-                + setting.getAYB()/setting.getSum() * this.yearlyBonus
+        return setting.getAYS()/setting.getSum() * this.adjustedYearlySalary
+                + setting.getAYB()/setting.getSum() * this.adjustedYearlyBonus
                 + setting.getGYM()/setting.getSum() * this.gymAllowance
-                + setting.getLT()/setting.getSum() * (this.leaveTime * this.yearlySalary/260)
-                + setting.getRWT()/setting.getSum() * ((260 -52 * this.weeklyAllowedRemoteDays) * (this.yearlySalary/260)/8);
+                + setting.getLT()/setting.getSum() * (this.leaveTime * this.adjustedYearlySalary/260)
+                + setting.getRWT()/setting.getSum() * ((260 -52 * this.weeklyAllowedRemoteDays) * (this.adjustedYearlySalary/260)/8);
     }
 
     // getters and setters
@@ -131,6 +137,9 @@ public class Job{
     public int getYearlySalary() {
         return yearlySalary;
     }
+    public int getAdjustedYearlySalary() {
+        return adjustedYearlySalary;
+    }
 
     public void setYearlySalary(int yearlySalary) {
         this.yearlySalary = yearlySalary;
@@ -138,6 +147,9 @@ public class Job{
 
     public int getYearlyBonus() {
         return yearlyBonus;
+    }
+    public int getAdjustedYearlyBonus() {
+        return adjustedYearlyBonus;
     }
 
     public void setYearlyBonus(int yearlyBonus) {
