@@ -200,11 +200,18 @@ public class AddNewOfferActivity extends AppCompatActivity{
                     Integer.parseInt(teleTxt.getText().toString()),
                     Integer.parseInt(gymAllowanceTxt.getText().toString()));
             tempSaved = true;
+            DatabaseHelper databaseHelper = new DatabaseHelper(AddNewOfferActivity.this);
+            boolean success = databaseHelper.addJob(newOffer);
+            Toast.makeText(AddNewOfferActivity.this, "Success= "+ success, Toast.LENGTH_SHORT).show();
+
+
+
         }
     }
 
     private void saveToJobMgr(){
-        jobMgr.addNewJobOffer("offer", titleTxt.getText().toString(),
+        String status = "offer";
+        jobMgr.addNewJobOffer(status, titleTxt.getText().toString(),
                 companyTxt.getText().toString(),
                 cityTxt.getText().toString(),
                 stateTxt.getText().toString(),

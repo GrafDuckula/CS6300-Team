@@ -59,6 +59,11 @@ public class JobManager{
 
     }
 
+    public void addCurrentJob(Job currentJob){
+        this.currentJob = currentJob;
+
+    }
+
     public Job getCurrentJob() {
         return currentJob;
     }
@@ -77,5 +82,6 @@ public class JobManager{
             jobScoreMap = sortedJobOffers;
         }
     }
+
 
 }

@@ -17,6 +17,7 @@ public class CurrentJobActivity extends AppCompatActivity {
             leaveDaysTxt, teleTxt, gymAllowanceTxt;
 
     private boolean err = false;
+    private boolean isNew = true;
 
     JobManager jobMgr = JobManager.getInstance();
 
@@ -72,6 +73,14 @@ public class CurrentJobActivity extends AppCompatActivity {
 
     private void receiveAndShowData() {
 
+        // read in current job from database, if null moves
+        // provide a 'checker' for null to decide either to update or add
+        DatabaseHelper databaseHelper = new DatabaseHelper(CurrentJobActivity.this);;
+        Job current_job = databaseHelper.getCurrentJob();
+        if (current_job != null) {
+            jobMgr.addCurrentJob(current_job);
+        }
+
         Job job = jobMgr.getCurrentJob();
 
         if (job == null) {
@@ -96,6 +105,7 @@ public class CurrentJobActivity extends AppCompatActivity {
             leaveDaysTxt.setText(Integer.toString(job.getLeaveTime()));
             teleTxt.setText(Integer.toString(job.getWeeklyAllowedRemoteDays()));
             gymAllowanceTxt.setText(Integer.toString(job.getGymAllowance()));
+            isNew = false;
         }
     }
 
@@ -206,6 +216,32 @@ public class CurrentJobActivity extends AppCompatActivity {
                     Integer.parseInt(leaveDays),
                     Integer.parseInt(gymAllowance)
             );
+
+            Job job;
+            job = new Job(
+                    status,
+                    title,
+                    company,
+                    city,
+                    state,
+                    Integer.parseInt(livingCost),
+                    Integer.parseInt(salary),
+                    Integer.parseInt(bonus),
+                    Integer.parseInt(tele),
+                    Integer.parseInt(leaveDays),
+                    Integer.parseInt(gymAllowance)
+            );
+            DatabaseHelper databaseHelper = new DatabaseHelper(CurrentJobActivity.this);
+            boolean success;
+            if (isNew == true) {
+                success = databaseHelper.addJob(job);
+            } else {
+                databaseHelper.updateCurrentJob(job);
+                success = true; }
+
+            Toast.makeText(CurrentJobActivity.this, "Success= "+ success, Toast.LENGTH_SHORT).show();
+
+
         }
 
 

@@ -174,30 +174,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         String status = "current";
         String selectQuery = "SELECT  * FROM " + TABLE_JOBS + " WHERE "
-                + COLUMN_STATUS + " = " + status;
+                + COLUMN_STATUS + " = '" + status + "'";
 
         Cursor c = db.rawQuery(selectQuery, null);
+        if (c != null) {
+            if (c.moveToFirst()) {
+                Job cj = new Job();
+                cj.setStatus(c.getString(c.getColumnIndex(COLUMN_STATUS))); // Remove?
+                cj.setTitle(c.getString(c.getColumnIndex(COLUMN_TITLE)));
+                cj.setCompany(c.getString(c.getColumnIndex(COLUMN_COMPANY)));
+                cj.setCity(c.getString(c.getColumnIndex(COLUMN_CITY)));
+                cj.setState(c.getString(c.getColumnIndex(COLUMN_STATE)));
+                cj.setLivingCostIndex(c.getInt(c.getColumnIndex(COLUMN_COST_INDEX)));
+                cj.setYearlySalary(c.getInt(c.getColumnIndex(COLUMN_SALARY)));
+                cj.setYearlyBonus(c.getInt(c.getColumnIndex(COLUMN_BONUS)));
+                cj.setWeeklyAllowedRemoteDays(c.getInt(c.getColumnIndex(COLUMN_REMOTEDAYS)));
+                cj.setLeaveTime(c.getInt(c.getColumnIndex(COLUMN_LEAVETIME)));
+                cj.setGymAllowance(c.getInt(c.getColumnIndex(COLUMN_GYMALLOW)));
+                return cj;
+            }
+            c.close();}
 
-        if (c != null)
-            c.moveToFirst();
-
-        Job cj = new Job();
-        cj.setStatus(c.getString(c.getColumnIndex(COLUMN_STATUS))); // Remove?
-        cj.setTitle(c.getString(c.getColumnIndex(COLUMN_TITLE)));
-        cj.setCompany(c.getString(c.getColumnIndex(COLUMN_COMPANY)));
-        cj.setCity(c.getString(c.getColumnIndex(COLUMN_CITY)));
-        cj.setState(c.getString(c.getColumnIndex(COLUMN_STATE)));
-        cj.setLivingCostIndex(c.getInt(c.getColumnIndex(COLUMN_COST_INDEX)));
-        cj.setYearlySalary(c.getInt(c.getColumnIndex(COLUMN_SALARY)));
-        cj.setYearlyBonus(c.getInt(c.getColumnIndex(COLUMN_BONUS)));
-        cj.setWeeklyAllowedRemoteDays(c.getInt(c.getColumnIndex(COLUMN_REMOTEDAYS)));
-        cj.setLeaveTime(c.getInt(c.getColumnIndex(COLUMN_LEAVETIME)));
-        cj.setGymAllowance(c.getInt(c.getColumnIndex(COLUMN_GYMALLOW)));
-
-        c.close();
-        db.close();
-
-        return cj;
+        return null;
     }
 
 
