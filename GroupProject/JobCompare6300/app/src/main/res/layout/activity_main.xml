@@ -71,7 +71,7 @@
             android:insetLeft="15dp"
             android:insetRight="15dp"
             android:onClick="handleClick"
-            android:text="comparison setting" />
+            android:text="comparison settings" />
 
     </LinearLayout>
 
