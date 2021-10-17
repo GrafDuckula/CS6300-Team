@@ -34,8 +34,8 @@ public class DatabaseHelperTest {
 
     @Test
     public void getCurrentJobTest(){
-        Job testJob1 = new Job("current", "SuperChef", "Apple", "Mountain CantView", "CA", 8, 250001, 7000, 0, 5, 250);
-        Job testJob2 = new Job("previous", "EntryChef", "Apple", "Mountain CantView", "CA", 8, 250001, 7000, 0, 5, 250);
+        Job testJob1 = new Job("previous", "SuperChef", "Apple", "Mountain CantView", "CA", 8, 250001, 7000, 0, 5, 250);
+        Job testJob2 = new Job("current", "EntryChef", "Apple", "Mountain CantView", "CA", 8, 250001, 7000, 0, 5, 250);
 
         dbTest.addJob(testJob1);
         dbTest.addJob(testJob2);
@@ -47,7 +47,7 @@ public class DatabaseHelperTest {
         Assert.assertTrue(totalJobs.size() == 1);
         Job resultJob = totalJobs.get(0);
         System.out.println(resultJob.getTitle());
-        Assert.assertEquals(resultJob.getTitle(),"SuperChef");
+        Assert.assertEquals(resultJob.getTitle(),"EntryChef");
     }
 
 
