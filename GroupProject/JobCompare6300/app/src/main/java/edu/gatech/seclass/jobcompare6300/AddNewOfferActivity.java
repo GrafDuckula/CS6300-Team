@@ -20,6 +20,7 @@ public class AddNewOfferActivity extends AppCompatActivity{
     private boolean err = false;
     private boolean tempSaved = false;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +46,13 @@ public class AddNewOfferActivity extends AppCompatActivity{
         Intent intent;
         Context context = getApplicationContext();
         int duration = Toast.LENGTH_LONG;
+
+        // get the current job from the db
+        DatabaseHelper databaseHelper = new DatabaseHelper(AddNewOfferActivity.this);
+        Job current_job = databaseHelper.getCurrentJob();
+        if (current_job != null) {
+            jobMgr.addCurrentJob(current_job);}
+
         switch (view.getId()){
             case R.id.buttonAddAnotherOffer:
                 if (tempSaved){

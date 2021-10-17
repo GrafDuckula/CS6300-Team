@@ -59,6 +59,10 @@ public class JobManager{
 
     }
 
+    public void getAllJobs(List<Job> job_list){
+        this.jobOfferList = job_list;
+
+    }
     public void addCurrentJob(Job currentJob){
         this.currentJob = currentJob;
 

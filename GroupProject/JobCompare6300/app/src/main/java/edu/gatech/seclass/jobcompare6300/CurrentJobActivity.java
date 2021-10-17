@@ -74,7 +74,7 @@ public class CurrentJobActivity extends AppCompatActivity {
     private void receiveAndShowData() {
 
         // read in current job from database, if null moves
-        // provide a 'checker' for null to decide either to update or add
+
         DatabaseHelper databaseHelper = new DatabaseHelper(CurrentJobActivity.this);;
         Job current_job = databaseHelper.getCurrentJob();
         if (current_job != null) {
@@ -231,6 +231,7 @@ public class CurrentJobActivity extends AppCompatActivity {
                     Integer.parseInt(leaveDays),
                     Integer.parseInt(gymAllowance)
             );
+            // provide a 'checker' for isNew to decide either to update or add
             DatabaseHelper databaseHelper = new DatabaseHelper(CurrentJobActivity.this);
             boolean success;
             if (isNew == true) {

@@ -9,6 +9,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,6 +41,17 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.buttonCompare:
+
+                DatabaseHelper databaseHelper = new DatabaseHelper(MainActivity.this);
+                List<Job> job_list = new ArrayList<>();
+                job_list = databaseHelper.getAllJobs();
+                Job current_job = databaseHelper.getCurrentJob();
+
+                if (current_job != null) {
+                    jobMgr.addCurrentJob(current_job);}
+                if (job_list != null) {
+                jobMgr.getAllJobs(job_list); }
+
 
                 if ((jobMgr.getCurrentJob() == null && jobMgr.getJobList().size() <= 1 )
                         ||(jobMgr.getCurrentJob() != null && jobMgr.getJobList().size() == 0)){

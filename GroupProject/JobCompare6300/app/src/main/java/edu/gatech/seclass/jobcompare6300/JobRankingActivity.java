@@ -38,6 +38,14 @@ public class JobRankingActivity extends AppCompatActivity {
 
 
 
+        DatabaseHelper databaseHelper = new DatabaseHelper(JobRankingActivity.this);
+        List<Job> job_list = databaseHelper.getAllJobs();
+        jobMgr.getAllJobs(job_list);
+
+        Job current_job = databaseHelper.getCurrentJob();
+        if (current_job != null) {
+            jobMgr.addCurrentJob(current_job);}
+
         // need to add and mark current JOb
 
 
