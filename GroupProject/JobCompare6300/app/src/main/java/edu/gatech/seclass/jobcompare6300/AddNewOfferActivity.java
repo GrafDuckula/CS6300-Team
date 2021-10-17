@@ -43,7 +43,8 @@ public class AddNewOfferActivity extends AppCompatActivity{
 
     public void handleClick(View view){
         Intent intent;
-
+        Context context = getApplicationContext();
+        int duration = Toast.LENGTH_LONG;
         switch (view.getId()){
             case R.id.buttonAddAnotherOffer:
                 if (tempSaved){
@@ -51,9 +52,7 @@ public class AddNewOfferActivity extends AppCompatActivity{
                     intent = new Intent(this, AddNewOfferActivity.class);
                     startActivity(intent);
                 } else{
-                    Context context = getApplicationContext();
                     CharSequence text = "Error: Please SAVE the offer first";
-                    int duration = Toast.LENGTH_LONG;
                     Toast toast = Toast.makeText(context, text, duration);
                     toast.show();
                 }
@@ -75,15 +74,18 @@ public class AddNewOfferActivity extends AppCompatActivity{
                 break;
 
             case R.id.buttonCompareWithCurrent:
-                if (tempSaved){
+                if(jobMgr.getCurrentJob() == null){
+                    CharSequence text = "Error: Please add current job first";
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                }
+                else if (tempSaved){
                     saveToJobMgr();
                     intent = new Intent(this, JobComparisonActivity.class);
                     jobComparison.addJobOfferToCompare(jobMgr.getCurrentJob(),newOffer);
                     startActivity(intent);
                 }else{
-                    Context context = getApplicationContext();
                     CharSequence text = "Error: Please SAVE the offer first";
-                    int duration = Toast.LENGTH_LONG;
                     Toast toast = Toast.makeText(context, text, duration);
                     toast.show();
                 }
@@ -98,6 +100,7 @@ public class AddNewOfferActivity extends AppCompatActivity{
         String title = titleTxt.getText().toString();
         String company = companyTxt.getText().toString();
         String city = cityTxt.getText().toString();
+        String state = stateTxt.getText().toString();
         String livingCost = livingCostTxt.getText().toString();
         String salary = salaryTxt.getText().toString();
         String bonus = bonusTxt.getText().toString();
@@ -120,6 +123,12 @@ public class AddNewOfferActivity extends AppCompatActivity{
 
         if (city.equals("")) {
             CharSequence text = "Error: please fill in city";
+            cityTxt.setError(text);
+            err = true;
+        }
+
+        if (state.equals("")) {
+            CharSequence text = "Error: please fill in state";
             cityTxt.setError(text);
             err = true;
         }

@@ -37,8 +37,8 @@ public class JobComparisonActivity extends AppCompatActivity {
 
     }
 
-    private TextView titleATxt, companyATxt, locationATxt, locationA2Txt, salaryATxt, bonusATxt, leaveDaysATxt, teleATxt,
-            gymAllowanceATxt, titleBTxt, companyBTxt, locationBTxt, locationB2Txt, salaryBTxt, bonusBTxt, leaveDaysBTxt,
+    private TextView titleATxt, companyATxt, locationATxt, salaryATxt, bonusATxt, leaveDaysATxt, teleATxt,
+            gymAllowanceATxt, titleBTxt, companyBTxt, locationBTxt, salaryBTxt, bonusBTxt, leaveDaysBTxt,
             teleBTxt, gymAllowanceBTxt;
 
 
@@ -47,7 +47,6 @@ public class JobComparisonActivity extends AppCompatActivity {
         titleATxt = findViewById(R.id.titleA);
         companyATxt = findViewById(R.id.companyA);
         locationATxt = findViewById(R.id.locationA);
-        locationA2Txt = findViewById(R.id.locationA2);
 
         salaryATxt = findViewById(R.id.yearlySalaryA);
         bonusATxt = findViewById(R.id.yearlyBonusA);
@@ -58,7 +57,6 @@ public class JobComparisonActivity extends AppCompatActivity {
         titleBTxt = findViewById(R.id.titleB);
         companyBTxt = findViewById(R.id.companyB);
         locationBTxt = findViewById(R.id.locationB);
-        locationB2Txt = findViewById(R.id.locationB2);
 
         salaryBTxt = findViewById(R.id.yearlySalaryB);
         bonusBTxt = findViewById(R.id.yearlyBonusB);
@@ -78,8 +76,7 @@ public class JobComparisonActivity extends AppCompatActivity {
 
         titleATxt.setText(jobA.getTitle());
         companyATxt.setText(jobA.getCompany());
-        locationATxt.setText(jobA.getCity());
-        locationA2Txt.setText(jobA.getState());
+        locationATxt.setText(jobA.getCity() + ", " + jobA.getState());
 
         salaryATxt.setText(Integer.toString(jobA.getYearlySalary()));
         bonusATxt.setText(Integer.toString(jobA.getYearlyBonus()));
@@ -89,8 +86,8 @@ public class JobComparisonActivity extends AppCompatActivity {
 
         titleBTxt.setText(jobB.getTitle());
         companyBTxt.setText(jobB.getCompany());
-        locationBTxt.setText(jobB.getCity());
-        locationB2Txt.setText(jobB.getCity());
+        locationBTxt.setText(jobB.getCity() + ", " + jobB.getState());
+
 
         salaryBTxt.setText(Integer.toString(jobB.getYearlySalary()));
         bonusBTxt.setText(Integer.toString(jobB.getYearlyBonus()));

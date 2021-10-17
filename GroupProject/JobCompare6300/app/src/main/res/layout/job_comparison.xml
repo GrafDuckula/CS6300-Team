@@ -82,18 +82,7 @@
                             android:gravity="center_vertical"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
-                            android:text="City"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/textView2"
-                            android:layout_width="match_parent"
-                            android:layout_height="60dp"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="10dp"
-                            android:text="State"
+                            android:text="Location"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
@@ -190,16 +179,6 @@
                             android:textSize="16sp" />
 
                         <TextView
-                            android:id="@+id/locationA2"
-                            android:layout_width="match_parent"
-                            android:layout_height="60dp"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="10dp"
-                            android:text="Seatle"
-                            android:textSize="16sp" />
-
-                        <TextView
                             android:id="@+id/yearlySalaryA"
                             android:layout_width="match_parent"
                             android:layout_height="60dp"
@@ -283,16 +262,6 @@
 
                         <TextView
                             android:id="@+id/locationB"
-                            android:layout_width="match_parent"
-                            android:layout_height="60dp"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="10dp"
-                            android:text="Huston"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:id="@+id/locationB2"
                             android:layout_width="match_parent"
                             android:layout_height="60dp"
                             android:gravity="center_vertical"

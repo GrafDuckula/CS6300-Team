@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
-public class JobManager implements Serializable {
+public class JobManager{
 
     private static JobManager instance;
 
