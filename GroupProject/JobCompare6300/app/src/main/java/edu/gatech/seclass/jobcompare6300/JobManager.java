@@ -14,6 +14,7 @@ public class JobManager implements Serializable {
 
     private static JobManager instance;
 
+
     // Singleton class JobManager can be used in all other class once a new instance is created
     // JobManager jobMgr = JobManager.getInstance(); to get access to this class.
     public static JobManager getInstance() {
@@ -39,22 +40,23 @@ public class JobManager implements Serializable {
     //When click save in current Job.
     //Enter Current Job if Current Job is null.
     //Edit Current Job if it's not null.
-    public void editCurrentJob(String title, String company, String location, int livingCostIndex,
+    public void editCurrentJob(String status, String title, String company, String city, String state, int livingCostIndex,
                                   int yearlySalary, int yearlyBonus, int weeklyAllowedRemoteDays, int leaveTime, int gymAllowance){
         if (this.currentJob == null){
-            this.currentJob = new Job(title, company, location, livingCostIndex, yearlySalary, yearlyBonus,
+            this.currentJob = new Job("current", title, company, city, state, livingCostIndex, yearlySalary, yearlyBonus,
                     weeklyAllowedRemoteDays, leaveTime, gymAllowance);
         }else{
-            this.currentJob.editJob(title, company, location, livingCostIndex, yearlySalary, yearlyBonus,
+            this.currentJob.editJob(status, title, company, city, state, livingCostIndex, yearlySalary, yearlyBonus,
                     weeklyAllowedRemoteDays, leaveTime, gymAllowance);
         }
     }
 
-    public void addNewJobOffer(String title, String company, String location, int livingCostIndex,
+    public void addNewJobOffer(String status, String title, String company, String city, String state, int livingCostIndex,
                                int yearlySalary, int yearlyBonus, int weeklyAllowedRemoteDays, int leaveTime, int gymAllowance){
-        Job newJobOffer = new Job(title, company, location, livingCostIndex, yearlySalary, yearlyBonus,
+        Job newJobOffer = new Job("offer", title, company, city, state, livingCostIndex, yearlySalary, yearlyBonus,
                 weeklyAllowedRemoteDays, leaveTime, gymAllowance);
         jobOfferList.add(newJobOffer);
+
     }
 
     public Job getCurrentJob() {

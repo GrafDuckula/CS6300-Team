@@ -180,9 +180,10 @@ public class AddNewOfferActivity extends AppCompatActivity{
         }
 
         if (!err) {
-            newOffer = new Job(titleTxt.getText().toString(),
+            newOffer = new Job("offer", titleTxt.getText().toString(),
                     companyTxt.getText().toString(),
                     cityTxt.getText().toString(),
+                    stateTxt.getText().toString(),
                     Integer.parseInt(livingCostTxt.getText().toString()),
                     Integer.parseInt(salaryTxt.getText().toString()),
                     Integer.parseInt(bonusTxt.getText().toString()),
@@ -194,9 +195,10 @@ public class AddNewOfferActivity extends AppCompatActivity{
     }
 
     private void saveToJobMgr(){
-        jobMgr.addNewJobOffer(titleTxt.getText().toString(),
+        jobMgr.addNewJobOffer("offer", titleTxt.getText().toString(),
                 companyTxt.getText().toString(),
                 cityTxt.getText().toString(),
+                stateTxt.getText().toString(),
                 Integer.parseInt(livingCostTxt.getText().toString()),
                 Integer.parseInt(salaryTxt.getText().toString()),
                 Integer.parseInt(bonusTxt.getText().toString()),

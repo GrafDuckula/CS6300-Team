@@ -22,7 +22,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_STATUS = "status";
     private static final String COLUMN_TITLE = "title";
     private static final String COLUMN_COMPANY = "company";
-    private static final String COLUMN_LOCATION = "location";
+    private static final String COLUMN_CITY = "city";
+    private static final String COLUMN_STATE = "state";
     private static final String COLUMN_COST_INDEX = "livingCostIndex";
     private static final String COLUMN_SALARY = "yearlySalary";
     private static final String COLUMN_BONUS = "yearlyBonus";
@@ -44,7 +45,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             COLUMN_STATUS + " TEXT, " +
             COLUMN_TITLE + " TEXT, " +
             COLUMN_COMPANY + " TEXT, " +
-            COLUMN_LOCATION + " TEXT, " +
+            COLUMN_CITY + " TEXT, " +
+            COLUMN_STATE + " TEXT, " +
             COLUMN_COST_INDEX + " INT, " +
             COLUMN_SALARY + " INT, " +
             COLUMN_BONUS + " INT, " +
@@ -83,20 +85,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // ------------------------ "JOBS" table methods ----------------//
 
     // inserts a job record in the JOBS table
-    public boolean addJob(JobModel jobModel, String status) {
+    public boolean addJob(Job job) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        cv.put(COLUMN_STATUS, jobModel.getStatus()); // Edit?
-        cv.put(COLUMN_TITLE, jobModel.getTitle());
-        cv.put(COLUMN_COMPANY, jobModel.getCompany());
-        cv.put(COLUMN_LOCATION, jobModel.getLocation());
-        cv.put(COLUMN_COST_INDEX, jobModel.getLivingCostIndex());
-        cv.put(COLUMN_SALARY, jobModel.getYearlySalary());
-        cv.put(COLUMN_BONUS, jobModel.getYearlyBonus());
-        cv.put(COLUMN_REMOTEDAYS, jobModel.getWeeklyAllowedRemoteDays());
-        cv.put(COLUMN_LEAVETIME, jobModel.getLeaveTime());
-        cv.put(COLUMN_GYMALLOW, jobModel.getGymAllowance());
+        cv.put(COLUMN_STATUS, job.getStatus()); // Edit?
+        cv.put(COLUMN_TITLE, job.getTitle());
+        cv.put(COLUMN_COMPANY, job.getCompany());
+        cv.put(COLUMN_CITY, job.getCity());
+        cv.put(COLUMN_STATE, job.getState());
+
+        cv.put(COLUMN_COST_INDEX, job.getLivingCostIndex());
+        cv.put(COLUMN_SALARY, job.getYearlySalary());
+        cv.put(COLUMN_BONUS, job.getYearlyBonus());
+        cv.put(COLUMN_REMOTEDAYS, job.getWeeklyAllowedRemoteDays());
+        cv.put(COLUMN_LEAVETIME, job.getLeaveTime());
+        cv.put(COLUMN_GYMALLOW, job.getGymAllowance());
 
         long insert = db.insert(TABLE_JOBS, null, cv);
         if (insert == -1) {
@@ -108,8 +112,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     // retrieves all jobs in the JOBS table in the form of a list
-    public List<JobModel> getAllJobs() {
-        List<JobModel> returnList = new ArrayList<>();
+    public List<Job> getAllJobs() {
+        List<Job> returnList = new ArrayList<>();
 
         // get data from the database
         String queryString = "SELECT * FROM " + TABLE_JOBS;
@@ -119,27 +123,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(queryString, null);
 
         if (cursor.moveToFirst()) {
-            // loop through the cursor (result set) and create new customer objects. Put them
+            // loop through the cursor (result set) and create new job objects. Put them
             // into the return list.
             do {
 
-                int jobID = cursor.getInt(0);
                 String status = cursor.getString(1);
                 String title = cursor.getString(2);
                 String company = cursor.getString(3);
-                String location = cursor.getString(4);
-                int costindex = cursor.getInt(5);
-                int salary = cursor.getInt(6);
-                int bonus = cursor.getInt(7);
-                int allowedRemote = cursor.getInt(8);
-                int leave = cursor.getInt(9);
-                int gymAllow = cursor.getInt(10);
+                String city = cursor.getString(4);
+                String state = cursor.getString(5);
 
-                JobModel newJob = new JobModel(
-                        jobID, status,
+                int costindex = cursor.getInt(6);
+                int salary = cursor.getInt(7);
+                int bonus = cursor.getInt(8);
+                int allowedRemote = cursor.getInt(9);
+                int leave = cursor.getInt(10);
+                int gymAllow = cursor.getInt(11);
+
+                Job newJob = new Job(
+                        status,
                         title,
                         company,
-                        location,
+                        city,
+                        state,
                         costindex,
                         salary,
                         bonus,
@@ -163,7 +169,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     // retrieve Current Job
-    public JobModel getCurrentJob() {
+    public Job getCurrentJob() {
         SQLiteDatabase db = this.getReadableDatabase();
 
         String status = "current";
@@ -175,12 +181,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (c != null)
             c.moveToFirst();
 
-        JobModel cj = new JobModel();
-        cj.setId(c.getInt(c.getColumnIndex(COLUMN_ID))); // Remove?
+        Job cj = new Job();
         cj.setStatus(c.getString(c.getColumnIndex(COLUMN_STATUS))); // Remove?
         cj.setTitle(c.getString(c.getColumnIndex(COLUMN_TITLE)));
         cj.setCompany(c.getString(c.getColumnIndex(COLUMN_COMPANY)));
-        cj.setLocation(c.getString(c.getColumnIndex(COLUMN_LOCATION)));
+        cj.setCity(c.getString(c.getColumnIndex(COLUMN_CITY)));
+        cj.setState(c.getString(c.getColumnIndex(COLUMN_STATE)));
         cj.setLivingCostIndex(c.getInt(c.getColumnIndex(COLUMN_COST_INDEX)));
         cj.setYearlySalary(c.getInt(c.getColumnIndex(COLUMN_SALARY)));
         cj.setYearlyBonus(c.getInt(c.getColumnIndex(COLUMN_BONUS)));
@@ -196,21 +202,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     // update Current Job
-    public int updateCurrentJob(JobModel jobModel) {
+    public int updateCurrentJob(Job job) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         String status = "current";
         ContentValues cv = new ContentValues();
 
-        cv.put(COLUMN_TITLE, jobModel.getTitle());
-        cv.put(COLUMN_COMPANY, jobModel.getCompany());
-        cv.put(COLUMN_LOCATION, jobModel.getLocation());
-        cv.put(COLUMN_COST_INDEX, jobModel.getLivingCostIndex());
-        cv.put(COLUMN_SALARY, jobModel.getYearlySalary());
-        cv.put(COLUMN_BONUS, jobModel.getYearlyBonus());
-        cv.put(COLUMN_REMOTEDAYS, jobModel.getWeeklyAllowedRemoteDays());
-        cv.put(COLUMN_LEAVETIME, jobModel.getLeaveTime());
-        cv.put(COLUMN_GYMALLOW, jobModel.getGymAllowance());
+        cv.put(COLUMN_TITLE, job.getTitle());
+        cv.put(COLUMN_COMPANY, job.getCompany());
+        cv.put(COLUMN_CITY, job.getCity());
+        cv.put(COLUMN_STATE, job.getState());
+
+        cv.put(COLUMN_COST_INDEX, job.getLivingCostIndex());
+        cv.put(COLUMN_SALARY, job.getYearlySalary());
+        cv.put(COLUMN_BONUS, job.getYearlyBonus());
+        cv.put(COLUMN_REMOTEDAYS, job.getWeeklyAllowedRemoteDays());
+        cv.put(COLUMN_LEAVETIME, job.getLeaveTime());
+        cv.put(COLUMN_GYMALLOW, job.getGymAllowance());
 
         // updating row
         return db.update(TABLE_JOBS, cv, COLUMN_STATUS + " = ?",

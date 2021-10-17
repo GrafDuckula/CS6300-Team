@@ -20,6 +20,7 @@ public class CurrentJobActivity extends AppCompatActivity {
 
     JobManager jobMgr = JobManager.getInstance();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -87,7 +88,8 @@ public class CurrentJobActivity extends AppCompatActivity {
         }else {
             titleTxt.setText(job.getTitle());
             companyTxt.setText(job.getCompany());
-            cityTxt.setText(job.getLocation());
+            cityTxt.setText(job.getCity());
+            stateTxt.setText(job.getState());
             livingCostTxt.setText(Integer.toString(job.getLivingCostIndex()));
             salaryTxt.setText(Integer.toString(job.getYearlySalary()));
             bonusTxt.setText(Integer.toString(job.getYearlyBonus()));
@@ -103,6 +105,7 @@ public class CurrentJobActivity extends AppCompatActivity {
         String title = titleTxt.getText().toString();
         String company = companyTxt.getText().toString();
         String city = cityTxt.getText().toString();
+        String state = stateTxt.getText().toString();
         String livingCost = livingCostTxt.getText().toString();
         String salary = salaryTxt.getText().toString();
         String bonus = bonusTxt.getText().toString();
@@ -189,10 +192,13 @@ public class CurrentJobActivity extends AppCompatActivity {
 
 
         if (!err){
+            String status = "current";
             jobMgr.editCurrentJob(
+                    status,
                     title,
                     company,
                     city,
+                    state,
                     Integer.parseInt(livingCost),
                     Integer.parseInt(salary),
                     Integer.parseInt(bonus),
