@@ -25,8 +25,8 @@ public class JobManagerTests {
     public void addNewJobOfferTest(){
         Assert.assertTrue(jobManager.getJobList().size() == 0);
 
-        jobManager.addNewJobOffer("Chef", "Microsoft", "Mountain View, CA", 5, 250000, 5000, 5, 20, 400);
-        jobManager.addNewJobOffer("Chef", "Microsoft", "Mountain View, CA", 5, 250000, 5000, 5, 20, 400);
+        jobManager.addNewJobOffer("current", "Chef", "Microsoft", "Mountain View", "CA", 5, 250000, 5000, 5, 20, 400);
+        jobManager.addNewJobOffer("previous", "SWE", "Apple", "Mountain CantView", "CA", 8, 250001, 7000, 0, 5, 250);
 
         Assert.assertTrue(jobManager.getJobList().size() == 2);
     }
@@ -35,11 +35,11 @@ public class JobManagerTests {
     @Test
     public void editCurrentJob(){
         Assert.assertTrue(jobManager.getCurrentJob() == null);
-       jobManager.editCurrentJob("Chef", "Microsoft", "Mountain View, CA", 5, 250000, 5000, 5, 20, 400);
+       jobManager.editCurrentJob("current", "Chef", "Microsoft", "Mountain View", "CA", 5, 250000, 5000, 5, 20, 400);
        String originalJobTitle = jobManager.getCurrentJob().getTitle();
        Assert.assertTrue(jobManager.getCurrentJob() != null);
 
-        jobManager.editCurrentJob("SuperChef", "Microsoft", "Mountain View, CA", 5, 250000, 5000, 5, 20, 400);
+        jobManager.editCurrentJob("current", "SuperChef", "Microsoft", "Mountain View", "CA", 5, 250000, 5000, 5, 20, 400);
         Assert.assertTrue(originalJobTitle != jobManager.getCurrentJob().getTitle());
     }
 

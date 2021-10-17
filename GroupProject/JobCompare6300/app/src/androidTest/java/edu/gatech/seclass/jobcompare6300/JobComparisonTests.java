@@ -24,8 +24,8 @@ public class JobComparisonTests {
     @Before
     public void setUp(){
         jobcompare = JobComparison.getInstance();
-        offerOneTest = new Job("Chef", "Microsoft", "Mountain View, CA", 5, 250000, 5000, 5, 20, 400);
-        offerTwoTest = new Job("SWE", "Apple", "Mountain NoView, CA", 8, 250001, 7000, 0, 5, 250);
+        offerOneTest = new Job("current", "Chef", "Microsoft", "Mountain View", "CA", 5, 250000, 5000, 5, 20, 400);
+        offerTwoTest = new Job("previous", "SWE", "Apple", "Mountain CantView", "CA", 8, 250001, 7000, 0, 5, 250);
     }
 
     @Test

@@ -19,10 +19,11 @@ public class JobTests {
 //    }
     @Test
     public void editJobTest(){
-        Job testJob = new Job("Chef", "Microsoft", "Mountain View, CA", 5, 250000, 5000, 5, 20, 400);
+        Job testJob = new Job("current", "SWE", "Apple", "Mountain CantView", "CA", 8, 250001, 7000, 0, 5, 250);
         String originalTitle = testJob.getTitle();
         String originalCompany = testJob.getCompany();
-        String originalLocation = testJob.getLocation();
+        String originalCity = testJob.getCity();
+        String originalState = testJob.getState();
         int originalIndex = testJob.getLivingCostIndex();
         int originalSalary = testJob.getYearlySalary();
         int originalBonus = testJob.getYearlyBonus();
@@ -30,11 +31,12 @@ public class JobTests {
         int originalLeave = testJob.getLeaveTime();
         int originalGym = testJob.getGymAllowance();
 
-        testJob.editJob("SWE", "Apple", "Mountain NoView, CA", 8, 250001, 7000, 0, 5, 250);
+        testJob.editJob("current", "superSWE", "Pear", "Mountain CanView", "TN", 5, 250000, 7001, 5, 8, 350);
 
         Assert.assertNotEquals(originalTitle, testJob.getTitle());
         Assert.assertNotEquals(originalCompany, testJob.getCompany());
-        Assert.assertNotEquals(originalLocation, testJob.getLocation());
+        Assert.assertNotEquals(originalCity, testJob.getCity());
+        Assert.assertNotEquals(originalState, testJob.getState());
         Assert.assertNotEquals(originalIndex, testJob.getLivingCostIndex());
         Assert.assertNotEquals(originalSalary, testJob.getYearlySalary());
         Assert.assertNotEquals(originalBonus, testJob.getYearlyBonus());
@@ -51,57 +53,58 @@ public class JobTests {
 
     @Test
     public void getTitleTest(){
-        Job testJob = new Job("Chef", "Microsoft", "Mountain View, CA", 5, 250000, 5000, 5, 20, 400);
+        Job testJob = new Job("current", "Chef", "Microsoft", "Mountain View", "CA", 5, 250000, 5000, 5, 20, 400);
         Assert.assertEquals("Chef", testJob.getTitle());
 
     }
 
     @Test
     public void getCompanyTest(){
-        Job testJob = new Job("Chef", "Microsoft", "Mountain View, CA", 5, 250000, 5000, 5, 20, 400);
+        Job testJob = new Job("current", "Chef", "Microsoft", "Mountain View", "CA", 5, 250000, 5000, 5, 20, 400);
         Assert.assertEquals("Microsoft", testJob.getCompany());
 
     }
 
     @Test
     public void getLocationTest(){
-        Job testJob = new Job("Chef", "Microsoft", "Mountain View, CA", 5, 250000, 5000, 5, 20, 400);
-        Assert.assertEquals("Mountain View, CA", testJob.getLocation());
+        Job testJob = new Job("current", "Chef", "Microsoft", "Mountain View", "CA", 5, 250000, 5000, 5, 20, 400);
+        Assert.assertEquals("Mountain View", testJob.getCity());
+        Assert.assertEquals("CA", testJob.getState());
     }
 
     @Test
     public void getLivingCostIndex(){
-        Job testJob = new Job("Chef", "Microsoft", "Mountain View, CA", 5, 250000, 5000, 5, 20, 400);
+        Job testJob = new Job("current", "Chef", "Microsoft", "Mountain View", "CA", 5, 250000, 5000, 5, 20, 400);
         Assert.assertEquals(5, testJob.getLivingCostIndex());
     }
 
     @Test
     public void getYearlySalary(){
-        Job testJob = new Job("Chef", "Microsoft", "Mountain View, CA", 5, 250000, 5000, 5, 20, 400);
+        Job testJob = new Job("current", "Chef", "Microsoft", "Mountain View", "CA", 5, 250000, 5000, 5, 20, 400);
         Assert.assertEquals(250000, testJob.getYearlySalary());
     }
 
     @Test
     public void getYearlyBonus(){
-        Job testJob = new Job("Chef", "Microsoft", "Mountain View, CA", 5, 250000, 5000, 5, 20, 400);
+        Job testJob = new Job("current", "Chef", "Microsoft", "Mountain View", "CA", 5, 250000, 5000, 5, 20, 400);
         Assert.assertEquals(5000, testJob.getYearlyBonus());
     }
 
     @Test
     public void getWeeklyAllowedRemoteDays(){
-        Job testJob = new Job("Chef", "Microsoft", "Mountain View, CA", 5, 250000, 5000, 5, 20, 400);
+        Job testJob = new Job("current", "Chef", "Microsoft", "Mountain View", "CA", 5, 250000, 5000, 5, 20, 400);
         Assert.assertEquals(5, testJob.getWeeklyAllowedRemoteDays());
     }
 
     @Test
     public void getLeaveTime(){
-        Job testJob = new Job("Chef", "Microsoft", "Mountain View, CA", 5, 250000, 5000, 5, 20, 400);
+        Job testJob = new Job("current", "Chef", "Microsoft", "Mountain View", "CA", 5, 250000, 5000, 5, 20, 400);
         Assert.assertEquals(20, testJob.getLeaveTime());
     }
 
     @Test
     public void getGymAllowance(){
-        Job testJob = new Job("Chef", "Microsoft", "Mountain View, CA", 5, 250000, 5000, 5, 20, 400);
+        Job testJob = new Job("current", "Chef", "Microsoft", "Mountain View", "CA", 5, 250000, 5000, 5, 20, 400);
         Assert.assertEquals(400, testJob.getGymAllowance());
     }
 
