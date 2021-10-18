@@ -211,9 +211,6 @@ public class AddNewOfferActivity extends AppCompatActivity{
                     Integer.parseInt(teleTxt.getText().toString()),
                     Integer.parseInt(gymAllowanceTxt.getText().toString()));
             tempSaved = true;
-            DatabaseHelper databaseHelper = new DatabaseHelper(AddNewOfferActivity.this);
-            boolean success = databaseHelper.addJob(newOffer);
-            Toast.makeText(AddNewOfferActivity.this, "Success= "+ success, Toast.LENGTH_SHORT).show();
 
 
 
@@ -232,6 +229,11 @@ public class AddNewOfferActivity extends AppCompatActivity{
                 Integer.parseInt(leaveDaysTxt.getText().toString()),
                 Integer.parseInt(teleTxt.getText().toString()),
                 Integer.parseInt(gymAllowanceTxt.getText().toString()));
+
+        DatabaseHelper databaseHelper = new DatabaseHelper(AddNewOfferActivity.this);
+        boolean success = databaseHelper.addJob(newOffer);
+        Toast.makeText(AddNewOfferActivity.this, "Success= "+ success, Toast.LENGTH_SHORT).show();
+
 
     }
 

@@ -17,7 +17,6 @@ public class JobComparisonActivity extends AppCompatActivity {
         setContentView(R.layout.job_comparison);
         initializeWidgets();
         receiveAndShowData();
-
     }
 
     private JobManager jobMgr = JobManager.getInstance();
@@ -68,9 +67,7 @@ public class JobComparisonActivity extends AppCompatActivity {
 
 
     private void receiveAndShowData() {
-        //RECEIVE DATA FROM ITEMS ACTIVITY VIA INTENT
 
-        Intent i = this.getIntent();
         Job jobA = jobComparison.JobOffer_1;
         Job jobB = jobComparison.JobOffer_2;
 

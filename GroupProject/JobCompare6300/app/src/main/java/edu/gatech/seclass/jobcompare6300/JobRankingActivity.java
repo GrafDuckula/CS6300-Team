@@ -36,17 +36,13 @@ public class JobRankingActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-
-
         DatabaseHelper databaseHelper = new DatabaseHelper(JobRankingActivity.this);
         List<Job> job_list = databaseHelper.getAllJobs();
-        jobMgr.getAllJobs(job_list);
+        jobMgr.loadAllJobs(job_list);
 
         Job current_job = databaseHelper.getCurrentJob();
         if (current_job != null) {
             jobMgr.addCurrentJob(current_job);}
-
-        // need to add and mark current JOb
 
 
         jobMgr.rankOffers(jobComparison);
@@ -69,22 +65,23 @@ public class JobRankingActivity extends AppCompatActivity {
                 Context context = getApplicationContext();
                 int duration = Toast.LENGTH_LONG;
                 checkedJob = mAdapter.getCheckedJob();
+
                 if (checkedJob.size() < 2){
                     CharSequence text = "Error: please select two jobs to compare";
                     Toast toast = Toast.makeText(context, text, duration);
                     toast.show();
+
                 }else if (checkedJob.size() > 2){
                     CharSequence text = "Error: More than 2 jobs were selected";
                     Toast toast = Toast.makeText(context, text, duration);
                     toast.show();
-                }else{
 
+                }else{
                     jobA = checkedJob.get(0);
                     jobB = checkedJob.get(1);
                     jobComparison.addJobOfferToCompare(jobA,jobB);
-//                    intent.putExtra("JobA", jobA);
-//                    intent.putExtra("JobB", jobB);
                     startActivity(intent);
+
                 }
                 break;
 

@@ -1,6 +1,5 @@
 package edu.gatech.seclass.jobcompare6300;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -59,7 +58,7 @@ public class JobManager{
 
     }
 
-    public void getAllJobs(List<Job> job_list){
+    public void loadAllJobs(List<Job> job_list){
         this.jobOfferList = job_list;
 
     }

@@ -1,7 +1,5 @@
 package edu.gatech.seclass.jobcompare6300;
 
-import java.io.Serializable;
-
 public class Job{
 
     private String status; // current or offer

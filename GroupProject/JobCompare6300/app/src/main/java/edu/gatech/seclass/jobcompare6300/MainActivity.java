@@ -22,6 +22,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Load all data
+//        DatabaseHelper databaseHelper = new DatabaseHelper(MainActivity.this);
+//        List<Job> job_list = databaseHelper.getAllJobs();
+//        jobMgr.loadAllJobs(job_list);
+//
+//        Job current_job = databaseHelper.getCurrentJob();
+//        if (current_job != null) {
+//            jobMgr.addCurrentJob(current_job);}
+//
     }
 
 
@@ -30,13 +40,11 @@ public class MainActivity extends AppCompatActivity {
         switch (view.getId()){
             case R.id.buttonCurrent:
                 intent = new Intent(this, CurrentJobActivity.class);
-                System.out.println("To CurrentJobActivity");
                 startActivity(intent);
                 break;
 
             case R.id.buttonNewOffer:
                 intent = new Intent(this, AddNewOfferActivity.class);
-                System.out.println("To AddNewOfferActivity");
                 startActivity(intent);
                 break;
 
@@ -50,11 +58,10 @@ public class MainActivity extends AppCompatActivity {
                 if (current_job != null) {
                     jobMgr.addCurrentJob(current_job);}
                 if (job_list != null) {
-                jobMgr.getAllJobs(job_list); }
+                    jobMgr.loadAllJobs(job_list); }
 
 
-                if ((jobMgr.getCurrentJob() == null && jobMgr.getJobList().size() <= 1 )
-                        ||(jobMgr.getCurrentJob() != null && jobMgr.getJobList().size() == 0)){
+                if (jobMgr.getJobList().size() <= 1){
                     Context context = getApplicationContext();
                     CharSequence text = "Error: less than two jobs to compare";
                     int duration = Toast.LENGTH_LONG;
@@ -63,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else{
                     intent = new Intent(this, JobRankingActivity.class);
-                    System.out.println("To JobRankingActivity");
                     startActivity(intent);
                 }
 
@@ -71,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.buttonSetting:
                 intent = new Intent(this, AdjustWeightsActivity.class);
-                System.out.println("To AdjustWeightsActivity");
                 startActivity(intent);
         }
 

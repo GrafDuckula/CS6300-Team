@@ -52,7 +52,6 @@ public class CurrentJobActivity extends AppCompatActivity {
 
             case R.id.buttonSaveCurrentJob:
                 saveData();
-                System.out.println("To save");
 
                 if (err){
                     break;
@@ -65,7 +64,6 @@ public class CurrentJobActivity extends AppCompatActivity {
 
             case R.id.buttonCancelCurrentJob:
                 intent = new Intent(this, MainActivity.class);
-                System.out.println("To MainActivity");
                 startActivity(intent);
         }
     }
