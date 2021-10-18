@@ -40,6 +40,16 @@ public class AddNewOfferActivity extends AppCompatActivity{
         teleTxt = findViewById(R.id.teleDays);
         gymAllowanceTxt = findViewById(R.id.gymAllowance);
 
+        titleTxt.setText("");
+        companyTxt.setText("");
+        cityTxt.setText("");
+        stateTxt.setText("");
+        livingCostTxt.setText("");
+        salaryTxt.setText("");
+        bonusTxt.setText("");
+        leaveDaysTxt.setText("");
+        teleTxt.setText("");
+        gymAllowanceTxt.setText("");
     }
 
     public void handleClick(View view){
@@ -163,10 +173,18 @@ public class AddNewOfferActivity extends AppCompatActivity{
             CharSequence text = "Error: please fill in the weekly allowed telework days";
             teleTxt.setError(text);
             err = true;
+        }else if (Integer.parseInt(tele) > 5) {
+            CharSequence text = "Error: weekly allowed telework days should be at most 5";
+            teleTxt.setError(text);
+            err = true;
         }
 
         if (leaveDays.equals("")) {
             CharSequence text = "Error: please fill in the leave days";
+            leaveDaysTxt.setError(text);
+            err = true;
+        }else if (Integer.parseInt(leaveDays) > 365) {
+            CharSequence text = "Error: Leave days per year should be less than 365";
             leaveDaysTxt.setError(text);
             err = true;
         }
@@ -175,22 +193,7 @@ public class AddNewOfferActivity extends AppCompatActivity{
             CharSequence text = "Error: please fill in the gym Allowance per year";
             gymAllowanceTxt.setError(text);
             err = true;
-        }
-
-
-        if (Integer.parseInt(leaveDays) > 365) {
-            CharSequence text = "Error: Leave days per year should be less than 365";
-            leaveDaysTxt.setError(text);
-            err = true;
-        }
-
-        if (Integer.parseInt(tele) > 5) {
-            CharSequence text = "Error: weekly allowed telework days should be at most 5";
-            teleTxt.setError(text);
-            err = true;
-        }
-
-        if (Integer.parseInt(gymAllowance) > 500) {
+        }else if (Integer.parseInt(gymAllowance) > 500) {
             CharSequence text = "Error: Gym allowance per year should be less than 500";
             gymAllowanceTxt.setError(text);
             err = true;
