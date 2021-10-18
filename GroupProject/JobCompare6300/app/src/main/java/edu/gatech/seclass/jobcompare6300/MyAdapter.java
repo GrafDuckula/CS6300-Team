@@ -78,7 +78,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
         Job job = localDataSet.get(position);
-        viewHolder.jobDescription.setText(job.getTitle() + "@" + job.getCompany());
+
+        if (job.getStatus().equals("current")){
+            viewHolder.jobDescription.setText(job.getTitle() + "@" + job.getCompany() + "*");
+        }else {
+            viewHolder.jobDescription.setText(job.getTitle() + "@" + job.getCompany());
+        }
+
+
 
         viewHolder.setItemClickListener(new ViewHolder.ItemClickListener() {
             @Override
