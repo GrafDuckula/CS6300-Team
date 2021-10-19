@@ -15,25 +15,12 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private JobManager jobMgr = JobManager.getInstance();
-    private JobComparison weights = JobComparison.getInstance();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Load all data
-//        DatabaseHelper databaseHelper = new DatabaseHelper(MainActivity.this);
-//        List<Job> job_list = databaseHelper.getAllJobs();
-//        jobMgr.loadAllJobs(job_list);
-//
-//        Job current_job = databaseHelper.getCurrentJob();
-//        if (current_job != null) {
-//            jobMgr.addCurrentJob(current_job);}
-//
     }
-
 
     public void handleClick(View view){
         Intent intent;
@@ -50,18 +37,10 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.buttonCompare:
 
-                DatabaseHelper databaseHelper = new DatabaseHelper(MainActivity.this);
-                List<Job> job_list = new ArrayList<>();
-                job_list = databaseHelper.getAllJobs();
-                Job current_job = databaseHelper.getCurrentJob();
+                DatabaseHelper databaseHelper = DatabaseHelper.getInstance(MainActivity.this);
+                List<Job> job_list = databaseHelper.getAllJobs();
 
-                if (current_job != null) {
-                    jobMgr.addCurrentJob(current_job);}
-                if (job_list != null) {
-                    jobMgr.loadAllJobs(job_list); }
-
-
-                if (jobMgr.getJobList().size() <= 1){
+                if (job_list.size() <= 1){
                     Context context = getApplicationContext();
                     CharSequence text = "Error: less than two jobs to compare";
                     int duration = Toast.LENGTH_LONG;

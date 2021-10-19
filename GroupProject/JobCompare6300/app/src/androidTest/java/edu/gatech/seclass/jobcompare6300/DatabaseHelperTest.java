@@ -19,7 +19,7 @@ public class DatabaseHelperTest {
     @Before
     public void createDB(){
         Context context = ApplicationProvider.getApplicationContext();
-        dbTest = new DatabaseHelper(context);
+        dbTest = DatabaseHelper.getInstance(context);
     }
 
     @Test

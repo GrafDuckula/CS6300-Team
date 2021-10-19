@@ -13,8 +13,6 @@ public class AddNewOfferActivity extends AppCompatActivity{
     private EditText titleTxt, companyTxt, cityTxt, stateTxt, livingCostTxt, salaryTxt, bonusTxt,
             leaveDaysTxt, teleTxt, gymAllowanceTxt;
 
-    JobManager jobMgr = JobManager.getInstance();
-    JobComparison jobComparison = JobComparison.getInstance();
     private Job newOffer;
 
     private boolean err = false;
@@ -58,15 +56,13 @@ public class AddNewOfferActivity extends AppCompatActivity{
         int duration = Toast.LENGTH_LONG;
 
         // get the current job from the db
-        DatabaseHelper databaseHelper = new DatabaseHelper(AddNewOfferActivity.this);
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(AddNewOfferActivity.this);
         Job current_job = databaseHelper.getCurrentJob();
-        if (current_job != null) {
-            jobMgr.addCurrentJob(current_job);}
 
         switch (view.getId()){
             case R.id.buttonAddAnotherOffer:
                 if (tempSaved){
-                    saveToJobMgr();
+                    saveToDB();
                     intent = new Intent(this, AddNewOfferActivity.class);
                     startActivity(intent);
                 } else{
@@ -78,7 +74,7 @@ public class AddNewOfferActivity extends AppCompatActivity{
 
             case R.id.buttonMainMenu:
                 if (tempSaved){
-                    saveToJobMgr();}
+                    saveToDB();}
                 intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 break;
@@ -92,15 +88,16 @@ public class AddNewOfferActivity extends AppCompatActivity{
                 break;
 
             case R.id.buttonCompareWithCurrent:
-                if(jobMgr.getCurrentJob() == null){
+                if(current_job == null){
                     CharSequence text = "Error: Please add current job first";
                     Toast toast = Toast.makeText(context, text, duration);
                     toast.show();
                 }
                 else if (tempSaved){
-                    saveToJobMgr();
+                    saveToDB();
                     intent = new Intent(this, JobComparisonActivity.class);
-                    jobComparison.addJobOfferToCompare(jobMgr.getCurrentJob(),newOffer);
+                    intent.putExtra("JobA", current_job);
+                    intent.putExtra("JobB", newOffer);
                     startActivity(intent);
                 }else{
                     CharSequence text = "Error: Please SAVE the offer first";
@@ -212,28 +209,14 @@ public class AddNewOfferActivity extends AppCompatActivity{
                     Integer.parseInt(gymAllowanceTxt.getText().toString()));
             tempSaved = true;
 
-
-
         }
     }
 
-    private void saveToJobMgr(){
-        String status = "offer";
-        jobMgr.addNewJobOffer(status, titleTxt.getText().toString(),
-                companyTxt.getText().toString(),
-                cityTxt.getText().toString(),
-                stateTxt.getText().toString(),
-                Integer.parseInt(livingCostTxt.getText().toString()),
-                Integer.parseInt(salaryTxt.getText().toString()),
-                Integer.parseInt(bonusTxt.getText().toString()),
-                Integer.parseInt(leaveDaysTxt.getText().toString()),
-                Integer.parseInt(teleTxt.getText().toString()),
-                Integer.parseInt(gymAllowanceTxt.getText().toString()));
+    private void saveToDB(){
 
-        DatabaseHelper databaseHelper = new DatabaseHelper(AddNewOfferActivity.this);
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(AddNewOfferActivity.this);
         boolean success = databaseHelper.addJob(newOffer);
         Toast.makeText(AddNewOfferActivity.this, "Success= "+ success, Toast.LENGTH_SHORT).show();
-
 
     }
 

@@ -19,9 +19,6 @@ public class JobComparisonActivity extends AppCompatActivity {
         receiveAndShowData();
     }
 
-    private JobManager jobMgr = JobManager.getInstance();
-    private JobComparison jobComparison = JobComparison.getInstance();
-
     public void handleClick(View view){
         Intent intent;
         switch (view.getId()){
@@ -39,7 +36,6 @@ public class JobComparisonActivity extends AppCompatActivity {
     private TextView titleATxt, companyATxt, locationATxt, salaryATxt, bonusATxt, leaveDaysATxt, teleATxt,
             gymAllowanceATxt, titleBTxt, companyBTxt, locationBTxt, salaryBTxt, bonusBTxt, leaveDaysBTxt,
             teleBTxt, gymAllowanceBTxt;
-
 
 
     private void initializeWidgets() {
@@ -68,8 +64,9 @@ public class JobComparisonActivity extends AppCompatActivity {
 
     private void receiveAndShowData() {
 
-        Job jobA = jobComparison.JobOffer_1;
-        Job jobB = jobComparison.JobOffer_2;
+        Intent intent = getIntent();
+        Job jobA = (Job) intent.getSerializableExtra("JobA");
+        Job jobB = (Job) intent.getSerializableExtra("JobB");
 
         titleATxt.setText(jobA.getTitle());
         companyATxt.setText(jobA.getCompany());
@@ -93,11 +90,6 @@ public class JobComparisonActivity extends AppCompatActivity {
         gymAllowanceBTxt.setText(Integer.toString(jobB.getGymAllowance()));
 
     }
-
-
-
-
-
 
 }
 

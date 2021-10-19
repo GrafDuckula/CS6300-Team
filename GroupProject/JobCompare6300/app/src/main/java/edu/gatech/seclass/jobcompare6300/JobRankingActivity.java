@@ -36,14 +36,10 @@ public class JobRankingActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        DatabaseHelper databaseHelper = new DatabaseHelper(JobRankingActivity.this);
+
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(JobRankingActivity.this);
         List<Job> job_list = databaseHelper.getAllJobs();
         jobMgr.loadAllJobs(job_list);
-
-        Job current_job = databaseHelper.getCurrentJob();
-        if (current_job != null) {
-            jobMgr.addCurrentJob(current_job);}
-
 
         jobMgr.rankOffers(jobComparison);
         List<Job> input = jobMgr.getJobList();
@@ -79,7 +75,9 @@ public class JobRankingActivity extends AppCompatActivity {
                 }else{
                     jobA = checkedJob.get(0);
                     jobB = checkedJob.get(1);
-                    jobComparison.addJobOfferToCompare(jobA,jobB);
+
+                    intent.putExtra("JobA", jobA);
+                    intent.putExtra("JobB", jobB);
                     startActivity(intent);
 
                 }
@@ -91,12 +89,5 @@ public class JobRankingActivity extends AppCompatActivity {
         }
 
     }
-
-
-
-
-
-
-
 
 }

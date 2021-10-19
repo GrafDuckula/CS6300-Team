@@ -1,6 +1,8 @@
 package edu.gatech.seclass.jobcompare6300;
 
-public class Job{
+import java.io.Serializable;
+
+public class Job implements Serializable {
 
     private String status; // current or offer
     private String title;
@@ -33,6 +35,9 @@ public class Job{
         this.weeklyAllowedRemoteDays = weeklyAllowedRemoteDays;
         this.leaveTime = leaveTime;
         this.gymAllowance = gymAllowance;
+
+        this.adjustedYearlySalary = yearlySalary * 100 / livingCostIndex;
+        this.adjustedYearlyBonus = yearlyBonus * 100 / livingCostIndex;
 
     }
 
@@ -67,8 +72,8 @@ public class Job{
         this.gymAllowance = gymAllowance;
 
 
-        this.adjustedYearlySalary = yearlySalary*100/livingCostIndex;
-        this.adjustedYearlyBonus = yearlyBonus*100/livingCostIndex;
+        this.adjustedYearlySalary = yearlySalary * 100 / livingCostIndex;
+        this.adjustedYearlyBonus = yearlyBonus * 100 / livingCostIndex;
 
 
     }

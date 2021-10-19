@@ -64,9 +64,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             COLUMN_WGT_GYMALLOW + " INT DEFAULT 1 " +
             ")";
 
-    public DatabaseHelper(@Nullable Context context) {
+    private static DatabaseHelper sInstance;
+
+    public static synchronized DatabaseHelper getInstance(Context context) {
+
+        // Use the application context, which will ensure that you
+        // don't accidentally leak an Activity's context.
+        // See this article for more information: http://bit.ly/6LRzfx
+        if (sInstance == null) {
+            sInstance = new DatabaseHelper(context.getApplicationContext());
+        }
+        return sInstance;
+    }
+
+    private DatabaseHelper(@Nullable Context context) {
         super(context, "jobOffers", null, 1);
     }
+
+
 
 
     @Override
@@ -162,7 +177,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             // failure, do not add anything to the list
         }
         cursor.close();
-        db.close();
+//        db.close();
 
 
         return returnList;
@@ -180,17 +195,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (c != null) {
             if (c.moveToFirst()) {
                 Job cj = new Job();
-                cj.setStatus(c.getString(c.getColumnIndex(COLUMN_STATUS))); // Remove?
-                cj.setTitle(c.getString(c.getColumnIndex(COLUMN_TITLE)));
-                cj.setCompany(c.getString(c.getColumnIndex(COLUMN_COMPANY)));
-                cj.setCity(c.getString(c.getColumnIndex(COLUMN_CITY)));
-                cj.setState(c.getString(c.getColumnIndex(COLUMN_STATE)));
-                cj.setLivingCostIndex(c.getInt(c.getColumnIndex(COLUMN_COST_INDEX)));
-                cj.setYearlySalary(c.getInt(c.getColumnIndex(COLUMN_SALARY)));
-                cj.setYearlyBonus(c.getInt(c.getColumnIndex(COLUMN_BONUS)));
-                cj.setWeeklyAllowedRemoteDays(c.getInt(c.getColumnIndex(COLUMN_REMOTEDAYS)));
-                cj.setLeaveTime(c.getInt(c.getColumnIndex(COLUMN_LEAVETIME)));
-                cj.setGymAllowance(c.getInt(c.getColumnIndex(COLUMN_GYMALLOW)));
+                cj.setStatus(c.getString(1)); // Remove?
+                cj.setTitle(c.getString(2));
+                cj.setCompany(c.getString(3));
+                cj.setCity(c.getString(4));
+                cj.setState(c.getString(5));
+                cj.setLivingCostIndex(c.getInt(6));
+                cj.setYearlySalary(c.getInt(7));
+                cj.setYearlyBonus(c.getInt(8));
+                cj.setWeeklyAllowedRemoteDays(c.getInt(9));
+                cj.setLeaveTime(c.getInt(10));
+                cj.setGymAllowance(c.getInt(11));
                 return cj;
             }
             c.close();}
@@ -264,7 +279,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             // failure, do not add anything to the list
         }
         cursor.close();
-        db.close();
+//        db.close();
 
 
         return returnList;

@@ -19,7 +19,7 @@ public class CurrentJobActivity extends AppCompatActivity {
     private boolean err = false;
     private boolean isNew = true;
 
-    JobManager jobMgr = JobManager.getInstance();
+//    JobManager jobMgr = JobManager.getInstance();
 
 
     @Override
@@ -73,15 +73,15 @@ public class CurrentJobActivity extends AppCompatActivity {
 
         // read in current job from database, if null moves
 
-        DatabaseHelper databaseHelper = new DatabaseHelper(CurrentJobActivity.this);;
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(CurrentJobActivity.this);
         Job current_job = databaseHelper.getCurrentJob();
-        if (current_job != null) {
-            jobMgr.addCurrentJob(current_job);
-        }
+//        if (current_job != null) {
+//            jobMgr.addCurrentJob(current_job);
+//        }
+//
+//        Job job = jobMgr.getCurrentJob();
 
-        Job job = jobMgr.getCurrentJob();
-
-        if (job == null) {
+        if (current_job == null) {
             titleTxt.setText("");
             companyTxt.setText("");
             cityTxt.setText("");
@@ -93,16 +93,16 @@ public class CurrentJobActivity extends AppCompatActivity {
             teleTxt.setText("");
             gymAllowanceTxt.setText("");
         }else {
-            titleTxt.setText(job.getTitle());
-            companyTxt.setText(job.getCompany());
-            cityTxt.setText(job.getCity());
-            stateTxt.setText(job.getState());
-            livingCostTxt.setText(Integer.toString(job.getLivingCostIndex()));
-            salaryTxt.setText(Integer.toString(job.getYearlySalary()));
-            bonusTxt.setText(Integer.toString(job.getYearlyBonus()));
-            leaveDaysTxt.setText(Integer.toString(job.getLeaveTime()));
-            teleTxt.setText(Integer.toString(job.getWeeklyAllowedRemoteDays()));
-            gymAllowanceTxt.setText(Integer.toString(job.getGymAllowance()));
+            titleTxt.setText(current_job.getTitle());
+            companyTxt.setText(current_job.getCompany());
+            cityTxt.setText(current_job.getCity());
+            stateTxt.setText(current_job.getState());
+            livingCostTxt.setText(Integer.toString(current_job.getLivingCostIndex()));
+            salaryTxt.setText(Integer.toString(current_job.getYearlySalary()));
+            bonusTxt.setText(Integer.toString(current_job.getYearlyBonus()));
+            leaveDaysTxt.setText(Integer.toString(current_job.getLeaveTime()));
+            teleTxt.setText(Integer.toString(current_job.getWeeklyAllowedRemoteDays()));
+            gymAllowanceTxt.setText(Integer.toString(current_job.getGymAllowance()));
             isNew = false;
         }
     }
@@ -201,19 +201,19 @@ public class CurrentJobActivity extends AppCompatActivity {
 
         if (!err){
             String status = "current";
-            jobMgr.editCurrentJob(
-                    status,
-                    title,
-                    company,
-                    city,
-                    state,
-                    Integer.parseInt(livingCost),
-                    Integer.parseInt(salary),
-                    Integer.parseInt(bonus),
-                    Integer.parseInt(tele),
-                    Integer.parseInt(leaveDays),
-                    Integer.parseInt(gymAllowance)
-            );
+//            jobMgr.editCurrentJob(
+//                    status,
+//                    title,
+//                    company,
+//                    city,
+//                    state,
+//                    Integer.parseInt(livingCost),
+//                    Integer.parseInt(salary),
+//                    Integer.parseInt(bonus),
+//                    Integer.parseInt(tele),
+//                    Integer.parseInt(leaveDays),
+//                    Integer.parseInt(gymAllowance)
+//            );
 
             Job job;
             job = new Job(
@@ -230,7 +230,7 @@ public class CurrentJobActivity extends AppCompatActivity {
                     Integer.parseInt(gymAllowance)
             );
             // provide a 'checker' for isNew to decide either to update or add
-            DatabaseHelper databaseHelper = new DatabaseHelper(CurrentJobActivity.this);
+            DatabaseHelper databaseHelper = DatabaseHelper.getInstance(CurrentJobActivity.this);
             boolean success;
             if (isNew == true) {
                 success = databaseHelper.addJob(job);
