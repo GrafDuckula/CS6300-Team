@@ -17,6 +17,24 @@ public class Weight {
         this.gymAllowanceWeight = 1;
     }
 
+    public int getSum(){
+        return this.yearlySalaryWeight
+                + this.yearlyBonusWeight
+                + this.allowedRemoteDaysWeight
+                + this.leaveTimeWeight
+                + this.gymAllowanceWeight;
+    }
+
+    public void setWeights(int yearlySalaryWeight, int yearlyBonusWeight, int leaveTimeWeight,
+                           int allowedRemoteDaysWeight, int gymAllowanceWeight){
+
+        this.yearlySalaryWeight = yearlySalaryWeight;
+        this.yearlyBonusWeight = yearlyBonusWeight;
+        this.allowedRemoteDaysWeight = allowedRemoteDaysWeight;
+        this.leaveTimeWeight = leaveTimeWeight;
+        this.gymAllowanceWeight = gymAllowanceWeight;
+
+    }
 
     // toString for printing the contents of a class object
     @Override
@@ -72,14 +90,5 @@ public class Weight {
         this.gymAllowanceWeight = gymAllowanceWeight;
     }
 
-    public void setWeights(int yearlySalaryWeight, int yearlyBonusWeight, int leaveTimeWeight,
-                           int allowedRemoteDaysWeight, int gymAllowanceWeight){
 
-        this.yearlySalaryWeight = yearlySalaryWeight;
-        this.yearlyBonusWeight = yearlyBonusWeight;
-        this.allowedRemoteDaysWeight = allowedRemoteDaysWeight;
-        this.leaveTimeWeight = leaveTimeWeight;
-        this.gymAllowanceWeight = gymAllowanceWeight;
-
-    }
 }

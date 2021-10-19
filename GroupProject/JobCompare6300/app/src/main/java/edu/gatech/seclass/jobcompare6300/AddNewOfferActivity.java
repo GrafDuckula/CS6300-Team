@@ -5,7 +5,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.content.Intent;
 import android.widget.EditText;
-import android.widget.Button;
 import android.view.View;
 import android.widget.Toast;
 
@@ -14,8 +13,6 @@ public class AddNewOfferActivity extends AppCompatActivity{
             leaveDaysTxt, teleTxt, gymAllowanceTxt;
 
     private Job newOffer;
-
-    private boolean err = false;
     private boolean tempSaved = false;
 
 
@@ -38,16 +35,6 @@ public class AddNewOfferActivity extends AppCompatActivity{
         teleTxt = findViewById(R.id.teleDays);
         gymAllowanceTxt = findViewById(R.id.gymAllowance);
 
-        titleTxt.setText("");
-        companyTxt.setText("");
-        cityTxt.setText("");
-        stateTxt.setText("");
-        livingCostTxt.setText("");
-        salaryTxt.setText("");
-        bonusTxt.setText("");
-        leaveDaysTxt.setText("");
-        teleTxt.setText("");
-        gymAllowanceTxt.setText("");
     }
 
     public void handleClick(View view){
@@ -110,7 +97,7 @@ public class AddNewOfferActivity extends AppCompatActivity{
 
     private void saveData() {
 
-        err = false; // reset error
+        boolean err = false; // reset error
 
         String title = titleTxt.getText().toString();
         String company = companyTxt.getText().toString();
@@ -122,7 +109,6 @@ public class AddNewOfferActivity extends AppCompatActivity{
         String tele = teleTxt.getText().toString();
         String leaveDays = leaveDaysTxt.getText().toString();
         String gymAllowance = gymAllowanceTxt.getText().toString();
-
 
         if (title.equals("")) {
             CharSequence text = "Error: please fill in Job title";
@@ -207,6 +193,7 @@ public class AddNewOfferActivity extends AppCompatActivity{
                     Integer.parseInt(leaveDaysTxt.getText().toString()),
                     Integer.parseInt(teleTxt.getText().toString()),
                     Integer.parseInt(gymAllowanceTxt.getText().toString()));
+
             tempSaved = true;
 
         }
@@ -215,11 +202,13 @@ public class AddNewOfferActivity extends AppCompatActivity{
     private void saveToDB(){
 
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance(AddNewOfferActivity.this);
+        Weight weight = databaseHelper.getAllWgts();
+        newOffer.setScore(weight);
+
         boolean success = databaseHelper.addJob(newOffer);
         Toast.makeText(AddNewOfferActivity.this, "Success= "+ success, Toast.LENGTH_SHORT).show();
 
     }
-
 
     private void reset(){
         titleTxt.setText("");

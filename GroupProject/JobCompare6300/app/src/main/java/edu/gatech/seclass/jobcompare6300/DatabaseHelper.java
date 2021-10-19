@@ -7,8 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
-
-import java.sql.RowId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +29,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_REMOTEDAYS = "weeklyAllowedRemoteDays";
     private static final String COLUMN_LEAVETIME = "leaveTime";
     private static final String COLUMN_GYMALLOW = "gymAllowance";
+    private static final String COLUMN_SCORE = "score";
 
     // WEIGHTS Table - column names
     private static final String COLUMN_WGT_SALARY = "yearlySalaryWeight";
@@ -53,7 +52,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             COLUMN_BONUS + " INT, " +
             COLUMN_REMOTEDAYS + " INT, " +
             COLUMN_LEAVETIME + " INT, " +
-            COLUMN_GYMALLOW + " INT " +
+            COLUMN_GYMALLOW + " INT, " +
+            COLUMN_SCORE + " INT " +
             ")";
 
     // WEIGHTS table create statement
@@ -69,9 +69,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static synchronized DatabaseHelper getInstance(Context context) {
 
-        // Use the application context, which will ensure that you
-        // don't accidentally leak an Activity's context.
-        // See this article for more information: http://bit.ly/6LRzfx
         if (sInstance == null) {
             sInstance = new DatabaseHelper(context.getApplicationContext());
         }
@@ -81,8 +78,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private DatabaseHelper(@Nullable Context context) {
         super(context, "jobOffers", null, 1);
     }
-
-
 
 
     @Override
@@ -117,6 +112,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_REMOTEDAYS, job.getWeeklyAllowedRemoteDays());
         cv.put(COLUMN_LEAVETIME, job.getLeaveTime());
         cv.put(COLUMN_GYMALLOW, job.getGymAllowance());
+        cv.put(COLUMN_SCORE, job.getScore());
 
         long insert = db.insert(TABLE_JOBS, null, cv);
         if (insert == -1) {
@@ -132,11 +128,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<Job> returnList = new ArrayList<>();
 
         // get data from the database
-        String queryString = "SELECT * FROM " + TABLE_JOBS;
+//        String queryString = "SELECT * FROM " + TABLE_JOBS;
 
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.rawQuery(queryString, null);
+        String sortOrder = COLUMN_SCORE + " DESC";
+        Cursor cursor = db.query(TABLE_JOBS, null, null, null,
+                null, null, sortOrder);
 
         if (cursor.moveToFirst()) {
             // loop through the cursor (result set) and create new job objects. Put them
@@ -149,12 +147,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 String city = cursor.getString(4);
                 String state = cursor.getString(5);
 
-                int costindex = cursor.getInt(6);
+                int costIndex = cursor.getInt(6);
                 int salary = cursor.getInt(7);
                 int bonus = cursor.getInt(8);
                 int allowedRemote = cursor.getInt(9);
                 int leave = cursor.getInt(10);
                 int gymAllow = cursor.getInt(11);
+                int score = cursor.getInt(12);
 
                 Job newJob = new Job(
                         status,
@@ -162,12 +161,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         company,
                         city,
                         state,
-                        costindex,
+                        costIndex,
                         salary,
                         bonus,
                         allowedRemote,
                         leave,
                         gymAllow);
+
+                newJob.setScore(getAllWgts()); // to be deleted
 
                 // add record to list
                 returnList.add(newJob);
@@ -189,6 +190,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String status = "current";
         String selectQuery = "SELECT  * FROM " + TABLE_JOBS + " WHERE "
                 + COLUMN_STATUS + " = '" + status + "'";
+
+        // add descend by score
 
         Cursor c = db.rawQuery(selectQuery, null);
         if (c != null) {
@@ -231,11 +234,58 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_REMOTEDAYS, job.getWeeklyAllowedRemoteDays());
         cv.put(COLUMN_LEAVETIME, job.getLeaveTime());
         cv.put(COLUMN_GYMALLOW, job.getGymAllowance());
+        cv.put(COLUMN_SCORE, job.getScore());
 
         // updating row
         return db.update(TABLE_JOBS, cv, COLUMN_STATUS + " = ?",
                 new String[]{status});
     }
+
+    // update score in Table
+
+    public void updateAllJobScore(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String selectQuery = "SELECT  * FROM " + TABLE_JOBS;
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            // loop through the cursor (result set) and create new job objects. Put them
+            // into the return list.
+            do {
+                int id = cursor.getInt(0);
+                int costIndex = cursor.getInt(6);
+                int salary = cursor.getInt(7);
+                int bonus = cursor.getInt(8);
+                int allowedRemote = cursor.getInt(9);
+                int leave = cursor.getInt(10);
+                int gymAllow = cursor.getInt(11);
+
+                Job newJob = new Job();
+                newJob.setLivingCostIndex(costIndex);
+                newJob.setYearlySalary(salary);
+                newJob.setYearlyBonus(bonus);
+                newJob.setWeeklyAllowedRemoteDays(allowedRemote);
+                newJob.setLeaveTime(leave);
+                newJob.setGymAllowance(gymAllow);
+
+                Weight weight = getAllWgts();
+                newJob.setScore(weight);
+                int score = newJob.getScore();
+
+                String updateQuery = "UPDATE " + TABLE_JOBS + " SET " + COLUMN_SCORE + " = "+ score +" WHERE " + COLUMN_ID +" = " + id;
+                db.execSQL(updateQuery);
+
+            } while (cursor.moveToNext());
+        } else {
+            // failure, do not add anything to the list
+        }
+        cursor.close();
+
+
+    }
+
+
+
 
 
     // ------- "WEIGHTS" Table Methods ---------- //

@@ -76,15 +76,15 @@ public class JobManager{
     }
 
     // Before show the list, rank first.
-    public void rankOffers(JobComparison settings) {
-        for (int i = 0; i < jobOfferList.size(); i++) {
-            Job temp_jobOffer = jobOfferList.get(i);
-            int score = temp_jobOffer.calculateScore(settings);
-            jobScoreMap.put(temp_jobOffer, score);
-            Map<Job, Integer> sortedJobOffers =jobScoreMap.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder())).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
-            jobScoreMap = sortedJobOffers;
-        }
-    }
+//    public void rankOffers(JobComparison comparison) {
+//        for (int i = 0; i < jobOfferList.size(); i++) {
+//            Job temp_jobOffer = jobOfferList.get(i);
+//            int score = temp_jobOffer.calculateScore(comparison);
+//            jobScoreMap.put(temp_jobOffer, score);
+//            Map<Job, Integer> sortedJobOffers =jobScoreMap.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder())).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+//            jobScoreMap = sortedJobOffers;
+//        }
+//    }
 
 
 }

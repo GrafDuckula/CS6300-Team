@@ -17,6 +17,7 @@ public class Job implements Serializable {
     private int gymAllowance; //0-500
     private int adjustedYearlySalary;
     private int adjustedYearlyBonus;
+    private int score = -1;
 
 
     public Job( String status, String title, String company, String city, String state, int livingCostIndex,
@@ -35,9 +36,6 @@ public class Job implements Serializable {
         this.leaveTime = leaveTime;
         this.gymAllowance = gymAllowance;
 
-        this.adjustedYearlySalary = yearlySalary * 100 / livingCostIndex;
-        this.adjustedYearlyBonus = yearlyBonus * 100 / livingCostIndex;
-
     }
 
     public Job() {
@@ -54,9 +52,7 @@ public class Job implements Serializable {
         if (title == null || company == null || city == null || state == null) {
             throw new NullPointerException();
         }
-//        if (livingCostIndex == 0 || yearlySalary == 0 || yearlyBonus == 0 || leaveTime == 0) {
-//            throw new IllegalArgumentException();
-//        }
+
         // should check numbers and refuse input from GUI.
         this.status = "current";
         this.title = title;
@@ -70,22 +66,34 @@ public class Job implements Serializable {
         this.leaveTime = leaveTime;
         this.gymAllowance = gymAllowance;
 
+    }
+
+//    public int calculateScore(JobComparison setting){
+//        return setting.getAYS()/setting.getSum() * this.adjustedYearlySalary
+//                + setting.getAYB()/setting.getSum() * this.adjustedYearlyBonus
+//                + setting.getGYM()/setting.getSum() * this.gymAllowance
+//                + setting.getLT()/setting.getSum() * (this.leaveTime * this.adjustedYearlySalary/260)
+//                + setting.getRWT()/setting.getSum() * ((260 -52 * this.weeklyAllowedRemoteDays) * (this.adjustedYearlySalary/260)/8);
+//    }
+
+    // getters and setters
+
+
+    public void setScore(Weight weight){
 
         this.adjustedYearlySalary = yearlySalary * 100 / livingCostIndex;
         this.adjustedYearlyBonus = yearlyBonus * 100 / livingCostIndex;
 
-
+        score = (int) (weight.getYearlySalaryWeight()*1.0/weight.getSum() * this.adjustedYearlySalary
+                + weight.getYearlyBonusWeight()*1.0/weight.getSum() * this.adjustedYearlyBonus
+                + weight.getGymAllowanceWeight()*1.0/weight.getSum() * this.gymAllowance
+                + weight.getLeaveTimeWeight()*1.0/weight.getSum() * (this.leaveTime * this.adjustedYearlySalary/260)
+                + weight.getAllowedRemoteDaysWeight()*1.0/weight.getSum() * ((260 -52 * this.weeklyAllowedRemoteDays) * (this.adjustedYearlySalary/260)/8));
     }
 
-    public int calculateScore(JobComparison setting){
-        return setting.getAYS()/setting.getSum() * this.adjustedYearlySalary
-                + setting.getAYB()/setting.getSum() * this.adjustedYearlyBonus
-                + setting.getGYM()/setting.getSum() * this.gymAllowance
-                + setting.getLT()/setting.getSum() * (this.leaveTime * this.adjustedYearlySalary/260)
-                + setting.getRWT()/setting.getSum() * ((260 -52 * this.weeklyAllowedRemoteDays) * (this.adjustedYearlySalary/260)/8);
+    public int getScore() {
+        return score;
     }
-
-    // getters and setters
 
 
     public String getStatus() {
@@ -139,8 +147,11 @@ public class Job implements Serializable {
     public int getYearlySalary() {
         return yearlySalary;
     }
+
     public int getAdjustedYearlySalary() {
-        return adjustedYearlySalary;
+        this.adjustedYearlySalary = yearlySalary * 100 / livingCostIndex;
+        return this.adjustedYearlySalary;
+
     }
 
     public void setYearlySalary(int yearlySalary) {
@@ -150,8 +161,10 @@ public class Job implements Serializable {
     public int getYearlyBonus() {
         return yearlyBonus;
     }
+
     public int getAdjustedYearlyBonus() {
-        return adjustedYearlyBonus;
+        this.adjustedYearlyBonus = yearlyBonus * 100 / livingCostIndex;
+        return this.adjustedYearlyBonus;
     }
 
     public void setYearlyBonus(int yearlyBonus) {
@@ -181,5 +194,8 @@ public class Job implements Serializable {
     public void setGymAllowance(int gymAllowance) {
         this.gymAllowance = gymAllowance;
     }
+
+
+
 
 }

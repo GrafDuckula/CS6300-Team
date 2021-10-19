@@ -16,7 +16,6 @@ import java.util.Collections;
 
 public class AdjustWeightsActivity extends AppCompatActivity {
 
-
     private EditText salaryWeightsTxt, bonusWeightsTxt, leaveDaysWeightsTxt, teleWeightsTxt, gymAllowanceWeightsTxt;
     private Weight weight;
     private boolean err = false;
@@ -73,7 +72,6 @@ public class AdjustWeightsActivity extends AppCompatActivity {
     }
 
     private void saveWeights() {
-
 
         err = false; // reset error
 
@@ -134,9 +132,9 @@ public class AdjustWeightsActivity extends AppCompatActivity {
                     Integer.parseInt(teleWeightsTxt.getText().toString()),
                     Integer.parseInt(gymAllowanceWeightsTxt.getText().toString()));
 
-            int success = databaseHelper.updateWeights(weight);
+            databaseHelper.updateWeights(weight);
+            databaseHelper.updateAllJobScore();
 
-            System.out.println("save weight " + success + weight.toString());
         }
     }
 

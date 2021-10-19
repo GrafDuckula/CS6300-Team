@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,13 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JobRankingActivity extends AppCompatActivity {
-    private RecyclerView recyclerView;
     private MyAdapter mAdapter;
-    private RecyclerView.LayoutManager layoutManager;
-    private ArrayList<Job> checkedJob=new ArrayList<>();
 
     JobManager jobMgr = JobManager.getInstance();
-    JobComparison jobComparison = JobComparison.getInstance();
+//    JobComparison jobComparison = JobComparison.getInstance();
 
 
     @Override
@@ -30,27 +25,32 @@ public class JobRankingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.job_ranking);
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
 
-        layoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-
 
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance(JobRankingActivity.this);
         List<Job> job_list = databaseHelper.getAllJobs();
-        jobMgr.loadAllJobs(job_list);
 
-        jobMgr.rankOffers(jobComparison);
-        List<Job> input = jobMgr.getJobList();
 
-        mAdapter = new MyAdapter(input);
+
+//        Weight weight = databaseHelper.getAllWgts();
+
+
+//        jobMgr.loadAllJobs(job_list);
+//        jobMgr.rankOffers(weight);
+//        List<Job> input = jobMgr.getJobList();
+
+
+        // everytime save a new job, calculate score, add to this.score and save to database
+        // everytime the weights were updated, all scores are recalculated, and saved to database
+
+        mAdapter = new MyAdapter(job_list);
         recyclerView.setAdapter(mAdapter);
 
     }
-
-    private Job jobA;
-    private Job jobB;
 
 
     public void handleClick(View view){
@@ -60,7 +60,7 @@ public class JobRankingActivity extends AppCompatActivity {
                 intent = new Intent(this, JobComparisonActivity.class);
                 Context context = getApplicationContext();
                 int duration = Toast.LENGTH_LONG;
-                checkedJob = mAdapter.getCheckedJob();
+                ArrayList<Job> checkedJob = mAdapter.getCheckedJob();
 
                 if (checkedJob.size() < 2){
                     CharSequence text = "Error: please select two jobs to compare";
@@ -73,13 +73,12 @@ public class JobRankingActivity extends AppCompatActivity {
                     toast.show();
 
                 }else{
-                    jobA = checkedJob.get(0);
-                    jobB = checkedJob.get(1);
+                    Job jobA = checkedJob.get(0);
+                    Job jobB = checkedJob.get(1);
 
                     intent.putExtra("JobA", jobA);
                     intent.putExtra("JobB", jobB);
                     startActivity(intent);
-
                 }
                 break;
 

@@ -2,7 +2,6 @@ package edu.gatech.seclass.jobcompare6300;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,15 +10,11 @@ import android.widget.Toast;
 
 public class CurrentJobActivity extends AppCompatActivity {
 
-
-
     private EditText titleTxt, companyTxt, cityTxt, stateTxt, livingCostTxt, salaryTxt, bonusTxt,
             leaveDaysTxt, teleTxt, gymAllowanceTxt;
 
     private boolean err = false;
     private boolean isNew = true;
-
-//    JobManager jobMgr = JobManager.getInstance();
 
 
     @Override
@@ -45,50 +40,13 @@ public class CurrentJobActivity extends AppCompatActivity {
 
     }
 
-    public void handleClick(View view){
-        Intent intent;
-
-        switch (view.getId()){
-
-            case R.id.buttonSaveCurrentJob:
-                saveData();
-
-                if (err){
-                    break;
-                }else{
-                    intent = new Intent(this, MainActivity.class);
-                    startActivity(intent);
-                }
-
-                break;
-
-            case R.id.buttonCancelCurrentJob:
-                intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
-        }
-    }
-
-
     private void receiveAndShowData() {
 
-        // read in current job from database, if null moves
-
+        // read in current job from database, if not null
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance(CurrentJobActivity.this);
         Job current_job = databaseHelper.getCurrentJob();
 
-
-        if (current_job == null) {
-            titleTxt.setText("");
-            companyTxt.setText("");
-            cityTxt.setText("");
-            stateTxt.setText("");
-            livingCostTxt.setText("");
-            salaryTxt.setText("");
-            bonusTxt.setText("");
-            leaveDaysTxt.setText("");
-            teleTxt.setText("");
-            gymAllowanceTxt.setText("");
-        }else {
+        if (current_job != null) {
             titleTxt.setText(current_job.getTitle());
             companyTxt.setText(current_job.getCompany());
             cityTxt.setText(current_job.getCity());
@@ -103,6 +61,24 @@ public class CurrentJobActivity extends AppCompatActivity {
         }
     }
 
+    public void handleClick(View view){
+        Intent intent;
+
+        switch (view.getId()){
+
+            case R.id.buttonSaveCurrentJob:
+                saveData();
+                if (!err){
+                    intent = new Intent(this, MainActivity.class);
+                    startActivity(intent);
+                }
+                break;
+
+            case R.id.buttonCancelCurrentJob:
+                intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+        }
+    }
 
     private void saveData() {
 
@@ -118,7 +94,6 @@ public class CurrentJobActivity extends AppCompatActivity {
         String gymAllowance = gymAllowanceTxt.getText().toString();
 
         err = false; // reset
-
 
         if (title.equals("")){
             CharSequence text = "Error: please fill in Job title";
@@ -160,10 +135,18 @@ public class CurrentJobActivity extends AppCompatActivity {
             CharSequence text = "Error: please fill in the weekly allowed telework days";
             teleTxt.setError(text);
             err = true;
+        }else if (Integer.parseInt(tele) > 5) {
+            CharSequence text = "Error: weekly allowed telework days should be at most 5";
+            teleTxt.setError(text);
+            err = true;
         }
 
         if (leaveDays.equals("")) {
             CharSequence text = "Error: please fill in the leave days";
+            leaveDaysTxt.setError(text);
+            err = true;
+        }else if (Integer.parseInt(leaveDays) > 365) {
+            CharSequence text = "Error: Leave days per year should be less than 365";
             leaveDaysTxt.setError(text);
             err = true;
         }
@@ -172,47 +155,16 @@ public class CurrentJobActivity extends AppCompatActivity {
             CharSequence text = "Error: please fill in the gym Allowance per year";
             gymAllowanceTxt.setError(text);
             err = true;
-        }
-
-
-        if (Integer.parseInt(leaveDays) > 365) {
-            CharSequence text = "Error: Leave days per year should be less than 365";
-            leaveDaysTxt.setError(text);
-            err = true;
-        }
-
-
-        if (Integer.parseInt(tele) > 5) {
-            CharSequence text = "Error: weekly allowed telework days should be at most 5";
-            teleTxt.setError(text);
-            err = true;
-        }
-
-        if (Integer.parseInt(gymAllowance) > 500) {
+        }else if (Integer.parseInt(gymAllowance) > 500) {
             CharSequence text = "Error: Gym allowance per year should be less than 500";
             gymAllowanceTxt.setError(text);
             err = true;
         }
 
-
         if (!err){
             String status = "current";
-//            jobMgr.editCurrentJob(
-//                    status,
-//                    title,
-//                    company,
-//                    city,
-//                    state,
-//                    Integer.parseInt(livingCost),
-//                    Integer.parseInt(salary),
-//                    Integer.parseInt(bonus),
-//                    Integer.parseInt(tele),
-//                    Integer.parseInt(leaveDays),
-//                    Integer.parseInt(gymAllowance)
-//            );
 
-            Job job;
-            job = new Job(
+            Job job = new Job(
                     status,
                     title,
                     company,
@@ -225,20 +177,24 @@ public class CurrentJobActivity extends AppCompatActivity {
                     Integer.parseInt(leaveDays),
                     Integer.parseInt(gymAllowance)
             );
+
             // provide a 'checker' for isNew to decide either to update or add
             DatabaseHelper databaseHelper = DatabaseHelper.getInstance(CurrentJobActivity.this);
+            Weight weight = databaseHelper.getAllWgts();
+            job.setScore(weight); // recalculate score everytime
+
             boolean success;
             if (isNew == true) {
                 success = databaseHelper.addJob(job);
+                isNew = false;
             } else {
                 databaseHelper.updateCurrentJob(job);
-                success = true; }
+                success = true;
+            }
 
             Toast.makeText(CurrentJobActivity.this, "Success= "+ success, Toast.LENGTH_SHORT).show();
 
-
         }
-
 
     }
 

@@ -80,9 +80,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         Job job = localDataSet.get(position);
 
         if (job.getStatus().equals("current")){
-            viewHolder.jobDescription.setText(job.getTitle() + "@" + job.getCompany() + "*");
+            viewHolder.jobDescription.setText(job.getTitle() + "@" + job.getCompany() + " with " + job.getScore() + " *");
         }else {
-            viewHolder.jobDescription.setText(job.getTitle() + "@" + job.getCompany());
+            viewHolder.jobDescription.setText(job.getTitle() + "@" + job.getCompany() + " with " + job.getScore());
         }
 
 
@@ -94,13 +94,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
                 if(myCheckBox.isChecked()) {
                     checkedJob.add(job);
-                    System.out.println("checked");
+//                    System.out.println("checked");
                 }
                 else if(!myCheckBox.isChecked()) {
                     checkedJob.remove(job);
                     System.out.println("unchecked");
                 }
-                System.out.println(checkedJob);
+//                System.out.println(checkedJob);
             }
         });
 
