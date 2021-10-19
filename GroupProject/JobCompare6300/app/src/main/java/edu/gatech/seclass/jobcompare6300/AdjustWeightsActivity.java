@@ -18,8 +18,8 @@ public class AdjustWeightsActivity extends AppCompatActivity {
 
 
     private EditText salaryWeightsTxt, bonusWeightsTxt, leaveDaysWeightsTxt, teleWeightsTxt, gymAllowanceWeightsTxt;
-    private JobComparison weights = JobComparison.getInstance();
-    boolean err = false;
+    private Weight weight;
+    private boolean err = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,11 +50,16 @@ public class AdjustWeightsActivity extends AppCompatActivity {
     private void receiveAndShowData() {
 
         //SET RECEIVED DATA TO TEXTVIEWS
-        salaryWeightsTxt.setText(Integer.toString(weights.getAYS()));
-        bonusWeightsTxt.setText(Integer.toString(weights.getAYB()));
-        leaveDaysWeightsTxt.setText(Integer.toString(weights.getLT()));
-        teleWeightsTxt.setText(Integer.toString(weights.getRWT()));
-        gymAllowanceWeightsTxt.setText(Integer.toString(weights.getGYM()));
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(AdjustWeightsActivity.this);
+        weight = databaseHelper.getAllWgts();
+
+        System.out.println("received" + weight.toString());
+
+        salaryWeightsTxt.setText(Integer.toString(weight.getYearlySalaryWeight()));
+        bonusWeightsTxt.setText(Integer.toString(weight.getYearlyBonusWeight()));
+        leaveDaysWeightsTxt.setText(Integer.toString(weight.getLeaveTimeWeight()));
+        teleWeightsTxt.setText(Integer.toString(weight.getAllowedRemoteDaysWeight()));
+        gymAllowanceWeightsTxt.setText(Integer.toString(weight.getGymAllowanceWeight()));
     }
 
     private void initializeWidgets() {
@@ -121,11 +126,17 @@ public class AdjustWeightsActivity extends AppCompatActivity {
         }
 
         if(!err) {
-            weights.setWeight(Integer.parseInt(salaryWeightsTxt.getText().toString()),
+            DatabaseHelper databaseHelper = DatabaseHelper.getInstance(AdjustWeightsActivity.this);
+
+            weight.setWeights(Integer.parseInt(salaryWeightsTxt.getText().toString()),
                     Integer.parseInt(bonusWeightsTxt.getText().toString()),
-                    Integer.parseInt(gymAllowanceWeightsTxt.getText().toString()),
                     Integer.parseInt(leaveDaysWeightsTxt.getText().toString()),
-                    Integer.parseInt(teleWeightsTxt.getText().toString()));
+                    Integer.parseInt(teleWeightsTxt.getText().toString()),
+                    Integer.parseInt(gymAllowanceWeightsTxt.getText().toString()));
+
+            int success = databaseHelper.updateWeights(weight);
+
+            System.out.println("save weight " + success + weight.toString());
         }
     }
 

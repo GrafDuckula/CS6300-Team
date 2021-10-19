@@ -15,7 +15,6 @@ public class Job implements Serializable {
     private int weeklyAllowedRemoteDays; //0-5
     private int leaveTime;
     private int gymAllowance; //0-500
-    private int livingCost;
     private int adjustedYearlySalary;
     private int adjustedYearlyBonus;
 

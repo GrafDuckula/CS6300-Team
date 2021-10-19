@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import java.sql.RowId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,11 +58,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // WEIGHTS table create statement
     private static final String CREATE_TABLE_WEIGHTS = "CREATE TABLE " + TABLE_WEIGHTS + " (" +
-            COLUMN_WGT_SALARY + " INT DEFAULT 1, " +
-            COLUMN_WGT_BONUS + " INT DEFAULT 1, " +
-            COLUMN_WGT_LEAVETIME + " INT DEFAULT 1, " +
-            COLUMN_WGT_REMOTEDAYS + " INT DEFAULT 1, " +
-            COLUMN_WGT_GYMALLOW + " INT DEFAULT 1 " +
+            COLUMN_WGT_SALARY + " INT DEFAULT 0, " +
+            COLUMN_WGT_BONUS + " INT DEFAULT 0, " +
+            COLUMN_WGT_LEAVETIME + " INT DEFAULT 0, " +
+            COLUMN_WGT_REMOTEDAYS + " INT DEFAULT 0, " +
+            COLUMN_WGT_GYMALLOW + " INT DEFAULT 0 " +
             ")";
 
     private static DatabaseHelper sInstance;
@@ -177,8 +178,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             // failure, do not add anything to the list
         }
         cursor.close();
-//        db.close();
-
 
         return returnList;
     }
@@ -242,8 +241,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // ------- "WEIGHTS" Table Methods ---------- //
 
     // retrieves all weights in the WEIGHTS table in the form of a list
-    public List<WeightModel> getAllWgts() {
-        List<WeightModel> returnList = new ArrayList<>();
+    public Weight getAllWgts() {
 
         // get data from the database
         String queryString = "SELECT * FROM " + TABLE_WEIGHTS;
@@ -252,52 +250,48 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         Cursor cursor = db.rawQuery(queryString, null);
 
-        if (cursor.moveToFirst()) {
-            // loop through the cursor (result set) and create new customer objects. Put them
-            // into the return list.
-            do {
-                int salaryWeight = cursor.getInt(0);
-                int bonusWeight = cursor.getInt(1);
-                int allowedRemoteWeight = cursor.getInt(2);
-                int leaveWeight = cursor.getInt(3);
-                int gymAllowWeight = cursor.getInt(4);
+        Weight weight = new Weight(); // default value 1
 
+        ContentValues cv = new ContentValues();
 
-                WeightModel newWeight = new WeightModel(
-                        salaryWeight,
-                        bonusWeight,
-                        allowedRemoteWeight,
-                        leaveWeight,
-                        gymAllowWeight);
+        cv.put(COLUMN_WGT_SALARY, weight.getYearlySalaryWeight());
+        cv.put(COLUMN_WGT_BONUS, weight.getYearlyBonusWeight());
+        cv.put(COLUMN_WGT_LEAVETIME, weight.getLeaveTimeWeight());
+        cv.put(COLUMN_WGT_REMOTEDAYS, weight.getAllowedRemoteDaysWeight());
+        cv.put(COLUMN_WGT_GYMALLOW, weight.getGymAllowanceWeight());
 
-                // add record to list
-                returnList.add(newWeight);
+        if (!cursor.moveToFirst()){
+            db.insert(TABLE_WEIGHTS, null, cv);
 
+        }else {
 
-            } while (cursor.moveToNext());
-        } else {
-            // failure, do not add anything to the list
+            weight.setWeights(cursor.getInt(0),
+                    cursor.getInt(1),
+                    cursor.getInt(2),
+                    cursor.getInt(3),
+                    cursor.getInt(4));
+
         }
         cursor.close();
-//        db.close();
 
-
-        return returnList;
+        return weight;
     }
 
     // update Weights
-    public int updateWeights(WeightModel weightModel) {
+    public int updateWeights(Weight weight) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues cv = new ContentValues();
 
-        cv.put(COLUMN_WGT_SALARY, weightModel.getYearlySalaryWeight());
-        cv.put(COLUMN_WGT_BONUS, weightModel.getYearlyBonusWeight());
-        cv.put(COLUMN_WGT_LEAVETIME, weightModel.getLeaveTimeWeight());
-        cv.put(COLUMN_WGT_REMOTEDAYS, weightModel.getAllowedRemoteDaysWeight());
-        cv.put(COLUMN_WGT_GYMALLOW, weightModel.getGymAllowanceWeight());
+        cv.put(COLUMN_WGT_SALARY, weight.getYearlySalaryWeight());
+        cv.put(COLUMN_WGT_BONUS, weight.getYearlyBonusWeight());
+        cv.put(COLUMN_WGT_LEAVETIME, weight.getLeaveTimeWeight());
+        cv.put(COLUMN_WGT_REMOTEDAYS, weight.getAllowedRemoteDaysWeight());
+        cv.put(COLUMN_WGT_GYMALLOW, weight.getGymAllowanceWeight());
 
         // updating row
+        System.out.println(weight.toString());
+        System.out.println(cv);
         return db.update(TABLE_WEIGHTS, cv, null, null);
 
     }

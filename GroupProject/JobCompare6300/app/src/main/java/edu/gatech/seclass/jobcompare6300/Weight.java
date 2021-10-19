@@ -1,6 +1,6 @@
 package edu.gatech.seclass.jobcompare6300;
 
-public class WeightModel {
+public class Weight {
 
     private int yearlySalaryWeight;
     private int yearlyBonusWeight;
@@ -9,18 +9,14 @@ public class WeightModel {
     private int gymAllowanceWeight;
 
     // constructors
-    public WeightModel(int yearlySalaryWeight, int yearlyBonusWeight, int leaveTimeWeight,
-                       int allowedRemoteDaysWeight, int gymAllowanceWeight) {
-        this.yearlySalaryWeight = yearlySalaryWeight;
-        this.yearlyBonusWeight = yearlyBonusWeight;
-        this.allowedRemoteDaysWeight = allowedRemoteDaysWeight;
-        this.leaveTimeWeight = leaveTimeWeight;
-        this.gymAllowanceWeight = gymAllowanceWeight;
+    public Weight() {
+        this.yearlySalaryWeight = 1;
+        this.yearlyBonusWeight = 1;
+        this.allowedRemoteDaysWeight = 1;
+        this.leaveTimeWeight = 1;
+        this.gymAllowanceWeight = 1;
     }
 
-    public WeightModel(){
-
-    }
 
     // toString for printing the contents of a class object
     @Override
@@ -74,5 +70,16 @@ public class WeightModel {
 
     public void setGymAllowanceWeight(int gymAllowanceWeight) {
         this.gymAllowanceWeight = gymAllowanceWeight;
+    }
+
+    public void setWeights(int yearlySalaryWeight, int yearlyBonusWeight, int leaveTimeWeight,
+                           int allowedRemoteDaysWeight, int gymAllowanceWeight){
+
+        this.yearlySalaryWeight = yearlySalaryWeight;
+        this.yearlyBonusWeight = yearlyBonusWeight;
+        this.allowedRemoteDaysWeight = allowedRemoteDaysWeight;
+        this.leaveTimeWeight = leaveTimeWeight;
+        this.gymAllowanceWeight = gymAllowanceWeight;
+
     }
 }

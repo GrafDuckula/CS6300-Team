@@ -75,11 +75,7 @@ public class CurrentJobActivity extends AppCompatActivity {
 
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance(CurrentJobActivity.this);
         Job current_job = databaseHelper.getCurrentJob();
-//        if (current_job != null) {
-//            jobMgr.addCurrentJob(current_job);
-//        }
-//
-//        Job job = jobMgr.getCurrentJob();
+
 
         if (current_job == null) {
             titleTxt.setText("");
