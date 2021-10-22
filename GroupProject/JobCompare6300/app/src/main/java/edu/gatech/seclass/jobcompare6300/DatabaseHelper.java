@@ -328,7 +328,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     // update Weights
-    public int updateWeights(Weight weight) {
+    public void updateWeights(Weight weight) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues cv = new ContentValues();
@@ -340,9 +340,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_WGT_GYMALLOW, weight.getGymAllowanceWeight());
 
         // updating row
-        System.out.println(weight.toString());
-        System.out.println(cv);
-        return db.update(TABLE_WEIGHTS, cv, null, null);
+        String queryString = "SELECT * FROM " + TABLE_WEIGHTS;
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if (!cursor.moveToFirst()) {
+            db.insert(TABLE_WEIGHTS, null, cv);
+        }else{
+            db.update(TABLE_WEIGHTS, cv, null, null);
+        }
 
     }
 }

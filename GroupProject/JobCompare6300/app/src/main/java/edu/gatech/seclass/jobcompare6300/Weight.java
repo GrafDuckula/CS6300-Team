@@ -53,7 +53,6 @@ public class Weight {
     public int getYearlySalaryWeight() {
         return yearlySalaryWeight;
     }
-
     public void setYearlySalaryWeight(int yearlySalaryWeight) {
         this.yearlySalaryWeight = yearlySalaryWeight;
     }
@@ -61,7 +60,6 @@ public class Weight {
     public int getYearlyBonusWeight() {
         return yearlyBonusWeight;
     }
-
     public void setYearlyBonusWeight(int yearlyBonusWeight) {
         this.yearlyBonusWeight = yearlyBonusWeight;
     }
@@ -69,7 +67,6 @@ public class Weight {
     public int getAllowedRemoteDaysWeight() {
         return allowedRemoteDaysWeight;
     }
-
     public void setAllowedRemoteDaysWeight(int allowedRemoteDaysWeight) {
         this.allowedRemoteDaysWeight = allowedRemoteDaysWeight;
     }
@@ -77,7 +74,6 @@ public class Weight {
     public int getLeaveTimeWeight() {
         return leaveTimeWeight;
     }
-
     public void setLeaveTimeWeight(int leaveTimeWeight) {
         this.leaveTimeWeight = leaveTimeWeight;
     }
@@ -85,7 +81,6 @@ public class Weight {
     public int getGymAllowanceWeight() {
         return gymAllowanceWeight;
     }
-
     public void setGymAllowanceWeight(int gymAllowanceWeight) {
         this.gymAllowanceWeight = gymAllowanceWeight;
     }

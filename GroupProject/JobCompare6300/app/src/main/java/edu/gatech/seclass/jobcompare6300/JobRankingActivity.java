@@ -16,7 +16,7 @@ import java.util.List;
 public class JobRankingActivity extends AppCompatActivity {
     private MyAdapter mAdapter;
 
-    JobManager jobMgr = JobManager.getInstance();
+//    JobManager jobMgr = JobManager.getInstance();
 //    JobComparison jobComparison = JobComparison.getInstance();
 
 
