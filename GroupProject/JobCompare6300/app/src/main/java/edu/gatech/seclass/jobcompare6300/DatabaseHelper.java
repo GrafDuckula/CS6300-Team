@@ -349,5 +349,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.update(TABLE_WEIGHTS, cv, null, null);
         }
 
+        cursor.close();
+
     }
 }
