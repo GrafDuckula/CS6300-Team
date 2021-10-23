@@ -80,9 +80,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         Job job = localDataSet.get(position);
 
         if (job.getStatus().equals("current")){
-            viewHolder.jobDescription.setText(job.getTitle() + "@" + job.getCompany() + " with " + job.getScore() + " *");
+            viewHolder.jobDescription.setText(job.getTitle() + " @ " + job.getCompany() + " *");
         }else {
-            viewHolder.jobDescription.setText(job.getTitle() + "@" + job.getCompany() + " with " + job.getScore());
+            viewHolder.jobDescription.setText(job.getTitle() + " @ " + job.getCompany());
         }
 
 
