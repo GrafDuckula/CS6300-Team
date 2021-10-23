@@ -13,18 +13,14 @@
 
 	When the user data increases, the App should be able to handle without delay.	
 	
-3. Security
-	
-	All the App data should be secured, prefected from internal and external attacks.
-
-4. Usability
+3. Usability
 
 	The UI must be intuitive. Users should be able use the App without any guideline or help from the experts or manuals.
 
-5. Responsive
+4. Responsive
 	
 	The App should be responsive to the user Input.
 	
-	The App should be able to return to previous state after been disrupted by a call.
+	The App should be able to return to previous state after been disrupted.
 
-6. The App state, including weights and job details, should persist between runs. 
+5. The App state, including weights and job details, should persist between runs. 
