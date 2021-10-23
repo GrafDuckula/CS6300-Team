@@ -8,7 +8,8 @@
 -	**Updated Class Diagram**: We changed the name of the class JobManager to Database JobManager (named DatabaseHelper), changed the name of the class JobComparison to Weight. We moved the duties of the JobManager class to the DatabaseHelper class since both classes were doing almost the same thing. We removed variables from Database JobManager and Weight, as all variables are created and handled within respective Activity classes. We relocated some of the duties of the JobComparison to the database, such as computing the score, and the ranking, since it would be faster to do so and less work on the app. Since we removed such duties, we used a Weight class that would handle setting the weights and getting the sum of the weights. In the Job class, we added a ‘status’ variable to track either a job entered is ‘current’ or ‘offer’ since all jobs are stored in the same table. The four methods mentioned in Main Menu are being implemented through the front-end activity classes. 
 -	**Updated Component Diagram**: We reflected the changes from the class diagram onto the component diagram. We changed the name of the Job Manager component to Database Job Manager (named DatabaseHelper), changed the name of the Comparison Setting component to Weight, removed Job’s connection to the database, and add a database connection to Database Job Manager. We did not create a class for Comparison Setting but created a Weight class for setting the weights instead. DatabaseHelper has direct access to the database, not the Job class, as we placed all created database-related methods in one class.  
 -	**Updated UI Design**: We removed the bold format of the current job and left the asterisk for simplicity. 
--	
+
+***
 ## 1 Design Considerations
 
 ### 1.1 Assumptions
