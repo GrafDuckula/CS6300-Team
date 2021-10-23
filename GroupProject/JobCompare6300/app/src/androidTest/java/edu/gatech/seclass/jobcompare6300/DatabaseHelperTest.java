@@ -105,6 +105,15 @@ public class DatabaseHelperTest {
         // add 100 job offers
         Random rand = new Random();
 
+        Job originalJob = null;
+        String originalJobName = "";
+        String originalJobCompany = "";
+        int originalJobScore = -1;
+
+        String sameCompany = "";
+        int updatedScore = -1;
+
+
         for (int i=0; i < 100; i = i+1){
             String status = "offer";
             String title = Integer.toString(rand.nextInt(1000));
@@ -125,18 +134,41 @@ public class DatabaseHelperTest {
             dbTest.addJob(newJob);
         }
 
+        Assert.assertEquals(dbTest.getAllJobs().size(), 100);
+
+        originalJob = dbTest.getAllJobs().get(20);
+        originalJobName = originalJob.getTitle();
+        originalJobCompany = originalJob.getCompany();
+        originalJobScore = originalJob.getScore();
+
         // set new weight
         Weight weight =  new Weight();
         weight.setWeights(4,3,2,1,0);
         dbTest.updateWeights(weight);
-        System.out.println("update weights");
-        System.out.println(dbTest.getAllWgts().toString());
+//        System.out.println("update weights");
+//        System.out.println(dbTest.getAllWgts());
+
+        Assert.assertEquals(dbTest.getAllWgts().getYearlySalaryWeight(), 4);
+        Assert.assertEquals(dbTest.getAllWgts().getYearlyBonusWeight(), 3);
+        Assert.assertEquals(dbTest.getAllWgts().getLeaveTimeWeight(), 2);
+        Assert.assertEquals(dbTest.getAllWgts().getAllowedRemoteDaysWeight(), 1);
+        Assert.assertEquals(dbTest.getAllWgts().getGymAllowanceWeight(), 0);
 
         // update all score
         dbTest.updateAllJobScore();
+
         for (Job job : dbTest.getAllJobs()){
             System.out.println(job.getTitle() + " " + job.getCompany() + " " +job.getScore());
+            if(job.getTitle().equals(originalJobName)){
+                sameCompany = job.getCompany();
+                updatedScore = job.getScore();
+            }
         }
+
+
+
+        Assert.assertEquals(originalJobCompany, sameCompany);
+        Assert.assertNotEquals(originalJobScore,updatedScore);
 
         db.execSQL("DELETE FROM 'JOBS'");
         db.execSQL("DELETE FROM 'WEIGHTS'");

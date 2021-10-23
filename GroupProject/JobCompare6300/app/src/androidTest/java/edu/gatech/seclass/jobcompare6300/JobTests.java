@@ -13,46 +13,6 @@ import edu.gatech.seclass.jobcompare6300.Job;
 @RunWith(AndroidJUnit4.class)
 public class JobTests {
 
-//    @Before
-//    public void setUp(){
-//        Job testJob = new Job("Chef", "Microsoft", "Mountain View, CA", 5, 250000, 5000, 5, 20, 400);
-//    }
-
-
-//    @Test
-//    public void editJobTest(){
-//        Job testJob = new Job("current", "SWE", "Apple", "Mountain CantView", "CA", 8, 250001, 7000, 0, 5, 250);
-//        String originalTitle = testJob.getTitle();
-//        String originalCompany = testJob.getCompany();
-//        String originalCity = testJob.getCity();
-//        String originalState = testJob.getState();
-//        int originalIndex = testJob.getLivingCostIndex();
-//        int originalSalary = testJob.getYearlySalary();
-//        int originalBonus = testJob.getYearlyBonus();
-//        int originalRemote = testJob.getWeeklyAllowedRemoteDays();
-//        int originalLeave = testJob.getLeaveTime();
-//        int originalGym = testJob.getGymAllowance();
-//
-//        testJob.editJob("current", "superSWE", "Pear", "Mountain CanView", "TN", 5, 250000, 7001, 5, 8, 350);
-//
-//        Assert.assertNotEquals(originalTitle, testJob.getTitle());
-//        Assert.assertNotEquals(originalCompany, testJob.getCompany());
-//        Assert.assertNotEquals(originalCity, testJob.getCity());
-//        Assert.assertNotEquals(originalState, testJob.getState());
-//        Assert.assertNotEquals(originalIndex, testJob.getLivingCostIndex());
-//        Assert.assertNotEquals(originalSalary, testJob.getYearlySalary());
-//        Assert.assertNotEquals(originalBonus, testJob.getYearlyBonus());
-//        Assert.assertNotEquals(originalRemote, testJob.getWeeklyAllowedRemoteDays());
-//        Assert.assertNotEquals(originalLeave, testJob.getLeaveTime());
-//        Assert.assertNotEquals(originalGym, testJob.getGymAllowance());
-//    }
-
-//    @Test
-//    public void calculateScore(){
-//        Job testJob = new Job("Chef", "Microsoft", "Mountain View, CA", 5, 250000, 5000, 5, 20, 400);
-//
-//    }
-
     @Test
     public void getTitleTest(){
         Job testJob = new Job("current", "Chef", "Microsoft", "Mountain View", "CA", 5, 250000, 5000, 5, 20, 400);
