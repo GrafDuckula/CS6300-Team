@@ -2,6 +2,13 @@
 
 **Author**: Team177
 
+### V2
+###### Changes:
+- Removed a test case as the team agreed
+- White-box testing in "Test Selection" was removed as the team decided it would be better to use black-box for our code, and manual UI for our business logic.
+- Removed Selenium under the technologies to use as the app was simple enough that manually testing the UI covered our test plan without issues
+
+
 ## 1 Testing Strategy
 
 ### 1.1 Overall strategy
@@ -20,8 +27,6 @@ Regression-Testing - Our strategy to make sure unrelated changes are not impacti
 
 Black-box Testing - One approach we are planning to utilize is Partition testing for the job offer selection as there are multiple ways a job offer could be presented (no stocks, multiple stocks, equity, bonuses, no bonuses, etc), so we would pick a partition and select options from within it.  For this we would use boundary values such as 0 for no stocks, or maybe 100,000 as an average amount of stocks, etc.
 
-White-box Testing - We would use CFG (Control Flow Graph) and branch coverage to try and get test cases that get 100% branch coverage.
-
 
 ### 1.3 Adequacy Criterion
 
@@ -36,7 +41,7 @@ Bugs and enhancement requests will be tracked on github through the issue option
 ### 1.5 Technology
 
 
-JUnit testing will be used to test modules of the system to make sure inputs are correct.  We will utilize manual testing for more UI related for interfact interaction for navigating between menus to see if the flow works as expected.  Selenium will be used to make sure a typical user process is completed successfully (adding a job offer, and retrieving it).
+JUnit testing will be used to test modules of the system to make sure inputs are correct.  We will utilize manual testing for more UI related for interfact interaction for navigating between menus to see if the flow works as expected.
 
 ## 2 Test Cases
 
