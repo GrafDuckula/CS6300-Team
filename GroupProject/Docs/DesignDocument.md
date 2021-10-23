@@ -24,10 +24,10 @@ The architecture provides the high-level design view of a system and provides a 
 ### 2.1 Component Diagram
 
 Component Diagram simplify the high-level view of the system. It shows the various components and how they are connected.   
-In this application, it contains six large components including GUI, MainMenu Client Session, Job Manager, Comparison Setting, Job and Database.  
+In this application, it contains six large components including GUI, MainMenu Client Session, Database Job Manager (DatabaseHelper), Weight, Job and Database.  
 GUI is the component of the system entry interface. Users operate through the interface. GUI requires the information through Main Menu client session about main functions.  
-Main Menu contains the functions on the main page, it requires interface from Job Manager for Job offers and Comparison Setting for weights.  
-Job Manager, Comparison Setting and Job are interacted to calculate the score and rank the job offers.  
+Main Menu contains the functions on the main page, it requires interface from Database Job Manager for Job offers and Weight for weights.  
+Database Job Manager, Weight and Job are interacted to calculate the score and rank the job offers.  
 All data are stored in local database.
 
 ![component diagram](./images/componentDiagram.png)
@@ -51,7 +51,7 @@ The deployment diagram for this app is really simple because the deployments are
 <img src="./images/main.png" height="650">  <img src="./images/current_job.png" height="650">  <img src="./images/add_new_offer.png" height="650">
 
 
-<img src="./images/job_list.png" height="650">  <img src="./images/adjust_weights.png" height="650">  <img src="./images/job_comparison.png" height="650">
+<img src="./images/job_list.png" width="310" height="650">  <img src="./images/adjust_weights.png" height="650">  <img src="./images/job_comparison.png" height="650">
 
 
 
