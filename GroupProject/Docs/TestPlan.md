@@ -2,7 +2,7 @@
 
 **Author**: Team177
 
-### V2
+### Version 2
 ###### Changes:
 - Removed a test case as the team agreed
 - White-box testing in "Test Selection" was removed as the team decided it would be better to use black-box for our code, and manual UI for our business logic.
